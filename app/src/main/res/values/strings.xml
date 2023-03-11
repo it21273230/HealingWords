@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Healing Words</string>
+    <string name="loginBtn">Login</string>
+    <string name="registerBtn">Register</string>
+    <string name="logo">Healing Words</string>
+    <string name="loginLabel">Login</string>
+    <string name="edtUserName">User Name</string>
+    <string name="edtPassword">Password</string>
+    <string name="submitLoginBtn">Login</string>
 </resources>
