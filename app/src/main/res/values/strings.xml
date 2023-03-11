@@ -1,10 +1,22 @@
 <resources>
     <string name="app_name">Healing Words</string>
+
+    <!--splash screen-->
     <string name="loginBtn">Login</string>
     <string name="registerBtn">Register</string>
     <string name="logo">Healing Words</string>
+
+    <!--login & register page-->
     <string name="loginLabel">Login</string>
-    <string name="edtUserName">User Name</string>
-    <string name="edtPassword">Password</string>
+    <string name="registerLabel">Register</string>
+    <string name="edtUserNameLogin">User Name</string>
+    <string name="edtUserNameRegister">User Name</string>
+    <string name="edtEmail">Email</string>
+    <string name="edtPasswordLogin">Password</string>
+    <string name="edtPasswordRegister">Password</string>
+    <string name="edtRePasswordRegister">Re-type Password</string>
     <string name="submitLoginBtn">Login</string>
+    <string name="submitRegisterBtn">Register</string>
+
+
 </resources>
