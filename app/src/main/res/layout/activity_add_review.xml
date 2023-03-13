@@ -23,7 +23,7 @@
         tools:text="@string/tvAddReview" />
 
     <EditText
-        android:id="@+id/edtMultilineFeedback"
+        android:id="@+id/edtEditMultilineFeedback"
         android:layout_width="313dp"
         android:layout_height="184dp"
         android:layout_marginLeft="50dp"

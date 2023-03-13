@@ -22,21 +22,22 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edtMultilineFeedback"
-        android:layout_width="313dp"
-        android:layout_height="184dp"
+        android:id="@+id/edtEditMultilineFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/border"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="@string/lorem"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:outlineProvider="bounds"
         android:padding="10dp"
+        android:text="@string/lorem"
         android:textAlignment="viewStart"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        tools:ignore="LabelFor" />
 
     <RatingBar
         android:id="@+id/editRating"
