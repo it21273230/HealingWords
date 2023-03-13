@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddReview">
+    tools:context=".EditReview">
 
     <TextView
         android:id="@+id/tvEditReview"
@@ -15,12 +15,11 @@
         android:layout_marginTop="100dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="50dp"
-        android:text="@string/tvAddReview"
+        android:text="@string/edtEditReviewHint"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="34sp"
-        android:textStyle="bold"
-        tools:text="@string/tvAddReview" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edtMultilineFeedback"
@@ -31,13 +30,13 @@
         android:background="@drawable/border"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="@string/edtAddReviewHint"
+        android:hint="@string/lorem"
+        android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:outlineProvider="bounds"
         android:padding="10dp"
         android:textAlignment="viewStart"
-        android:textSize="20sp"
-        android:importantForAutofill="no"/>
+        android:textSize="20sp" />
 
     <RatingBar
         android:id="@+id/editRating"

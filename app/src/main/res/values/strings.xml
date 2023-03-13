@@ -6,6 +6,7 @@
     <string name="cancelBtn">Cancel</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</string>
     <string name="user">User</string>
+
     <!--splash screen-->
     <string name="loginBtn">Login</string>
     <string name="registerBtn">Register</string>
@@ -26,6 +27,7 @@
     <!--Reviews-->
     <string name="tvAddReview">Give Feedback</string>
     <string name="edtAddReviewHint">Add a Feedback</string>
+    <string name="edtEditReviewHint">Edit Feedback</string>
     <string name="dummyRating">7.2/10</string>
 
 </resources>
