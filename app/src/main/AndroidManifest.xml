@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealingWords"
         tools:targetApi="31">
+
         <activity
             android:name=".EditReview"
             android:exported="false" />

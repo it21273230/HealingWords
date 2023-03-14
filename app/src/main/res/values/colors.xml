@@ -4,10 +4,11 @@
     <color name="content">#FFFFFF</color>
     <color name="themePrimary">#029851</color>
 
-    <color name="success">#4DF100</color>
-    <color name="danger">#FF0A0A</color>
+    <color name="success">#029851</color>
+    <color name="danger">#FF5252</color>
 
-    <color name="reviewStars">#FF1A5E</color>
+    <color name="reviewStars">#FBBF4B</color>
+    <color name="text">#3F4652</color>
 
 
     <color name="purple_200">#FFBB86FC</color>
