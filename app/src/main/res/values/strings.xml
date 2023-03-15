@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Healing Words</string>
 
+    <!--common -->
+    <string name="submitBtn">Submit</string>
+    <string name="cancelBtn">Cancel</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="user">User</string>
+
     <!--splash screen-->
     <string name="loginBtn">Login</string>
     <string name="registerBtn">Register</string>
@@ -18,5 +24,11 @@
     <string name="submitLoginBtn">Login</string>
     <string name="submitRegisterBtn">Register</string>
 
+    <!--Reviews-->
+    <string name="tvAddReview">Give Feedback</string>
+    <string name="edtAddReviewHint">Add a Feedback</string>
+    <string name="edtEditReviewHint">Edit Feedback
+    </string>
+    <string name="dummyRating">7.2/10</string>
 
 </resources>

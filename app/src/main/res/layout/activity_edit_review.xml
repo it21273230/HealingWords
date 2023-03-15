@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".MainActivity2">
+    tools:context=".edit_review2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/max_card_width"
@@ -39,7 +39,7 @@
             android:background="@drawable/border"
             android:ems="10"
             android:gravity="start|top"
-            android:hint="@string/edtAddReviewHint"
+            android:hint="@string/lorem"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
             android:outlineProvider="bounds"
@@ -68,16 +68,17 @@
 
         <TextView
             android:id="@+id/tvEditReview2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="405dp"
+            android:layout_height="52dp"
             android:layout_marginTop="24dp"
-            android:text="@string/tvAddReview"
+            android:text="@string/edtEditReviewHint"
             android:textAlignment="center"
             android:textColor="@color/text"
             android:textSize="34sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/submitEditRating2"
@@ -97,5 +98,4 @@
             app:layout_constraintTop_toBottomOf="@+id/editRating2"
             app:layout_constraintVertical_bias="0.008" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
