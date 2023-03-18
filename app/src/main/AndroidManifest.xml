@@ -12,12 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealingWords"
         tools:targetApi="31">
-
         <activity
-            android:name=".EditReview"
-            android:exported="false" />
-        <activity
-            android:name=".ShowReviews"
+            android:name=".AddComment"
             android:exported="false" />
         <activity
             android:name=".AddReview"

@@ -9,6 +9,12 @@
     <dimen name="margin_right">16dp</dimen>
 
 
+    <!--button-->
+    <dimen name="button_top">50dp</dimen>
+    <dimen name="button_left">290dp</dimen>
+
+
+
     <!--text-->
     <dimen name="heading">34sp</dimen>
     <dimen name="heading2">24sp</dimen>
