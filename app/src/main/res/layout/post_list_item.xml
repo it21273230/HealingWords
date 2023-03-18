@@ -57,14 +57,38 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
-                android:text="Lorem ipsum asdbf bbfbhjsdfhb bhj bhjsdfh bhjbhsdfbh "
+                android:layout_marginBottom="16dp"
+                android:text="Lorem ipsum dolor"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/imgPostLike"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/postDate" />
+
+            <ImageView
+                android:id="@+id/imgPostLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/imgPostComment"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/selected_like"
+                tools:layout_editor_absoluteY="94dp" />
+
+            <ImageView
+                android:id="@+id/imgPostComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imgPostLike"
+                app:srcCompat="@drawable/comment"
+                tools:layout_editor_absoluteY="94dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
