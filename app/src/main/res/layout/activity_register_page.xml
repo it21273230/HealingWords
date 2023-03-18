@@ -9,10 +9,10 @@
     tools:context=".RegisterPage">
 
     <LinearLayout
-        android:layout_width="426dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="140dp"
-        android:background="@drawable/rounded_corner"
+        android:background="@drawable/top_rounded_card"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +28,8 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:text="@string/registerLabel"
+            android:textAlignment="center"
+            android:textColor="#000000"
             android:textSize="34sp" />
 
         <EditText
@@ -97,6 +99,7 @@
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/themePrimary"
             android:text="@string/registerBtn"
+            android:textColor="#FFFFFF"
             tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
     </LinearLayout>
 
