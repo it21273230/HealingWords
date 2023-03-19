@@ -9,6 +9,17 @@
     android:background="@drawable/bg">
 
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="@dimen/max_card_width"
+        android:layout_height="900dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="413dp"
@@ -51,8 +62,9 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="407dp"
         android:layout_height="204dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -88,6 +100,7 @@
             android:layout_height="28dp"
             android:layout_marginTop="8dp"
             android:text="@string/user"
+            android:textColor="@color/success"
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/rating2"
             app:layout_constraintHorizontal_bias="0.179"
@@ -121,8 +134,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="409dp"
         android:layout_height="198dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
@@ -145,6 +159,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="@string/user"
+            android:textColor="@color/success"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
