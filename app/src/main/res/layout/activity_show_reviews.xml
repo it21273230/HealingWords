@@ -95,6 +95,27 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TextSizeCheck" />
 
+        <ImageView
+            android:id="@+id/delete2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/rating2_text"
+            app:layout_constraintStart_toEndOf="@+id/edit2"
+            app:srcCompat="@drawable/baseline_delete_forever_24" />
+
+        <ImageView
+            android:id="@+id/edit2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="325dp"
+            android:layout_marginTop="130dp"
+            app:layout_constraintEnd_toStartOf="@+id/delete2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/rating2_text"
+            app:layout_constraintStart_toStartOf="@+id/rating2_text"
+            app:layout_constraintTop_toTopOf="@+id/rating2_text"
+            app:srcCompat="@drawable/baseline_edit_note_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -141,6 +162,25 @@
             app:layout_constraintHorizontal_bias="0.896"
             app:layout_constraintStart_toEndOf="@+id/user1"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/edit"
+            app:srcCompat="@drawable/baseline_delete_forever_24" />
+
+        <ImageView
+            android:id="@+id/edit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="333dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/rating1_text"
+            app:srcCompat="@drawable/baseline_edit_note_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

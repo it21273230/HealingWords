@@ -5,98 +5,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".edit_review2">
+    tools:context=".EditReview">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <TextView
+        android:id="@+id/card2"
         android:layout_width="@dimen/max_card_width"
         android:layout_height="@dimen/max_card_height"
         android:layout_marginTop="140dp"
         android:background="@drawable/top_rounded_card"
         android:backgroundTint="@color/content"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <RatingBar
-            android:id="@+id/editRating2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:progressTint="@color/reviewStars"
-            android:rating="4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtEditMultilineFeedback2" />
+    <RatingBar
+        android:id="@+id/editRating2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:progressTint="@color/reviewStars"
+        android:rating="4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtEditMultilineFeedback2" />
 
-        <EditText
-            android:id="@+id/edtEditMultilineFeedback2"
-            android:layout_width="313dp"
-            android:layout_height="184dp"
-            android:layout_marginTop="44dp"
-            android:background="@drawable/border"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="@string/lorem"
-            android:importantForAutofill="no"
-            android:inputType="textMultiLine"
-            android:outlineProvider="bounds"
-            android:padding="10dp"
-            android:textAlignment="viewStart"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvEditReview2" />
+    <EditText
+        android:id="@+id/edtEditMultilineFeedback2"
+        android:layout_width="313dp"
+        android:layout_height="184dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/lorem"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:outlineProvider="bounds"
+        android:padding="10dp"
+        android:textAlignment="viewStart"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEditFeedback" />
 
-        <Button
-            android:id="@+id/cancelEditReview2"
-            android:layout_width="148dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:background="@drawable/button_bg_danger"
-            android:shadowColor="@color/black"
-            android:text="@string/cancelBtn"
-            android:textColor="@color/danger"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:cornerRadius="8dp"
-            app:layout_constraintStart_toEndOf="@+id/submitEditRating2"
-            app:layout_constraintTop_toTopOf="@+id/submitEditRating2" />
+    <Button
+        android:id="@+id/cancelEditReview"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/button_bg_danger"
+        android:shadowColor="@color/black"
+        android:text="@string/cancelBtn"
+        android:textColor="@color/danger"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="8dp"
+        app:layout_constraintStart_toEndOf="@+id/submitEditRating"
+        app:layout_constraintTop_toTopOf="@+id/submitEditRating" />
 
-        <TextView
-            android:id="@+id/tvEditReview2"
-            android:layout_width="405dp"
-            android:layout_height="52dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/edtEditReviewHint"
-            android:textAlignment="center"
-            android:textColor="@color/text"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvEditFeedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/card_padding_top"
+        android:text="@string/edtEditReviewHint"
+        android:textAlignment="center"
+        android:textColor="@color/text"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/card2" />
 
-        <Button
-            android:id="@+id/submitEditRating2"
-            android:layout_width="148dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/button_bg_success"
-            android:shadowColor="@color/black"
-            android:text="@string/submitBtn"
-            android:textColor="@color/success"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:cornerRadius="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editRating2"
-            app:layout_constraintVertical_bias="0.008" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/submitEditRating"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_bg_success"
+        android:shadowColor="@color/black"
+        android:text="@string/submitBtn"
+        android:textColor="@color/success"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="@+id/card2"
+        app:layout_constraintTop_toBottomOf="@+id/editRating2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
