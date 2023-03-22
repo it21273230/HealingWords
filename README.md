@@ -1,2 +1,9 @@
 # HealingWords
 
+Currently, our country is facing an economic crisis that is affecting a lot of people. As a result, many individuals are experiencing stress and depression which further hinders their day-to-day work. However, they cannot afford professional help because of the economic crisis. Mental health is still a taboo topic in our society, and people who seek therapy are often stigmatized and discriminated against. Since they lack treatments, reduced performance and quality in their careers can be seen, and unemployment can be occurred in extreme cases. This contributes to the economic crisis directly. 
+
+To address this issue, our objective is to create a secure platform where patients can connect with therapists anonymously. Patients can create posts where therapists can respond to their questions and comments. Furthermore, therapists can create blog posts to share their expertise and experiences.  
+
+As for the therapist's participation, patients can give ratings and reviews to the doctors. This increases the doctor's reputation and fame as a psychiatrist. 
+
+Overall, we believe that this platform can be a valuable solution for individuals seeking mental health support, providing a safe and anonymous environment where they can solve and get advice regarding their problems for free of charge. 
