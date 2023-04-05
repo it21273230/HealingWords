@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "796984603990",
+    "project_id": "healing-words-17afa",
+    "storage_bucket": "healing-words-17afa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796984603990:android:abd8e989ef5a1314a952f7",
+        "android_client_info": {
+          "package_name": "com.example.healingwords"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796984603990-p1jm9oljd7s5dal5424bg2s7dvs91v0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI3cIFFoLy5tz_tVvJPO02hBRyAnCSYnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796984603990-p1jm9oljd7s5dal5424bg2s7dvs91v0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
