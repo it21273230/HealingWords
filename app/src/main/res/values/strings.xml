@@ -23,6 +23,8 @@
     <string name="edtRePasswordRegister">Re-type Password</string>
     <string name="submitLoginBtn">Login</string>
     <string name="submitRegisterBtn">Register</string>
+    <string name="loginRegBtn">Need a new account?</string>
+    <string name="LoginLogo">Login logo</string>
 
     <!--Reviews-->
     <string name="tvAddReview">Give Feedback</string>
