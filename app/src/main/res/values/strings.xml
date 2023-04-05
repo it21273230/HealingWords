@@ -7,12 +7,12 @@
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="user">User</string>
 
-    <!--splash screen-->
-    <string name="loginBtn">Login</string>
-    <string name="registerBtn">Register</string>
-    <string name="logo">Healing Words</string>
+
+
+
 
     <!--login & register page-->
+    <string name="loginBtn">Login</string>
     <string name="loginLabel">Login</string>
     <string name="registerLabel">Register</string>
     <string name="edtUserNameLogin">User Name</string>
@@ -22,7 +22,7 @@
     <string name="edtPasswordRegister">Password</string>
     <string name="edtRePasswordRegister">Re-type Password</string>
     <string name="submitLoginBtn">Login</string>
-    <string name="submitRegisterBtn">Register</string>
+    <string name="registerBtn">Create new account</string>
     <string name="loginRegBtn">Need a new account?</string>
     <string name="LoginLogo">Login logo</string>
 
@@ -49,7 +49,9 @@
     <string name="AddButton">Add </string>
     <string name="ViewComments">Comments </string>
     <string name="NewButton">+Add</string>
-
+    <string name="actionSearchText">Search</string>
+    <string name="actionSettingText">Account Settings</string>
+    <string name="actionLogout">Logout</string>
 
 
 </resources>

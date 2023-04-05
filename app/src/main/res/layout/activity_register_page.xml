@@ -33,35 +33,6 @@
             android:textSize="34sp" />
 
         <EditText
-            android:id="@+id/edtRePasswordRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/edtRePasswordRegister"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            tools:ignore="TextContrastCheck" />
-
-        <EditText
-            android:id="@+id/edtPasswordRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/edtPasswordRegister"
-            android:inputType="textPassword"
-            android:minHeight="48dp" />
-
-        <EditText
             android:id="@+id/edtUserNameRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,8 +60,37 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp" />
 
+        <EditText
+            android:id="@+id/edtPasswordRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/edtPasswordRegister"
+            android:inputType="textPassword"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/edtRePasswordRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/edtRePasswordRegister"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            tools:ignore="TextContrastCheck" />
+
         <Button
-            android:id="@+id/submitRegisterBtn"
+            android:id="@+id/registerBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -102,5 +102,16 @@
             android:textColor="#FFFFFF"
             tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/registerProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

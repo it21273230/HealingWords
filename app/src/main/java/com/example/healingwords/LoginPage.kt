@@ -33,6 +33,11 @@ class LoginPage : AppCompatActivity() {
         loginRegBtn = findViewById(R.id.loginRegBtn)
         loginProgress = findViewById(R.id.loginProgress)
 
+        loginRegBtn.setOnClickListener {
+            val regIntent = Intent(this, RegisterPage::class.java)
+            startActivity(regIntent)
+        }
+
         submitLoginBtn.setOnClickListener {
 
 
@@ -45,7 +50,6 @@ class LoginPage : AppCompatActivity() {
                 mAuth.signInWithEmailAndPassword(loginEmail, loginPass)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-
                             sendToMain()
                         } else {
                             val errorMessage = task.exception?.message
