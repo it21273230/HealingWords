@@ -45,12 +45,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imgUserDoc"
+        app:layout_constraintEnd_toStartOf="@+id/imgDoc"
         app:layout_constraintStart_toEndOf="@+id/imgBlogsDoc"
         app:srcCompat="@drawable/review_unselected" />
 
     <ImageView
-        android:id="@+id/imgUserDoc"
+        android:id="@+id/imgDoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
