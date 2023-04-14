@@ -6,9 +6,8 @@
     <string name="cancelBtn">Cancel</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="user">User</string>
-
-
-
+    <string name="blogs">Blogs</string>
+    <string name="reviews">Reviews</string>
 
 
     <!--login & register page-->
