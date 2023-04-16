@@ -15,6 +15,12 @@
         android:theme="@style/Theme.HealingWords"
         tools:targetApi="31">
         <activity
+            android:name=".RegisterDoctorPage"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseRegType"
+            android:exported="false" />
+        <activity
             android:name=".DocMainUI"
             android:exported="false" />
         <activity
@@ -49,6 +55,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

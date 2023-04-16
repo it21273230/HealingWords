@@ -36,7 +36,7 @@ class LoginPage : AppCompatActivity() {
         loginProgress = findViewById(R.id.loginProgress)
 
         loginRegBtn.setOnClickListener {
-            val regIntent = Intent(this, RegisterPage::class.java)
+            val regIntent = Intent(this, ChooseRegType::class.java)
             startActivity(regIntent)
         }
 

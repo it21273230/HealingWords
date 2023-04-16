@@ -8,12 +8,14 @@
     <string name="user">User</string>
     <string name="blogs">Blogs</string>
     <string name="reviews">Reviews</string>
+    <string name="welcome">Welcome</string>
 
 
     <!--login & register page-->
     <string name="loginBtn">Login</string>
     <string name="loginLabel">Login</string>
     <string name="registerLabel">Register</string>
+    <string name="registerDocLabel">Register Doctor</string>
     <string name="edtUserNameLogin">User Name</string>
     <string name="edtUserNameRegister">User Name</string>
     <string name="edtEmail">Email</string>
@@ -24,6 +26,9 @@
     <string name="registerBtn">Create new account</string>
     <string name="loginRegBtn">Need a new account?</string>
     <string name="LoginLogo">Login logo</string>
+    <string name='regAsNormalUser'>Register as a User</string>
+    <string name='regAsDoctor'>Register as a Doctor</string>
+    <string name='profession'>Profession</string>
 
     <!--Reviews-->
     <string name="tvAddReview">Give Feedback</string>
