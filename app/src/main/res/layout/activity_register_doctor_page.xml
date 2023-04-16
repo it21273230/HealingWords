@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/top_rounded_card"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +33,7 @@
             android:textSize="34sp" />
 
         <EditText
-            android:id="@+id/edtDocNameRegister"
+            android:id="@+id/edtDocUsernameRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -43,6 +43,20 @@
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/edtUserNameRegister"
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/edtDocNameRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/edtDocNameRegister"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 

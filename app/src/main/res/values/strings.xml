@@ -18,6 +18,7 @@
     <string name="registerDocLabel">Register Doctor</string>
     <string name="edtUserNameLogin">User Name</string>
     <string name="edtUserNameRegister">User Name</string>
+    <string name="edtDocNameRegister">Name</string>
     <string name="edtEmail">Email</string>
     <string name="edtPasswordLogin">Password</string>
     <string name="edtPasswordRegister">Password</string>

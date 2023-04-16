@@ -2,6 +2,7 @@ package com.example.healingwords
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -69,15 +70,19 @@ class LoginPage : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val currentUser = mAuth.currentUser
-        if(currentUser != null){
-            redirectUsers(currentUser.uid)
+        val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+        if(currentFirebaseUser != null){
+            redirectUsers(currentFirebaseUser.uid)
         }
     }
 
 
     private fun redirectUsers(uid:String) {
-        if(getUserType(uid) == "normalUser") {
+        var a = getUserType(uid)
+
+        Log.d("uid", uid)
+        Log.d("type", a.toString())
+        if(getUserType(uid).equals("normalUser")) {
             sendToNormalUserMain(uid)
         } else {
             sendToDoctorMain(uid)
@@ -100,22 +105,21 @@ class LoginPage : AppCompatActivity() {
     }
 
     private fun getUserType(uid: String):String {
-        var userType : String = "none";
-        var userDatabase = FirebaseDatabase.getInstance().getReference("Users")
-        userDatabase.child(uid).get().addOnSuccessListener { normalUser ->
-            if(normalUser.exists()) {
-                userType = "normalUser"
+        var userType : String = "";
+        var doctorDatabase = FirebaseDatabase.getInstance().getReference("Doctor")
+        doctorDatabase.child(uid).get().addOnSuccessListener { Doctor ->
+            if(Doctor.exists()) {
+                userType = "doctor"
+                Log.d("returned", userType.toString())
 
             }else {
-                var doctorDatabase = FirebaseDatabase.getInstance().getReference("Doctors")
-                doctorDatabase.child(uid).get().addOnSuccessListener {doctor ->
-                    if(doctor.exists()) {
-                       userType = "doctor"
-                    }
-                }
+                userType = "normalUser"
+                Log.d("returned", userType.toString())
             }
         }.addOnFailureListener{
             Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
+            userType ="error"
+            Log.d("returned", userType.toString())
         }
 
         return userType
