@@ -76,19 +76,15 @@ class LoginPage : AppCompatActivity() {
         }
     }
 
-
-    private fun redirectUsers(uid:String) {
-        var a = getUserType(uid)
-
-        Log.d("uid", uid)
-        Log.d("type", a.toString())
-        if(getUserType(uid).equals("normalUser")) {
-            sendToNormalUserMain(uid)
-        } else {
-            sendToDoctorMain(uid)
+    override fun onResume() {
+        super.onResume()
+        val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+        if(currentFirebaseUser != null){
+            redirectUsers(currentFirebaseUser.uid)
         }
-
     }
+
+
 
     private fun sendToDoctorMain(uid: String) {
         val mainIntent = Intent(this, DocMainUI::class.java)
@@ -104,25 +100,22 @@ class LoginPage : AppCompatActivity() {
         finish()
     }
 
-    private fun getUserType(uid: String):String {
-        var userType : String = "";
-        var doctorDatabase = FirebaseDatabase.getInstance().getReference("Doctor")
+    private fun redirectUsers(uid: String) {
+        var doctorDatabase = FirebaseDatabase.getInstance().getReference("Doctors")
+        Log.d("uid", uid)
         doctorDatabase.child(uid).get().addOnSuccessListener { Doctor ->
             if(Doctor.exists()) {
-                userType = "doctor"
-                Log.d("returned", userType.toString())
-
+                Log.d("status", "exists")
+                sendToDoctorMain(uid)
             }else {
-                userType = "normalUser"
-                Log.d("returned", userType.toString())
+                Log.d("status", "not-exists")
+               sendToNormalUserMain(uid)
             }
         }.addOnFailureListener{
             Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
-            userType ="error"
-            Log.d("returned", userType.toString())
         }
 
-        return userType
+
     }
 
 
