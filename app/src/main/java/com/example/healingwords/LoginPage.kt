@@ -9,6 +9,8 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+
 
 class LoginPage : AppCompatActivity() {
 
@@ -50,12 +52,13 @@ class LoginPage : AppCompatActivity() {
                 mAuth.signInWithEmailAndPassword(loginEmail, loginPass)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            sendToMain()
+                            val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+                            if(currentFirebaseUser != null) {
+                                redirectUsers(currentFirebaseUser.uid)
+                            }
                         } else {
                             val errorMessage = task.exception?.message
                             Toast.makeText(this@LoginPage, "Error: $errorMessage", Toast.LENGTH_LONG).show()
-
-
                         }
 
                         loginProgress.visibility = View.INVISIBLE
@@ -66,21 +69,57 @@ class LoginPage : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         val currentUser = mAuth.currentUser
-
         if(currentUser != null){
+            redirectUsers(currentUser.uid)
+        }
+    }
 
-            sendToMain()
 
+    private fun redirectUsers(uid:String) {
+        if(getUserType(uid) == "normalUser") {
+            sendToNormalUserMain(uid)
+        } else {
+            sendToDoctorMain(uid)
         }
 
     }
 
-    private fun sendToMain() {
-        val mainIntent = Intent(this, MainActivity::class.java)
+    private fun sendToDoctorMain(uid: String) {
+        val mainIntent = Intent(this, DocMainUI::class.java)
+        mainIntent.putExtra("uid", uid)
         startActivity(mainIntent)
         finish()
     }
+
+    private fun sendToNormalUserMain(uid:String) {
+        val mainIntent = Intent(this, MainActivity::class.java)
+        mainIntent.putExtra("uid", uid)
+        startActivity(mainIntent)
+        finish()
+    }
+
+    private fun getUserType(uid: String):String {
+        var userType : String = "none";
+        var userDatabase = FirebaseDatabase.getInstance().getReference("Users")
+        userDatabase.child(uid).get().addOnSuccessListener { normalUser ->
+            if(normalUser.exists()) {
+                userType = "normalUser"
+
+            }else {
+                var doctorDatabase = FirebaseDatabase.getInstance().getReference("Doctors")
+                doctorDatabase.child(uid).get().addOnSuccessListener {doctor ->
+                    if(doctor.exists()) {
+                       userType = "doctor"
+                    }
+                }
+            }
+        }.addOnFailureListener{
+            Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
+        }
+
+        return userType
+    }
+
 
 }
