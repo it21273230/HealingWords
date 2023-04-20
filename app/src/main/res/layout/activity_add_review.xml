@@ -55,7 +55,7 @@
         android:id="@+id/cancelAddReview"
         android:layout_width="148dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginBottom="90dp"
         android:background="@drawable/button_bg_danger"
         android:shadowColor="@color/black"
         android:text="@string/cancelBtn"
@@ -63,8 +63,9 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:cornerRadius="8dp"
-        app:layout_constraintStart_toEndOf="@+id/submitAddRating"
-        app:layout_constraintTop_toTopOf="@+id/submitAddRating" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/submitAddRating" />
 
     <TextView
         android:id="@+id/tvGiveFeedback"
@@ -83,8 +84,7 @@
         android:id="@+id/submitAddRating"
         android:layout_width="148dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="90dp"
         android:background="@drawable/button_bg_success"
         android:shadowColor="@color/black"
         android:text="@string/submitBtn"
@@ -92,7 +92,8 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:cornerRadius="8dp"
-        app:layout_constraintStart_toStartOf="@+id/card"
-        app:layout_constraintTop_toBottomOf="@+id/editRating2" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cancelAddReview"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

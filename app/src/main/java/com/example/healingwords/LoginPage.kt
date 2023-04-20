@@ -2,6 +2,7 @@ package com.example.healingwords
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -9,6 +10,8 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+
 
 class LoginPage : AppCompatActivity() {
 
@@ -34,7 +37,7 @@ class LoginPage : AppCompatActivity() {
         loginProgress = findViewById(R.id.loginProgress)
 
         loginRegBtn.setOnClickListener {
-            val regIntent = Intent(this, RegisterPage::class.java)
+            val regIntent = Intent(this, ChooseRegType::class.java)
             startActivity(regIntent)
         }
 
@@ -50,12 +53,13 @@ class LoginPage : AppCompatActivity() {
                 mAuth.signInWithEmailAndPassword(loginEmail, loginPass)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            sendToMain()
+                            val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+                            if(currentFirebaseUser != null) {
+                                redirectUsers(currentFirebaseUser.uid)
+                            }
                         } else {
                             val errorMessage = task.exception?.message
                             Toast.makeText(this@LoginPage, "Error: $errorMessage", Toast.LENGTH_LONG).show()
-
-
                         }
 
                         loginProgress.visibility = View.INVISIBLE
@@ -66,21 +70,53 @@ class LoginPage : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
-        val currentUser = mAuth.currentUser
-
-        if(currentUser != null){
-
-            sendToMain()
-
+        val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+        if(currentFirebaseUser != null){
+            redirectUsers(currentFirebaseUser.uid)
         }
-
     }
 
-    private fun sendToMain() {
-        val mainIntent = Intent(this, MainActivity::class.java)
+    override fun onResume() {
+        super.onResume()
+        val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+        if(currentFirebaseUser != null){
+            redirectUsers(currentFirebaseUser.uid)
+        }
+    }
+
+
+
+    private fun sendToDoctorMain(uid: String) {
+        val mainIntent = Intent(this, DocMainUI::class.java)
+        mainIntent.putExtra("uid", uid)
         startActivity(mainIntent)
         finish()
     }
+
+    private fun sendToNormalUserMain(uid:String) {
+        val mainIntent = Intent(this, MainActivity::class.java)
+        mainIntent.putExtra("uid", uid)
+        startActivity(mainIntent)
+        finish()
+    }
+
+    private fun redirectUsers(uid: String) {
+        var doctorDatabase = FirebaseDatabase.getInstance().getReference("Doctors")
+        Log.d("uid", uid)
+        doctorDatabase.child(uid).get().addOnSuccessListener { Doctor ->
+            if(Doctor.exists()) {
+                Log.d("status", "exists")
+                sendToDoctorMain(uid)
+            }else {
+                Log.d("status", "not-exists")
+               sendToNormalUserMain(uid)
+            }
+        }.addOnFailureListener{
+            Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
+        }
+
+
+    }
+
 
 }

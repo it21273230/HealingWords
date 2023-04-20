@@ -49,6 +49,9 @@ class RegisterPage : AppCompatActivity() {
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
 
+                                //use uid as the child of the user db or the system will break
+                                //refer to RegisterDoctorPage
+
                                 sendToMain()
 
                             } else {
