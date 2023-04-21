@@ -39,41 +39,44 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setTitle("Healing Words")
 
-        mainBottomNav = findViewById(R.id.mainBottomNav)
+        if(mAuth.currentUser != null) {
+            mainBottomNav = findViewById(R.id.mainBottomNav)
 
-        //FRAGMENTS
-        homeFragment = HomeFragment()
-        blogFragment = BlogFragment()
-        accountFragment = AccountFragment()
+            //FRAGMENTS
+            homeFragment = HomeFragment()
+            blogFragment = BlogFragment()
+            accountFragment = AccountFragment()
 
-        mainBottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.bottom_action_home -> {
-                    replaceFragment(homeFragment)
-                    true
+            replaceFragment(homeFragment)
+
+            mainBottomNav.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.bottom_action_home -> {
+                        replaceFragment(homeFragment)
+                        true
+                    }
+                    R.id.bottom_action_blogs -> {
+                        replaceFragment(blogFragment)
+                        true
+                    }
+                    R.id.bottom_action_account -> {
+                        replaceFragment(accountFragment)
+                        true
+                    }
+                    else -> false
                 }
-                R.id.bottom_action_blogs -> {
-                    replaceFragment(blogFragment)
-                    true
-                }
-                R.id.bottom_action_account -> {
-                    replaceFragment(accountFragment)
-                    true
-                }
-                else -> false
             }
+
+
+
+
+            addPostBtn = findViewById(R.id.addPostBtn)
+            addPostBtn.setOnClickListener {
+                val newpostIntent = Intent(this, NewPostActivity::class.java)
+                startActivity(newpostIntent)
+            }
+
         }
-
-
-
-
-        addPostBtn = findViewById(R.id.addPostBtn)
-        addPostBtn.setOnClickListener {
-            val newpostIntent = Intent(this, NewPostActivity::class.java)
-            startActivity(newpostIntent)
-        }
-
-
     }
 
     override fun onStart() {
