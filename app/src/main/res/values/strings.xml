@@ -59,6 +59,8 @@
     <string name="actionSearchText">Search</string>
     <string name="actionSettingText">Account Settings</string>
     <string name="actionLogout">Logout</string>
+    <string name="usernameHint">Your name</string>
+    <string name="setupBtnName">Save account settings</string>
 
 
 </resources>
