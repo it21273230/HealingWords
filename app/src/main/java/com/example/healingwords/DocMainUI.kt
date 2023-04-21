@@ -33,9 +33,9 @@ class DocMainUI : AppCompatActivity() {
         val imgProfile = binding.imgDoc
 
         //fragments
-        val fragmentHome = ""
+        val fragmentHome = TempHome()  // replace this with actual home frag
         val fragmentReviews = ShowAllReviews()
-        val fragmentBlogs = ""
+        val fragmentBlogs = ""  //// replace this with actual blogs frag
         val fragmentDocProfile = DocProfile()
 
         //navigation profile page
@@ -60,6 +60,19 @@ class DocMainUI : AppCompatActivity() {
 
             supportFragmentManager.beginTransaction().apply {
                 replace(binding.DocMainUIFragmentContainerView.id, fragmentReviews)
+                commit()
+            }
+        }
+
+        //navigation home page
+        imgHome.setOnClickListener{
+            imgHome.setImageResource(R.drawable.selected_home)
+            imgBlogs.setImageResource(R.drawable.unselected_blog)
+            imgReviews.setImageResource(R.drawable.review_unselected)
+            imgProfile.setImageResource(R.drawable.unselected_user)
+
+            supportFragmentManager.beginTransaction().apply {
+                replace(binding.DocMainUIFragmentContainerView.id, fragmentHome)
                 commit()
             }
         }
