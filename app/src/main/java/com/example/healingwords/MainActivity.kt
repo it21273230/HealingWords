@@ -49,9 +49,6 @@ class MainActivity : AppCompatActivity() {
                 if(Doctor.exists()) {
                     Log.d("status", "exists")
                     sendToDoctorMain(uid)
-                }else {
-                    Log.d("status", "not-exists")
-                    sendToNormalUserMain(uid)
                 }
             }.addOnFailureListener{
                 Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
