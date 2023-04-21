@@ -1,0 +1,67 @@
+package com.example.healingwords
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.FirebaseFirestore
+import java.sql.Timestamp
+
+
+class HomeFragment : Fragment() {
+
+    private lateinit var postListView: RecyclerView
+    private var postList: MutableList<Post> = mutableListOf()
+
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseFirestore: FirebaseFirestore
+
+    private lateinit var postRecyclerAdapter: PostRecyclerAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        postListView = view.findViewById(R.id.post_list_view)
+        postRecyclerAdapter = PostRecyclerAdapter(postList)
+        postListView.layoutManager = LinearLayoutManager(requireActivity())
+
+        postListView.adapter = postRecyclerAdapter
+
+
+        firebaseFirestore = FirebaseFirestore.getInstance()
+        firebaseFirestore.collection("Posts").addSnapshotListener { value, error ->
+            if (error != null) {
+                // Handle error
+                return@addSnapshotListener
+            }
+
+            for (doc in value!!.documentChanges) {
+                val post = doc.document.toObject(Post::class.java)
+                post.timestamp = post.getTimestampAsLong()
+
+
+                when (doc.type) {
+                    DocumentChange.Type.ADDED -> {
+                        postList.add(post)
+
+                        postRecyclerAdapter.notifyDataSetChanged()
+                    }
+                    else -> {
+                        //handle something
+                    }
+                }
+            }
+            postListView.adapter?.notifyDataSetChanged()
+        }
+
+        return view
+    }
+}
