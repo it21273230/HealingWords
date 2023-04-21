@@ -52,6 +52,11 @@ class MainActivity : AppCompatActivity() {
             R.id.actionLogoutBtn -> {
                 logOut()
             }
+            R.id.actionSettingsBtn -> {
+                val accountIntent = Intent(this, AccountSettings::class.java)
+                startActivity(accountIntent)
+                finish()
+            }
         }
 
 

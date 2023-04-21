@@ -49,7 +49,9 @@ class RegisterPage : AppCompatActivity() {
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
 
-                                sendToMain()
+                                val accountIntent = Intent(this, AccountSettings::class.java)
+                                startActivity(accountIntent)
+                                finish()
 
                             } else {
                                 val errorMessage = task.exception?.message
