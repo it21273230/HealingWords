@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:orientation="vertical"
-    tools:context=".RegisterPage">
+    tools:context=".RegisterDoctorPage">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/top_rounded_card"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,26 +20,26 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/registerLabel"
+            android:id="@+id/registerDocLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="48dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/registerLabel"
+            android:text="@string/registerDocLabel"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="34sp" />
 
         <EditText
-            android:id="@+id/edtUserNameRegister"
+            android:id="@+id/edtDocUsernameRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="10dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/edtUserNameRegister"
@@ -47,13 +47,27 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/edtEmail"
+            android:id="@+id/edtDocNameRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/edtDocNameRegister"
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/edtDocEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/edtEmail"
@@ -61,13 +75,27 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/edtPasswordRegister"
+            android:id="@+id/edtDocTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/profession"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/edtDocPasswordRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/edtPasswordRegister"
@@ -75,13 +103,13 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/edtRePasswordRegister"
+            android:id="@+id/edtDocRePasswordRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="10dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/edtRePasswordRegister"
@@ -90,7 +118,7 @@
             tools:ignore="TextContrastCheck" />
 
         <Button
-            android:id="@+id/registerBtn"
+            android:id="@+id/registerDocBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"

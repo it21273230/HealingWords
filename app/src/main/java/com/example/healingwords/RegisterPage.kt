@@ -52,6 +52,10 @@ class RegisterPage : AppCompatActivity() {
                                 val accountIntent = Intent(this, AccountSettings::class.java)
                                 startActivity(accountIntent)
                                 finish()
+                                //use uid as the child of the user db or the system will break
+                                //refer to RegisterDoctorPage
+
+                                sendToMain()
 
                             } else {
                                 val errorMessage = task.exception?.message
