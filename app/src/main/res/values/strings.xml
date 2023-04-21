@@ -59,6 +59,7 @@
     <string name="actionSearchText">Search</string>
     <string name="actionSettingText">Account Settings</string>
     <string name="actionLogout">Logout</string>
+
     <string name="usernameHint">Your name</string>
     <string name="setupBtnName">Save account settings</string>
     <string name="postDesc">Add description</string>
@@ -66,6 +67,7 @@
     <string name="bottomHomeText">Home</string>
     <string name="bottomBlogText">Blogs</string>
     <string name="bottomAccountText">Account</string>
+    <string name="bottomDocListText">Doctors List</string>
 
 
 </resources>

@@ -59,6 +59,16 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ShowAllReviewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AccountSettings"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">

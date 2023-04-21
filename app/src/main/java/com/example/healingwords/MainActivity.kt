@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var homeFragment: HomeFragment
     private lateinit var blogFragment: BlogFragment
     private lateinit var accountFragment: AccountFragment
+    private lateinit var docListFragment: DisplayDocList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         mainToolBar = findViewById(R.id.mainToolBar)
         setSupportActionBar(mainToolBar)
 
-        supportActionBar?.setTitle("Healing Words")
+        supportActionBar?.title = "Healing Words"
 
         mainBottomNav = findViewById(R.id.mainBottomNav)
 
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         homeFragment = HomeFragment()
         blogFragment = BlogFragment()
         accountFragment = AccountFragment()
+        docListFragment = DisplayDocList()
 
         mainBottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -58,6 +60,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.bottom_action_account -> {
                     replaceFragment(accountFragment)
+                    true
+                }
+                R.id.bottom_action_doc_list -> {
+                    replaceFragment(docListFragment)
                     true
                 }
                 else -> false
@@ -86,9 +92,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         var doctorDatabase = FirebaseDatabase.getInstance().getReference("Doctors")
-        if (uid != null) {
-            Log.d("uid", uid)
-        }
         if (uid != null) {
             doctorDatabase.child(uid).get().addOnSuccessListener { Doctor ->
                 if(Doctor.exists()) {
