@@ -18,32 +18,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgBlogsUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnDocList"
-        app:layout_constraintStart_toEndOf="@+id/imgHomeUser"
-        app:srcCompat="@drawable/unselected_blog" />
-
-    <ImageView
-        android:id="@+id/imgUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnDocList"
-        app:srcCompat="@drawable/unselected_user" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addPostBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:clickable="true"
+        android:contentDescription="add"
         android:focusable="true"
         android:minWidth="48dp"
         android:minHeight="48dp"
@@ -74,15 +55,5 @@
         app:layout_constraintTop_toBottomOf="@+id/mainToolBar">
 
     </FrameLayout>
-
-    <ImageView
-        android:id="@+id/btnDocList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imgUser"
-        app:layout_constraintStart_toEndOf="@+id/imgBlogsUser"
-        app:srcCompat="@drawable/unselected_doc_details" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

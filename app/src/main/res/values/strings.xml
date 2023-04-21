@@ -67,7 +67,7 @@
     <string name="bottomHomeText">Home</string>
     <string name="bottomBlogText">Blogs</string>
     <string name="bottomAccountText">Account</string>
-
+    <string name="bottomDocListText">Doctors List</string>
 
 
 </resources>

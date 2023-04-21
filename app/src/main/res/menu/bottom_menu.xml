@@ -11,6 +11,10 @@
         android:icon="@drawable/unselected_blog"
         android:title="@string/bottomBlogText" />
     <item
+        android:id="@+id/bottom_action_doc_list"
+        android:icon="@drawable/unselected_doc_details"
+        android:title="@string/bottomDocListText" />
+    <item
         android:id="@+id/bottom_action_account"
         android:icon="@drawable/unselected_user"
         android:title="@string/bottomAccountText" />
