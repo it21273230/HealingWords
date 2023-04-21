@@ -3,10 +3,13 @@ package com.example.healingwords
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,11 +35,43 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         val currentUser = FirebaseAuth.getInstance().currentUser;
+        val uid = currentUser?.uid
         if(currentUser == null){
             sendToLogin()
         }
+
+        var doctorDatabase = FirebaseDatabase.getInstance().getReference("Doctors")
+        if (uid != null) {
+            Log.d("uid", uid)
+        }
+        if (uid != null) {
+            doctorDatabase.child(uid).get().addOnSuccessListener { Doctor ->
+                if(Doctor.exists()) {
+                    Log.d("status", "exists")
+                    sendToDoctorMain(uid)
+                }else {
+                    Log.d("status", "not-exists")
+                    sendToNormalUserMain(uid)
+                }
+            }.addOnFailureListener{
+                Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
+    private fun sendToDoctorMain(uid: String) {
+        val mainIntent = Intent(this, DocMainUI::class.java)
+        mainIntent.putExtra("uid", uid)
+        startActivity(mainIntent)
+        finish()
+    }
+
+    private fun sendToNormalUserMain(uid:String) {
+        val mainIntent = Intent(this, MainActivity::class.java)
+        mainIntent.putExtra("uid", uid)
+        startActivity(mainIntent)
+        finish()
+    }
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
