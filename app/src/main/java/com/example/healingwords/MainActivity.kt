@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         mainToolBar = findViewById(R.id.mainToolBar)
         setSupportActionBar(mainToolBar)
 
-        supportActionBar?.setTitle("Healing Words")
+        supportActionBar?.title = "Healing Words"
 
 
     }
@@ -42,16 +42,10 @@ class MainActivity : AppCompatActivity() {
 
         var doctorDatabase = FirebaseDatabase.getInstance().getReference("Doctors")
         if (uid != null) {
-            Log.d("uid", uid)
-        }
-        if (uid != null) {
             doctorDatabase.child(uid).get().addOnSuccessListener { Doctor ->
                 if(Doctor.exists()) {
                     Log.d("status", "exists")
                     sendToDoctorMain(uid)
-                }else {
-                    Log.d("status", "not-exists")
-                    sendToNormalUserMain(uid)
                 }
             }.addOnFailureListener{
                 Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
