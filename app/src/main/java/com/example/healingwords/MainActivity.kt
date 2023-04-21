@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var homeFragment: HomeFragment
     private lateinit var blogFragment: BlogFragment
     private lateinit var accountFragment: AccountFragment
+    private lateinit var docListFragment: DisplayDocList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,35 +38,40 @@ class MainActivity : AppCompatActivity() {
         mainToolBar = findViewById(R.id.mainToolBar)
         setSupportActionBar(mainToolBar)
 
-        supportActionBar?.setTitle("Healing Words")
+        supportActionBar?.title = "Healing Words"
 
         if(mAuth.currentUser != null) {
             mainBottomNav = findViewById(R.id.mainBottomNav)
 
-            //FRAGMENTS
-            homeFragment = HomeFragment()
-            blogFragment = BlogFragment()
-            accountFragment = AccountFragment()
+        //FRAGMENTS
+        homeFragment = HomeFragment()
+        blogFragment = BlogFragment()
+        accountFragment = AccountFragment()
+        docListFragment = DisplayDocList()
 
-            replaceFragment(homeFragment)
+        replaceFragment(homeFragment)
 
-            mainBottomNav.setOnItemSelectedListener { item ->
-                when (item.itemId) {
-                    R.id.bottom_action_home -> {
-                        replaceFragment(homeFragment)
-                        true
-                    }
-                    R.id.bottom_action_blogs -> {
-                        replaceFragment(blogFragment)
-                        true
-                    }
-                    R.id.bottom_action_account -> {
-                        replaceFragment(accountFragment)
-                        true
-                    }
-                    else -> false
+        mainBottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.bottom_action_home -> {
+                    replaceFragment(homeFragment)
+                    true
                 }
+                R.id.bottom_action_blogs -> {
+                    replaceFragment(blogFragment)
+                    true
+                }
+                R.id.bottom_action_account -> {
+                    replaceFragment(accountFragment)
+                    true
+                }
+                R.id.bottom_action_doc_list -> {
+                    replaceFragment(docListFragment)
+                    true
+                }
+                else -> false
             }
+        }
 
 
 
@@ -89,9 +95,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         var doctorDatabase = FirebaseDatabase.getInstance().getReference("Doctors")
-        if (uid != null) {
-            Log.d("uid", uid)
-        }
         if (uid != null) {
             doctorDatabase.child(uid).get().addOnSuccessListener { Doctor ->
                 if(Doctor.exists()) {

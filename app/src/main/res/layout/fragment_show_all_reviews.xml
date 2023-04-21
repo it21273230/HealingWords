@@ -1,36 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg">
+    android:layout_height="wrap_content">
 
-
-    <TextView
-        android:id="@+id/bg2"
-        android:layout_width="@dimen/max_card_width"
-        android:layout_height="900dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/border"
-        android:backgroundTint="@color/content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="413dp"
-        android:layout_height="85dp"
+        android:id="@+id/constraintLayout"
+        android:layout_width="400dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/rounded_corner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <RatingBar
-            android:id="@+id/bigStar2"
+            android:id="@+id/bigStar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
@@ -44,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/totalRating2"
+            android:id="@+id/totalRating"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
@@ -53,18 +41,19 @@
             android:text="@string/dummyRating"
             android:textAlignment="textStart"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/bigStar2"
-            app:layout_constraintTop_toTopOf="@+id/bigStar2" />
+            app:layout_constraintStart_toStartOf="@+id/bigStar"
+            app:layout_constraintTop_toTopOf="@+id/bigStar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvShowReviews2"
-        android:layout_width="wrap_content"
+        android:id="@+id/rvShowReviews"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/border"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bg2" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
