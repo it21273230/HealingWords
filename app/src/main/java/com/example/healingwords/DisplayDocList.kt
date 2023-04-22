@@ -15,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class DisplayDocList : Fragment() {
 
     private lateinit var docListRecyclerView: RecyclerView
-    private var docList: MutableList<Doctor> = mutableListOf()
+    private var docList: ArrayList<Doctor> = arrayListOf()
     private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var docListAdapter: DocListAdapter
 
@@ -48,7 +48,7 @@ class DisplayDocList : Fragment() {
                     DocumentChange.Type.ADDED -> {
                        docList.add(doctor)
 
-                      DocListAdapter.notifyDataSetChanged()
+                      docListAdapter.notifyDataSetChanged()
                     }
                     else -> {
                         //handle something

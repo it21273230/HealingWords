@@ -32,6 +32,7 @@ class RegisterDoctorPage : AppCompatActivity() {
             val rePassword = binding.edtDocRePasswordRegister.text.toString()
             val title = binding.edtDocTitle.text.toString()
             val regProgressBar = binding.registerProgress
+            var rating = 0
 
             if (username.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && rePassword.isNotEmpty()) {
                 if(password == rePassword){
@@ -42,7 +43,7 @@ class RegisterDoctorPage : AppCompatActivity() {
                                 val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
                                 if(currentFirebaseUser != null) {
                                     docDatabaseRef = FirebaseDatabase.getInstance().getReference("Doctors")
-                                    val doc = Doctor(currentFirebaseUser.uid,username, email, name, title, "")
+                                    val doc = Doctor(currentFirebaseUser.uid,username, email, name, title, "", rating.toString())
                                     docDatabaseRef.child(currentFirebaseUser.uid).setValue(doc).addOnSuccessListener {
                                         sendToDocMain(currentFirebaseUser.uid)
                                     }.addOnFailureListener {
