@@ -73,9 +73,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-
-
             addPostBtn = findViewById(R.id.addPostBtn)
             addPostBtn.setOnClickListener {
                 val newpostIntent = Intent(this, NewPostActivity::class.java)
