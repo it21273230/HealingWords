@@ -40,13 +40,16 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Healing Words"
 
-        mainBottomNav = findViewById(R.id.mainBottomNav)
+        if(mAuth.currentUser != null) {
+            mainBottomNav = findViewById(R.id.mainBottomNav)
 
         //FRAGMENTS
         homeFragment = HomeFragment()
         blogFragment = BlogFragment()
         accountFragment = AccountFragment()
         docListFragment = DisplayDocList()
+
+        replaceFragment(homeFragment)
 
         mainBottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -70,16 +73,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+            addPostBtn = findViewById(R.id.addPostBtn)
+            addPostBtn.setOnClickListener {
+                val newpostIntent = Intent(this, NewPostActivity::class.java)
+                startActivity(newpostIntent)
+            }
 
-
-
-        addPostBtn = findViewById(R.id.addPostBtn)
-        addPostBtn.setOnClickListener {
-            val newPostIntent = Intent(this, NewPostActivity::class.java)
-            startActivity(newPostIntent)
         }
-
-
     }
 
     override fun onStart() {

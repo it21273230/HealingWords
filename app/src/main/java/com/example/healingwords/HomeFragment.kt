@@ -1,5 +1,6 @@
 package com.example.healingwords
 
+import Post
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import java.sql.Timestamp
 
 
@@ -37,21 +39,25 @@ class HomeFragment : Fragment() {
 
 
         firebaseFirestore = FirebaseFirestore.getInstance()
-        firebaseFirestore.collection("Posts").addSnapshotListener { value, error ->
+
+        val firstQuery = firebaseFirestore.collection("Posts")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
+
+
+        firstQuery.addSnapshotListener { value, error ->
             if (error != null) {
                 // Handle error
                 return@addSnapshotListener
             }
 
             for (doc in value!!.documentChanges) {
-                val post = doc.document.toObject(Post::class.java)
+                val postId = doc.document.id
+                val post = doc.document.toObject(Post::class.java).withId<Post>(postId)
                 post.timestamp = post.getTimestampAsLong()
-
 
                 when (doc.type) {
                     DocumentChange.Type.ADDED -> {
                         postList.add(post)
-
                         postRecyclerAdapter.notifyDataSetChanged()
                     }
                     else -> {
@@ -59,6 +65,7 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
+
             postListView.adapter?.notifyDataSetChanged()
         }
 
