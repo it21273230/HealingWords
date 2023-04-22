@@ -7,6 +7,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainer
+import androidx.fragment.app.FragmentContainerView
 import com.example.healingwords.databinding.ActivityDocMainUiBinding
 import com.example.healingwords.databinding.ActivityRegisterDoctorPageBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -15,6 +18,7 @@ class DocMainUI : AppCompatActivity() {
     private lateinit var mainToolBar: Toolbar
     private lateinit var binding: ActivityDocMainUiBinding
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var fragContainer: FragmentContainerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDocMainUiBinding.inflate(layoutInflater)
@@ -26,57 +30,42 @@ class DocMainUI : AppCompatActivity() {
 
         supportActionBar?.setTitle("Healing Words")
 
-        //ui elements binding
-        val imgHome = binding.imgHomeDoc
-        val imgReviews = binding.imgReviewsDoc
-        val imgBlogs = binding.imgBlogsDoc
-        val imgProfile = binding.imgDoc
+        var bottomNav = binding.docBottomNav
+        fragContainer = binding.DocMainUIFragmentContainerView
 
         //fragments
         val fragmentHome = TempHome()  // replace this with actual home frag
         val fragmentReviews = ShowAllReviews()
-        val fragmentBlogs = ""  //// replace this with actual blogs frag
+        val fragmentBlogs = BlogFragment()
         val fragmentDocProfile = DocProfile()
 
         //navigation profile page
-        imgProfile.setOnClickListener{
-            imgHome.setImageResource(R.drawable.unselected_home)
-            imgBlogs.setImageResource(R.drawable.unselected_blog)
-            imgReviews.setImageResource(R.drawable.review_unselected)
-            imgProfile.setImageResource(R.drawable.selected_user)
-
-            supportFragmentManager.beginTransaction().apply {
-                replace(binding.DocMainUIFragmentContainerView.id, fragmentDocProfile)
-                commit()
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.bottom_action_home_doc -> {
+                    replaceFragment(fragmentHome)
+                    true
+                }
+                R.id.bottom_action_blogs_doc -> {
+                    replaceFragment(fragmentBlogs)
+                    true
+                }
+                R.id.bottom_action_account_doc -> {
+                    replaceFragment(fragmentDocProfile)
+                    true
+                }
+                R.id.bottom_action_reviews_doc -> {
+                    replaceFragment(fragmentReviews)
+                    true
+                }
+                else -> false
             }
         }
-
-        //navigation reviews page
-        imgReviews.setOnClickListener{
-            imgHome.setImageResource(R.drawable.unselected_home)
-            imgBlogs.setImageResource(R.drawable.unselected_blog)
-            imgReviews.setImageResource(R.drawable.review_selected)
-            imgProfile.setImageResource(R.drawable.unselected_user)
-
-            supportFragmentManager.beginTransaction().apply {
-                replace(binding.DocMainUIFragmentContainerView.id, fragmentReviews)
-                commit()
-            }
-        }
-
-        //navigation home page
-        imgHome.setOnClickListener{
-            imgHome.setImageResource(R.drawable.selected_home)
-            imgBlogs.setImageResource(R.drawable.unselected_blog)
-            imgReviews.setImageResource(R.drawable.review_unselected)
-            imgProfile.setImageResource(R.drawable.unselected_user)
-
-            supportFragmentManager.beginTransaction().apply {
-                replace(binding.DocMainUIFragmentContainerView.id, fragmentHome)
-                commit()
-            }
-        }
-
+    }
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(fragContainer.id, fragment)
+            .commit()
     }
 
     override fun onStart() {

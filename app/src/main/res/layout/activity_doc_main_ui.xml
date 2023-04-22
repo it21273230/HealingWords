@@ -6,59 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".DocMainUI">
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toTopOf="@+id/imgBlogsDoc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/imgHomeDoc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imgBlogsDoc"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/selected_home" />
-
-    <ImageView
-        android:id="@+id/imgBlogsDoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imgReviewsDoc"
-        app:layout_constraintStart_toEndOf="@+id/imgHomeDoc"
-        app:srcCompat="@drawable/unselected_blog" />
-
-    <ImageView
-        android:id="@+id/imgReviewsDoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imgDoc"
-        app:layout_constraintStart_toEndOf="@+id/imgBlogsDoc"
-        app:srcCompat="@drawable/review_unselected" />
-
-    <ImageView
-        android:id="@+id/imgDoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgReviewsDoc"
-        app:srcCompat="@drawable/unselected_user" />
-
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/mainToolBar"
             android:layout_width="0dp"
@@ -73,13 +20,22 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/DocMainUIFragmentContainerView"
         android:name="com.example.healingwords.TempHome"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/bg"
-        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintBottom_toTopOf="@+id/docBottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainToolBar"
         tools:layout="@layout/fragment_temp_home" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/docBottomNav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu_doc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

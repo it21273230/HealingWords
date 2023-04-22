@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_action_home_doc"
+        android:icon="@drawable/unselected_home"
+        android:title="@string/bottomHomeText" />
+    <item
+        android:id="@+id/bottom_action_blogs_doc"
+        android:icon="@drawable/unselected_blog"
+        android:title="@string/bottomBlogText" />
+    <item
+        android:id="@+id/bottom_action_reviews_doc"
+        android:icon="@drawable/review_unselected"
+        android:title="@string/reviews" />
+    <item
+        android:id="@+id/bottom_action_account_doc"
+        android:icon="@drawable/unselected_user"
+        android:title="@string/bottomAccountText" />
+</menu>
