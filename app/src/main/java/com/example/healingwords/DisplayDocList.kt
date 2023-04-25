@@ -1,5 +1,6 @@
 package com.example.healingwords
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -52,6 +53,9 @@ class DisplayDocList : Fragment() {
                     docListRecyclerView.adapter = adapter
                     adapter.setOnItemClickListener(object : DocListAdapter.OnItemClickListener {
                         override fun onItemClick(position: Int) {
+                            val intent = Intent(requireActivity(), UserViewDocProfile::class.java)
+                            intent.putExtra("uid", docList[position].uid)
+                            startActivity(intent)
 
                         }
 
