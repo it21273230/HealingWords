@@ -28,8 +28,12 @@ class DocListAdapter(private val docList: ArrayList<Doctor>) : RecyclerView.Adap
     override fun onBindViewHolder(holder: DocListViewHolder, position: Int) {
         val currentItem = docList[position]
         holder.tvDocListDocName.text = currentItem.name
+        var rating = if(currentItem.rating !=null){
+            "${currentItem.rating}/10"
+        } else {
+            "0/10"
+        }
 
-        var rating = "${currentItem.rating}/10"
         holder.tvDocListRating.text = rating
         holder.tvDocListProfession.text = currentItem.title
     }
