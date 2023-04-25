@@ -8,17 +8,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.healingwords.R
 import com.example.healingwords.models.Doctor
 
-class DocListAdapter(private val docList: ArrayList<Doctor>) : RecyclerView.Adapter<DocListAdapter.DocListViewHolder>() {
+class DocListAdapter(private val docList: ArrayList<Doctor>) : RecyclerView.Adapter<DocListAdapter.DocListViewHolder>(){
+    private lateinit var mListener: OnItemClickListener
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
 
-    class DocListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        mListener = listener
+    }
+
+    class DocListViewHolder(itemView: View, listener: OnItemClickListener): RecyclerView.ViewHolder(itemView) {
         val tvDocListDocName: TextView = itemView.findViewById(R.id.tvDocListDocName)
         val tvDocListRating:TextView = itemView.findViewById(R.id.tvDocListRating)
         val tvDocListProfession: TextView = itemView.findViewById(R.id.tvDocListProfession)
+
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DocListViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.doc_list_item, parent, false)
-        return DocListViewHolder(itemView)
+        return DocListViewHolder(itemView, mListener)
     }
 
     override fun getItemCount(): Int {
@@ -28,7 +42,7 @@ class DocListAdapter(private val docList: ArrayList<Doctor>) : RecyclerView.Adap
     override fun onBindViewHolder(holder: DocListViewHolder, position: Int) {
         val currentItem = docList[position]
         holder.tvDocListDocName.text = currentItem.name
-        var rating = if(currentItem.rating !=null){
+        val rating = if(currentItem.rating !=null){
             "${currentItem.rating}/10"
         } else {
             "0/10"
@@ -37,4 +51,5 @@ class DocListAdapter(private val docList: ArrayList<Doctor>) : RecyclerView.Adap
         holder.tvDocListRating.text = rating
         holder.tvDocListProfession.text = currentItem.title
     }
+
 }

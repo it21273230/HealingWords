@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.healingwords.adapters.DocListAdapter
 import com.example.healingwords.models.Doctor
 import com.google.firebase.database.*
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.FirebaseFirestore
+
 
 class DisplayDocList : Fragment() {
 
@@ -32,7 +31,7 @@ class DisplayDocList : Fragment() {
         docListRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
         docListRecyclerView.setHasFixedSize(true)
 
-        docList = arrayListOf<Doctor>()
+        docList = arrayListOf()
         docListRecyclerView.adapter = DocListAdapter(docList)
         getDoctorData()
 
@@ -49,7 +48,14 @@ class DisplayDocList : Fragment() {
                         val doctor = doctorSnapshot.getValue(Doctor::class.java)
                         docList.add(doctor!!)
                     }
-                    docListRecyclerView.adapter = DocListAdapter(docList)
+                    var adapter = DocListAdapter(docList)
+                    docListRecyclerView.adapter = adapter
+                    adapter.setOnItemClickListener(object : DocListAdapter.OnItemClickListener {
+                        override fun onItemClick(position: Int) {
+
+                        }
+
+                    })
                 }
             }
 
