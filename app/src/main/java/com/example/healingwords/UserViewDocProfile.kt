@@ -27,11 +27,6 @@ class UserViewDocProfile : AppCompatActivity() {
 
         btnReviews = findViewById(R.id.btnViewReviewsUserView)
 
-        btnReviews.setOnClickListener {
-            val intent = Intent(this, ShowAllReviewsActivity::class.java)
-            startActivity(intent)
-        }
-
         tvName = findViewById(R.id.tvDocNameUserView)
         tvBio = findViewById(R.id.tvDocBioUserView)
         tvRating = findViewById(R.id.tvTotalRatingDocProfileUserView)
@@ -41,6 +36,12 @@ class UserViewDocProfile : AppCompatActivity() {
 
         if(uid.isNotEmpty()) {
             readData(uid)
+        }
+
+        btnReviews.setOnClickListener {
+            val intent = Intent(this, ShowAllReviewsActivity::class.java)
+            intent.putExtra("docUid", uid)
+            startActivity(intent)
         }
 
 
