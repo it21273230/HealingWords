@@ -91,22 +91,23 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnViewReviews"
         app:layout_constraintStart_toStartOf="parent" />
+<!--        app:layout_constraintEnd_toStartOf="@+id/btnViewReviews"-->
 
-    <Button
-        android:id="@+id/btnViewReviews"
-        android:layout_width="145dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/button_bg_success"
-        android:backgroundTint="@color/success"
-        android:text="@string/reviews"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnViewBlogs" />
+
+<!--    <Button-->
+<!--        android:id="@+id/btnViewReviews"-->
+<!--        android:layout_width="145dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="24dp"-->
+<!--        android:background="@drawable/button_bg_success"-->
+<!--        android:backgroundTint="@color/success"-->
+<!--        android:text="@string/reviews"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/btnViewBlogs" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

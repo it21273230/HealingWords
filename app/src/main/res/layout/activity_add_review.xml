@@ -23,10 +23,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:isIndicator="true"
+        android:contentDescription="@string/ratingBar"
+        android:isIndicator="false"
         android:numStars="5"
+        android:stepSize="1"
         android:progressTint="@color/reviewStars"
-        android:rating="4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtAddMultilineFeedback2" />
@@ -51,22 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGiveFeedback" />
 
-    <Button
-        android:id="@+id/cancelAddReview"
-        android:layout_width="148dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="90dp"
-        android:background="@drawable/button_bg_danger"
-        android:shadowColor="@color/black"
-        android:text="@string/cancelBtn"
-        android:textColor="@color/danger"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/submitAddRating" />
-
     <TextView
         android:id="@+id/tvGiveFeedback"
         android:layout_width="match_parent"
@@ -84,7 +69,7 @@
         android:id="@+id/submitAddRating"
         android:layout_width="148dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="90dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/button_bg_success"
         android:shadowColor="@color/black"
         android:text="@string/submitBtn"
@@ -94,6 +79,26 @@
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancelAddReview"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editRating2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/cancelAddReview"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_bg_danger"
+        android:shadowColor="@color/black"
+        android:text="@string/cancelBtn"
+        android:textColor="@color/danger"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/submitAddRating"
+        app:layout_constraintTop_toTopOf="@+id/submitAddRating"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class DocProfile : Fragment() {
 
-    lateinit var btnReviews: Button
+    
     private lateinit var mAuth: FirebaseAuth
     private lateinit var tvName: TextView
     private lateinit var tvRating: TextView
@@ -37,12 +37,7 @@ class DocProfile : Fragment() {
         val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
 
         val view =  inflater.inflate(R.layout.fragment_doc_profile, container, false)
-        btnReviews = view.findViewById(R.id.btnViewReviews)
 
-        btnReviews.setOnClickListener {
-            val intent = Intent(activity, ShowAllReviewsActivity::class.java)
-            startActivity(intent)
-        }
 
         tvName = view.findViewById(R.id.tvDocName)
         tvBio = view.findViewById(R.id.tvDocBio)
