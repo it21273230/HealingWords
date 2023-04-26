@@ -1,5 +1,6 @@
 package com.example.healingwords
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -39,15 +40,31 @@ class AddReview : AppCompatActivity() {
             dbRef = FirebaseDatabase.getInstance().getReference("Reviews")
             var uniqueID = UUID.randomUUID().toString()
             if(description.text.isNotEmpty()) {
-                val review = Review(uniqueID, docUid,userUid, description.toString(), noOfStars.rating.toInt())
+                var rating = noOfStars.rating!!.toInt()
+                if(noOfStars.rating == null) {
+                    rating = 0
+                }
+                val review = Review(uniqueID, docUid,userUid, description.toString(), rating )
                 dbRef.child(uniqueID).setValue(review).addOnSuccessListener {
                     Toast.makeText(this,"Successfully Saved", Toast.LENGTH_LONG).show()
+
+                    var intent = Intent(this, ShowAllReviewsActivity::class.java)
+                    intent.putExtra("docUid", docUid)
+                    startActivity(intent)
+                    finish()
                 }.addOnFailureListener {
                     Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
                 }
             } else {
                 Toast.makeText(this, "Please Fill in all the fields", Toast.LENGTH_LONG).show()
             }
+        }
+
+        btnCancel.setOnClickListener {
+            var intent = Intent(this, ShowAllReviewsActivity::class.java)
+            intent.putExtra("docUid", docUid)
+            startActivity(intent)
+            finish()
         }
     }
 }

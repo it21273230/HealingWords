@@ -14,7 +14,6 @@
         android:layout_width="@dimen/max_card_width"
         android:layout_height="900dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/border"
         android:backgroundTint="@color/content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +21,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="413dp"
-        android:layout_height="85dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:background="@drawable/rounded_corner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,10 +62,10 @@
         android:id="@+id/rvShowReviews2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:padding="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bg2" >
+        app:layout_constraintTop_toTopOf="@+id/bg2"
+        tools:listitem="@layout/show_review_item">
 
     </androidx.recyclerview.widget.RecyclerView>
 
