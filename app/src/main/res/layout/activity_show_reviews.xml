@@ -8,63 +8,49 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg">
 
-
-    <TextView
-        android:id="@+id/bg2"
-        android:layout_width="@dimen/max_card_width"
-        android:layout_height="900dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/border"
-        android:backgroundTint="@color/content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="413dp"
-        android:layout_height="85dp"
-        android:background="@drawable/rounded_corner"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/white_bg"
+        android:foregroundTint="@color/background"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RatingBar
-            android:id="@+id/bigStar2"
+        <TextView
+            android:id="@+id/fragSelectReviewAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="12dp"
-            android:contentDescription="@string/dummyRating"
-            android:numStars="1"
-            android:progressBackgroundTint="@color/reviewStars"
-            android:progressTint="@color/reviewStars"
-            android:rating="1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="15dp"
+            android:layout_weight="2"
+            android:text="@string/all"
+            android:textAlignment="center"
+            android:textColor="@color/themePrimary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/totalRating2"
-            android:layout_width="0dp"
+            android:id="@+id/fragSelectReviewMy"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="15dp"
             android:layout_weight="1"
-            android:text="@string/dummyRating"
-            android:textAlignment="textStart"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/bigStar2"
-            app:layout_constraintTop_toTopOf="@+id/bigStar2" />
+            android:text="@string/myReviews"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvShowReviews2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.example.healingwords.ShowAllReviews"
+        android:layout_width="1927dp"
+        android:layout_height="1019dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bg2" />
-
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout="@layout/fragment_show_all_reviews" />
 </androidx.constraintlayout.widget.ConstraintLayout>
