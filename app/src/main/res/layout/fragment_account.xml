@@ -3,12 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".AccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Account Fragment" />
+        android:layout_height="67dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/userAccountPosts"
+        android:textAlignment="center"
+        android:textSize="34sp" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/postListViewUser"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="120dp" />
 </FrameLayout>

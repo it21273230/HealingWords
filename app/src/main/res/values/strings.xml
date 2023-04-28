@@ -68,6 +68,7 @@
     <string name="bottomBlogText">Blogs</string>
     <string name="bottomAccountText">Account</string>
     <string name="bottomDocListText">Doctors List</string>
+    <string name="userAccountPosts">My Posts</string>
 
 
 </resources>

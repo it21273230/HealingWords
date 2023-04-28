@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
             R.id.actionSettingsBtn -> {
                 val accountIntent = Intent(this, AccountSettings::class.java)
                 startActivity(accountIntent)
-                finish()
+
             }
         }
 
