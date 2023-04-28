@@ -34,10 +34,12 @@ class DocMainUI : AppCompatActivity() {
         fragContainer = binding.DocMainUIFragmentContainerView
 
         //fragments
-        val fragmentHome = TempHome()  // replace this with actual home frag
+        val fragmentHome = HomeFragment()
         val fragmentReviews = ShowAllReviews()
         val fragmentBlogs = BlogFragment()
         val fragmentDocProfile = DocProfile()
+
+        replaceFragment(fragmentHome)
 
         //navigation profile page
         bottomNav.setOnItemSelectedListener { item ->
