@@ -44,7 +44,7 @@ class AddReview : AppCompatActivity() {
                 if(noOfStars.rating == null) {
                     rating = 0
                 }
-                val review = Review(uniqueID, docUid,userUid, description.toString(), rating )
+                val review = Review(uniqueID, docUid,userUid, description.text.toString(), rating )
                 dbRef.child(uniqueID).setValue(review).addOnSuccessListener {
                     Toast.makeText(this,"Successfully Saved", Toast.LENGTH_LONG).show()
 

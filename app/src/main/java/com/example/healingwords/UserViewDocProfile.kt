@@ -39,7 +39,7 @@ class UserViewDocProfile : AppCompatActivity() {
         }
 
         btnReviews.setOnClickListener {
-            val intent = Intent(this, ShowAllReviewsActivity::class.java)
+            val intent = Intent(this, ShowReviews::class.java)
             intent.putExtra("docUid", uid)
             startActivity(intent)
         }
