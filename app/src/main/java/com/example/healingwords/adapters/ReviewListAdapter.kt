@@ -4,14 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healingwords.R
 import com.example.healingwords.models.Review
 
 class ReviewListAdapter(private val reviewList: ArrayList<Review>) : RecyclerView.Adapter<ReviewListAdapter.ReviewListViewHolder>() {
-    private lateinit var mListener: ReviewListAdapter.OnItemClickListener
+    lateinit var editBtn: ImageView
+    private lateinit var mListener: OnItemClickListener
 
     interface OnItemClickListener {
         fun onItemClick(position: Int )
@@ -33,8 +36,8 @@ class ReviewListAdapter(private val reviewList: ArrayList<Review>) : RecyclerVie
        val currentItem = reviewList[position]
         holder.rate.rating = currentItem.noOfStars!!.toFloat()
         holder.user.text = "Anonymous"
-        holder.ratingText.text = currentItem.description
-
+        holder.ratingText.text = currentItem.description.toString()
+        holder.editBtn
     }
 
     override fun getItemCount(): Int {
@@ -45,6 +48,7 @@ class ReviewListAdapter(private val reviewList: ArrayList<Review>) : RecyclerVie
         val user : TextView = itemView.findViewById(R.id.user)
         val ratingText: TextView = itemView.findViewById(R.id.rating2_text2)
         val rate: RatingBar = itemView.findViewById(R.id.rating)
+        val editBtn : ImageView = itemView.findViewById(R.id.edit3)
 
         init {
             itemView.setOnClickListener{
