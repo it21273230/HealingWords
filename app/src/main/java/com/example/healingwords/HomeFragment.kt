@@ -1,6 +1,7 @@
 package com.example.healingwords
 
 import Post
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,6 +26,7 @@ class HomeFragment : Fragment() {
     private lateinit var firebaseFirestore: FirebaseFirestore
 
     private lateinit var postRecyclerAdapter: PostRecyclerAdapter
+    private lateinit var  addPostBtn: FloatingActionButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +42,12 @@ class HomeFragment : Fragment() {
 
 
         firebaseFirestore = FirebaseFirestore.getInstance()
+
+        addPostBtn = view.findViewById(R.id.addPostFloatingBtn)
+        addPostBtn.setOnClickListener {
+            val newpostIntent = Intent(requireActivity(), NewPostActivity::class.java)
+            startActivity(newpostIntent)
+        }
 
         val firstQuery = firebaseFirestore.collection("Posts")
             .orderBy("timestamp", Query.Direction.DESCENDING)
@@ -68,6 +77,8 @@ class HomeFragment : Fragment() {
 
             postListView.adapter?.notifyDataSetChanged()
         }
+
+
 
         return view
     }

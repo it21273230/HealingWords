@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
 
-    private lateinit var  addPostBtn: FloatingActionButton
+    //private lateinit var  addPostBtn: FloatingActionButton
     private lateinit var mainBottomNav: BottomNavigationView
 
     private lateinit var homeFragment: HomeFragment
@@ -72,12 +72,13 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
+            /*
             addPostBtn = findViewById(R.id.addPostBtn)
             addPostBtn.setOnClickListener {
                 val newpostIntent = Intent(this, NewPostActivity::class.java)
                 startActivity(newpostIntent)
             }
+            */
 
         }
     }
