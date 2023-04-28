@@ -80,6 +80,15 @@ class MainActivity : AppCompatActivity() {
             }
             */
 
+            // Check if the "openFragment" extra has been passed
+            if (intent.hasExtra("openFragment")) {
+                val openFragment = intent.getStringExtra("openFragment")
+                if (openFragment == "account") {
+                    // Navigate to the AccountFragment
+                    replaceFragment(accountFragment)
+                }
+            }
+
         }
     }
 

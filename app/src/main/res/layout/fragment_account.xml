@@ -13,6 +13,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/userAccountPosts"
         android:textAlignment="center"
+        android:textColor="#000000"
         android:textSize="34sp" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -2,6 +2,7 @@ package com.example.healingwords
 
 import Post
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -82,6 +83,12 @@ class PostRecyclerAdapterUser(private val postList: List<Post>) :
         holder.setDescText(descData)
         if (dateData != null) {
             holder.setDateText(dateData)
+        }
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, userPostUpdate::class.java)
+            intent.putExtra("postId", postId)
+            holder.itemView.context.startActivity(intent)
         }
 
         firebaseFirestore.collection("Users").document(userId)
