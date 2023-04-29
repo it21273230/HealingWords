@@ -86,6 +86,11 @@
         <activity
             android:name=".ShowReviews"
             android:exported="false" />
+
+        <activity
+            android:name=".EditReview"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
