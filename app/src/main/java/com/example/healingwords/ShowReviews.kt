@@ -40,7 +40,7 @@ class ShowReviews : AppCompatActivity() {
         userUid = currentUser!!.uid
 
         val fragmentAllReviews = ShowAllReviews(docSpecified = true, docUid = docUid)
-        val fragmentMyReviews = ShowAllReviews(userAndDocSpecified = true, docUid = docUid, userUid = userUid )
+        val fragmentMyReviews = ShowAllReviews(editable = true, userAndDocSpecified = true, docUid = docUid, userUid = userUid )
 
         replaceFragment(fragmentAllReviews)
 

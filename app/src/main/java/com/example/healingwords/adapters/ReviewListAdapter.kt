@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
@@ -42,6 +43,11 @@ class ReviewListAdapter(private val reviewList: ArrayList<Review>, private val e
             holder.editBtn.isClickable = false
             holder.deleteBtn.isClickable = false
             holder.deleteBtn.visibility = INVISIBLE
+        } else {
+            holder.editBtn.visibility = VISIBLE
+            holder.editBtn.isClickable = true
+            holder.deleteBtn.isClickable = true
+            holder.deleteBtn.visibility = VISIBLE
         }
 
         holder.rate.rating = currentItem.noOfStars!!.toFloat()

@@ -62,7 +62,7 @@ class ShowAllReviews(private var editable: Boolean = false, var docSpecified: Bo
                             reviewList.add(review!!)
                         }
                     }
-                    val adapter = ReviewListAdapter(reviewList)
+                    val adapter = ReviewListAdapter(reviewList, editable)
                     reviewListRecyclerView.adapter= adapter
                     adapter.setOnItemClickListener(object : ReviewListAdapter.OnItemClickListener {
                         override fun onItemClick(position: Int) {
