@@ -48,7 +48,7 @@ class AddReview : AppCompatActivity() {
                 dbRef.child(uniqueID).setValue(review).addOnSuccessListener {
                     Toast.makeText(this,"Successfully Saved", Toast.LENGTH_LONG).show()
 
-                    var intent = Intent(this, ShowAllReviewsActivity::class.java)
+                    var intent = Intent(this, ShowReviews::class.java)
                     intent.putExtra("docUid", docUid)
                     startActivity(intent)
                     finish()
@@ -61,7 +61,7 @@ class AddReview : AppCompatActivity() {
         }
 
         btnCancel.setOnClickListener {
-            var intent = Intent(this, ShowAllReviewsActivity::class.java)
+            var intent = Intent(this, ShowReviews::class.java)
             intent.putExtra("docUid", docUid)
             startActivity(intent)
             finish()

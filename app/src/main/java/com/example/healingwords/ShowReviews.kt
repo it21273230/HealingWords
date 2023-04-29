@@ -33,18 +33,16 @@ class ShowReviews : AppCompatActivity() {
         myReviews = binding.fragSelectReviewMy
         fragContainer = binding.fragmentContainerView
 
-        val fragmentAllReviews = ShowAllReviews()
-        val fragmentMyReviews = ShowAllReviews()
-
-        replaceFragment(fragmentAllReviews)
-
-
-
         mAuth = FirebaseAuth.getInstance()
         fabAddReviews = findViewById(R.id.fabAddReviewBtn)
         docUid = intent.getStringExtra("docUid")!!
         val currentUser = FirebaseAuth.getInstance().currentUser
         userUid = currentUser!!.uid
+
+        val fragmentAllReviews = ShowAllReviews(docSpecified = true, docUid = docUid)
+        val fragmentMyReviews = ShowAllReviews(editable = true, userAndDocSpecified = true, docUid = docUid, userUid = userUid )
+
+        replaceFragment(fragmentAllReviews)
 
         fabAddReviews.setOnClickListener {
             val intent = Intent(this, AddReview::class.java)
