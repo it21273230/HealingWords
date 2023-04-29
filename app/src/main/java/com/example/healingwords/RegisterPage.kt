@@ -8,7 +8,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.example.healingwords.models.Doctor
+import com.example.healingwords.models.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterPage : AppCompatActivity() {
 
@@ -18,15 +23,16 @@ class RegisterPage : AppCompatActivity() {
     private lateinit var regRePassword : EditText
     private lateinit var regProgressBar: ProgressBar
     private lateinit var regButton: Button
-
+    private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var mAuth: FirebaseAuth
+    lateinit var userDatabaseRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_page)
 
         mAuth = FirebaseAuth.getInstance()
-
+        firebaseFirestore = FirebaseFirestore.getInstance()
         regUsername = findViewById(R.id.edtUserNameRegister)
         regEmail = findViewById(R.id.edtEmail)
         regPassword = findViewById(R.id.edtPasswordRegister)
@@ -49,13 +55,39 @@ class RegisterPage : AppCompatActivity() {
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
 
-                                val accountIntent = Intent(this, AccountSettings::class.java)
-                                startActivity(accountIntent)
-                                finish()
-                                //use uid as the child of the user db or the system will break
-                                //refer to RegisterDoctorPage
+                                val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
 
-                                sendToMain()
+                                if (currentFirebaseUser != null) {
+                                    currentFirebaseUser.uid?.let { id ->
+                                        val userMap = hashMapOf(
+                                            "name" to username
+                                        )
+                                        firebaseFirestore.collection("Users").document(id)
+                                            .set(userMap)
+                                            .addOnCompleteListener { task ->
+                                                if (task.isSuccessful) {
+                                                    //
+                                                } else {
+                                                    val error = task.exception?.message
+                                                    Toast.makeText(this, "FIRESTORE error $error", Toast.LENGTH_LONG).show()
+                                                }
+                                            }
+                                    }
+                                }
+
+                                if(currentFirebaseUser != null) {
+                                    userDatabaseRef = FirebaseDatabase.getInstance().getReference("Users")
+                                    val user = User(currentFirebaseUser.uid,username, email)
+                                    userDatabaseRef.child(currentFirebaseUser.uid).setValue(user).addOnSuccessListener {
+
+                                        sendToMain()
+                                    }.addOnFailureListener {
+                                        Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
+                                    }
+
+                                }
+
+
 
                             } else {
                                 val errorMessage = task.exception?.message
@@ -88,4 +120,6 @@ class RegisterPage : AppCompatActivity() {
         startActivity(mainIntent)
         finish()
     }
+
+
 }
