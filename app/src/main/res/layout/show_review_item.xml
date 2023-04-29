@@ -35,7 +35,8 @@
         app:layout_constraintEnd_toStartOf="@+id/delete3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rating2_text2"
-        app:srcCompat="@drawable/baseline_edit_note_24" />
+        app:srcCompat="@drawable/baseline_edit_note_24"
+        tools:visibility="visible" />
 
     <RatingBar
         android:id="@+id/rating"

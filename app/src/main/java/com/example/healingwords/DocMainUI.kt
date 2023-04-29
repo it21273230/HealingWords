@@ -1,17 +1,14 @@
 package com.example.healingwords
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainer
 import androidx.fragment.app.FragmentContainerView
 import com.example.healingwords.databinding.ActivityDocMainUiBinding
-import com.example.healingwords.databinding.ActivityRegisterDoctorPageBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class DocMainUI : AppCompatActivity() {
@@ -28,14 +25,14 @@ class DocMainUI : AppCompatActivity() {
         mainToolBar = findViewById(R.id.mainToolBar)
         setSupportActionBar(mainToolBar)
 
-        supportActionBar?.setTitle("Healing Words")
+        supportActionBar?.title = "Healing Words"
 
-        var bottomNav = binding.docBottomNav
+        val bottomNav = binding.docBottomNav
         fragContainer = binding.DocMainUIFragmentContainerView
 
         //fragments
         val fragmentHome = HomeFragment()
-        val fragmentReviews = ShowAllReviews()
+        val fragmentReviews = ShowAllReviews(docSpecified = true, docUid = mAuth.currentUser!!.uid)
         val fragmentBlogs = BlogFragment()
         val fragmentDocProfile = DocProfile()
 
@@ -73,7 +70,7 @@ class DocMainUI : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        val currentUser = FirebaseAuth.getInstance().currentUser;
+        val currentUser = FirebaseAuth.getInstance().currentUser
         if(currentUser == null){
             sendToLogin()
         }
@@ -109,7 +106,7 @@ class DocMainUI : AppCompatActivity() {
 
     private fun sendToLogin() {
         val loginIntent = Intent(this, LoginPage::class.java)
-        startActivity(loginIntent);
-        finish();
+        startActivity(loginIntent)
+        finish()
     }
 }
