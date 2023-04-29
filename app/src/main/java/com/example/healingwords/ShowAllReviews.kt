@@ -1,20 +1,18 @@
 package com.example.healingwords
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.healingwords.adapters.DocListAdapter
 import com.example.healingwords.adapters.ReviewListAdapter
 import com.example.healingwords.models.Review
 import com.google.firebase.database.*
 
 
-class ShowAllReviews : Fragment() {
+class ShowAllReviews(private var editable: Boolean = false, var docSpecified: Boolean = false, var userSpecified: Boolean = false, var userAndDocSpecified: Boolean = false, var userUid: String? = null, var docUid: String? = null) : Fragment() {
     private lateinit var reviewListRecyclerView: RecyclerView
     private lateinit var reviewList: ArrayList<Review>
     private lateinit var dbRef: DatabaseReference
@@ -31,11 +29,13 @@ class ShowAllReviews : Fragment() {
         reviewListRecyclerView.setHasFixedSize(true)
 
         reviewList = arrayListOf()
-        reviewListRecyclerView.adapter = ReviewListAdapter(reviewList)
+        reviewListRecyclerView.adapter = ReviewListAdapter(reviewList, editable)
+
         getReviews()
 
         return view
     }
+
 
     private fun getReviews() {
         dbRef = FirebaseDatabase.getInstance().getReference("Reviews")
@@ -45,9 +45,24 @@ class ShowAllReviews : Fragment() {
                 if(snapshot.exists()) {
                     for(reviewSnapshot in snapshot.children) {
                         val review = reviewSnapshot.getValue(Review::class.java)
-                        reviewList.add(review!!)
+                        if(docSpecified) {
+                            if(review!!.docUid == docUid) {
+                                reviewList.add(review)
+                            }
+                        } else if(userAndDocSpecified) {
+                            if(review!!.userUid == userUid && review.docUid == docUid) {
+                                reviewList.add(review)
+                            }
+                        } else if(userSpecified){
+                            if(review!!.userUid == userUid) {
+                                reviewList.add(review)
+
+                            }
+                        } else {
+                            reviewList.add(review!!)
+                        }
                     }
-                    var adapter = ReviewListAdapter(reviewList)
+                    val adapter = ReviewListAdapter(reviewList)
                     reviewListRecyclerView.adapter= adapter
                     adapter.setOnItemClickListener(object : ReviewListAdapter.OnItemClickListener {
                         override fun onItemClick(position: Int) {
