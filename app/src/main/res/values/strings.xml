@@ -6,12 +6,15 @@
     <string name="cancelBtn">Cancel</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="user">User</string>
+    <string name="docName">Dr. Name</string>
     <string name="bg">Background</string>
 
     <string name="blogs">Blogs</string>
     <string name="reviews">Reviews</string>
     <string name="welcome">Welcome</string>
 
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 
     <!--login & register page-->
     <string name="loginBtn">Login</string>
