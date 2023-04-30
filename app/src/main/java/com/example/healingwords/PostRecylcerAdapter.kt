@@ -2,6 +2,7 @@ package com.example.healingwords
 
 import Post
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ class PostRecyclerAdapter(private val postList: List<Post>) :
 
          var postLikeBtn: ImageView = itemView.findViewById(R.id.postLikeBtn)
          var postLikeCount: TextView = itemView.findViewById(R.id.postLikeCount)
+         var commentBtn: ImageView = itemView.findViewById(R.id.commentBtn)
 
         fun setDescText(descText: String) {
             descView.text = descText
@@ -161,6 +163,14 @@ class PostRecyclerAdapter(private val postList: List<Post>) :
                         }
                     }
             }
+        }
+
+        holder.commentBtn.setOnClickListener {
+
+            val intent = Intent(holder.itemView.context, ViewComments::class.java)
+            intent.putExtra("postId", postId)
+            intent.putExtra("userId", currentUserId)
+            holder.itemView.context.startActivity(intent)
         }
 
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ViewComments">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="306dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="@dimen/margin_left"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="@dimen/margin_right"
+        android:text="@string/ViewComments"
+        android:textColor="@color/black"
+        android:textSize="@dimen/heading"
+        android:textStyle="bold"
+        tools:ignore="TextSizeCheck" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="414dp"
+        android:layout_marginStart="@dimen/margin_left"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="@dimen/margin_right"
+        android:background="@color/background">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/themePrimary"
+        android:bufferType="spannable"
+        android:text="@string/NewButton"
+        android:textColor="@color/content"
+        android:textSize="14sp" />
+
+</LinearLayout>

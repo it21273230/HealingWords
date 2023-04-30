@@ -57,7 +57,7 @@
     <string name="AddComments">Add Comments</string>
     <string name="AddButton">Add </string>
     <string name="ViewComments">Comments </string>
-    <string name="NewButton">+Add</string>
+    <string name="NewButton">Add comment</string>
     <string name="actionSearchText">Search</string>
     <string name="actionSettingText">Account Settings</string>
     <string name="actionLogout">Logout</string>
