@@ -32,7 +32,7 @@ class DocMainUI : AppCompatActivity() {
 
         //fragments
         val fragmentHome = HomeFragment()
-        val fragmentReviews = ShowAllReviews(docSpecified = true, docUid = mAuth.currentUser!!.uid)
+        val fragmentReviews = ShowAllReviews(docSpecified = true, docUid = mAuth.currentUser!!.uid,isDoctor = true)
         val fragmentBlogs = BlogFragment()
         val fragmentDocProfile = DocProfile()
 
