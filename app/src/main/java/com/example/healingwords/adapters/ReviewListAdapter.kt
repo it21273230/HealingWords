@@ -51,11 +51,14 @@ class ReviewListAdapter(private val reviewList: ArrayList<Review>, private val e
         }
 
         holder.rate.rating = currentItem.noOfStars!!.toFloat()
-        holder.user.text = "Anonymous"
+        holder.user.text = currentItem.username.toString()
+        holder.doc.text = "For Dr. ${currentItem.docName.toString()}"
         holder.ratingText.text = currentItem.description.toString()
         holder.editBtn.setOnClickListener {
             val intent = Intent(holder.contexts, EditReview::class.java)
             intent.putExtra("reviewId", currentItem.reviewId)
+            intent.putExtra("username", currentItem.username)
+            intent.putExtra("docName", currentItem.docName)
             intent.putExtra("docUid", currentItem.docUid)
             intent.putExtra("userUid", currentItem.userUid)
             intent.putExtra("description", currentItem.description)
@@ -73,6 +76,7 @@ class ReviewListAdapter(private val reviewList: ArrayList<Review>, private val e
     class ReviewListViewHolder(itemView: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
         val contexts: Context = itemView.context
         val user : TextView = itemView.findViewById(R.id.user)
+        val doc: TextView = itemView.findViewById(R.id.reviewListItemDocName)
         val ratingText: TextView = itemView.findViewById(R.id.rating2_text2)
         val rate: RatingBar = itemView.findViewById(R.id.rating)
         val editBtn : ImageView = itemView.findViewById(R.id.edit3)
