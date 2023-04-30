@@ -17,7 +17,7 @@ import com.google.firebase.database.*
 import kotlin.math.round
 
 
-class ShowAllReviews(private var editable: Boolean = false, var docSpecified: Boolean = false, var userSpecified: Boolean = false, var userAndDocSpecified: Boolean = false, var userUid: String? = null, var docUid: String? = null) : Fragment() {
+class ShowAllReviews(private var editable: Boolean = false, var docSpecified: Boolean = false, var userSpecified: Boolean = false, var userAndDocSpecified: Boolean = false, var userUid: String? = null, var docUid: String? = null,private var isDoctor: Boolean = false) : Fragment() {
     private lateinit var reviewListRecyclerView: RecyclerView
     private lateinit var reviewList: ArrayList<Review>
     private lateinit var dbRef: DatabaseReference
@@ -123,12 +123,20 @@ class ShowAllReviews(private var editable: Boolean = false, var docSpecified: Bo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                val intent = Intent(requireActivity(), UserViewDocProfile::class.java)
-                intent.putExtra("uid", docUid)
-                startActivity(intent)
+            if(!isDoctor){
+                activity?.onBackPressedDispatcher?.addCallback(
+                    this,
+                    object : OnBackPressedCallback(true) {
+                        override fun handleOnBackPressed() {
+                            val intent = Intent(requireActivity(), UserViewDocProfile::class.java)
+                            intent.putExtra("uid", docUid)
+                            startActivity(intent)
+                        }
+                    })
+
             }
-        })
+
+
+
     }
 }
