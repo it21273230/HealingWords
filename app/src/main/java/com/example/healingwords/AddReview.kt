@@ -22,6 +22,8 @@ class AddReview : AppCompatActivity() {
     private lateinit var btnCancel: Button
     private lateinit var dbRef : DatabaseReference
     private lateinit var noOfStars: RatingBar
+    private lateinit var docName: String
+    private lateinit var username: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +32,14 @@ class AddReview : AppCompatActivity() {
 
         docUid = intent.getStringExtra("docUid")!!
         userUid = intent.getStringExtra("userUid")!!
+        docName = intent.getStringExtra("docName")!!
+        username = intent.getStringExtra("username")!!
 
         description = binding.edtAddMultilineFeedback2
         btnCancel = binding.cancelAddReview
         btnSubmit = binding.submitAddRating
         noOfStars = binding.editRating2
+
 
         btnSubmit.setOnClickListener{
             dbRef = FirebaseDatabase.getInstance().getReference("Reviews")
@@ -44,7 +49,7 @@ class AddReview : AppCompatActivity() {
                 if(noOfStars.rating == null) {
                     rating = 0
                 }
-                val review = Review(uniqueID, docUid,userUid, description.text.toString(), rating )
+                val review = Review(uniqueID, docUid,userUid, description.text.toString(), rating, username=username, docName= docName )
                 dbRef.child(uniqueID).setValue(review).addOnSuccessListener {
                     Toast.makeText(this,"Successfully Saved", Toast.LENGTH_LONG).show()
 
