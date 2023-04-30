@@ -41,7 +41,7 @@
         android:background="@drawable/border"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="@string/lorem"
+        android:hint="@string/loading"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:outlineProvider="bounds"
