@@ -28,15 +28,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/tvUserName"
         android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTotalRatingDocProfileUserView" />
+        app:layout_constraintTop_toBottomOf="@+id/uvdpNoOfReviews" />
 
     <TextView
         android:id="@+id/tvDocTitleUserView"
@@ -47,7 +47,7 @@
         android:layout_marginEnd="24dp"
         android:text="title"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDocNameUserView" />
@@ -60,7 +60,8 @@
         android:text="7.5"
         android:textAlignment="center"
         android:textColor="@color/reviewStars"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,6 +109,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnViewBlogsUserView" />
+
+    <TextView
+        android:id="@+id/uvdpNoOfReviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/noOfReviews"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalRatingDocProfileUserView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

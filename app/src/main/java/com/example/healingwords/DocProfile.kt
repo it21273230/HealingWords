@@ -28,6 +28,7 @@ class DocProfile : Fragment() {
     private lateinit var tvBio: TextView
     private lateinit var tvTitle: TextView
     private lateinit var uid: String
+    private lateinit var tvNoOfReviews: TextView
     private lateinit var database : DatabaseReference
     private lateinit var reviewDbRef: DatabaseReference
     override fun onCreateView(
@@ -45,6 +46,7 @@ class DocProfile : Fragment() {
         tvBio = view.findViewById(R.id.tvDocBio)
         tvRating = view.findViewById(R.id.tvTotalRatingDocProfile)
         tvTitle = view.findViewById(R.id.tvDocTitle)
+        tvNoOfReviews = view.findViewById(R.id.docProfileNoOfReviews)
 
         uid = currentFirebaseUser!!.uid
 
@@ -99,6 +101,11 @@ class DocProfile : Fragment() {
 
                     val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
                     tvRating.text = "$finalRating/10"
+                    if(noOfReviews.toInt() == 0){
+                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Review )"
+                    } else {
+                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Reviews )"
+                    }
                 }
             }
 

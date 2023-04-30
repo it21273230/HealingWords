@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.example.healingwords.models.Review
 import com.google.firebase.database.*
@@ -18,6 +19,7 @@ class UserViewDocProfile : AppCompatActivity() {
     private lateinit var tvRating: TextView
     private lateinit var tvBio: TextView
     private lateinit var tvTitle: TextView
+    private lateinit var tvNoOfReviews: TextView
     private lateinit var uid: String
     private lateinit var database : DatabaseReference
     private lateinit var reviewDbRef : DatabaseReference
@@ -32,6 +34,7 @@ class UserViewDocProfile : AppCompatActivity() {
         tvBio = findViewById(R.id.tvDocBioUserView)
         tvRating = findViewById(R.id.tvTotalRatingDocProfileUserView)
         tvTitle =findViewById(R.id.tvDocTitleUserView)
+        tvNoOfReviews = findViewById(R.id.uvdpNoOfReviews)
 
         uid = intent.getStringExtra("uid").toString()
 
@@ -44,9 +47,17 @@ class UserViewDocProfile : AppCompatActivity() {
             val intent = Intent(this, ShowReviews::class.java)
             intent.putExtra("docUid", uid)
             startActivity(intent)
+            finish()
         }
 
 
+            this.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    val intent = Intent(applicationContext, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            })
 
 
     }
@@ -94,6 +105,11 @@ class UserViewDocProfile : AppCompatActivity() {
 
                     val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
                     tvRating.text = "$finalRating/10"
+                    if(noOfReviews.toInt() == 0){
+                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Review )"
+                    } else {
+                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Reviews )"
+                    }
                 }
             }
 
@@ -105,4 +121,6 @@ class UserViewDocProfile : AppCompatActivity() {
 
 
     }
+
+
 }
