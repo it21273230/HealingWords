@@ -1,24 +1,29 @@
 package com.example.healingwords.adapters
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healingwords.EditReview
 import com.example.healingwords.R
+import com.example.healingwords.ShowReviews
 import com.example.healingwords.models.Review
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class ReviewListAdapter(private val reviewList: ArrayList<Review>, private val editable: Boolean = false) : RecyclerView.Adapter<ReviewListAdapter.ReviewListViewHolder>() {
     private lateinit var mListener: OnItemClickListener
-
     interface OnItemClickListener {
         fun onItemClick(position: Int )
     }
@@ -65,6 +70,33 @@ class ReviewListAdapter(private val reviewList: ArrayList<Review>, private val e
             intent.putExtra("stars", currentItem.noOfStars)
             holder.contexts.startActivity(intent)
 
+        }
+
+        holder.deleteBtn.setOnClickListener {
+            val builder = AlertDialog.Builder(holder.contexts)
+            builder.setTitle("Confirm Delete")
+            builder.setMessage("Do you want to delete this item?")
+
+            builder.setPositiveButton("Delete") { _, _ ->
+                currentItem.reviewId?.let { reviewId ->
+                    FirebaseDatabase.getInstance().getReference("Reviews")
+                        .child(reviewId).removeValue().addOnSuccessListener {
+                            Toast.makeText(holder.contexts, "Deleted Successfully", Toast.LENGTH_LONG)
+                            val intent = Intent(holder.contexts, ShowReviews::class.java)
+                            intent.putExtra("docUid", currentItem.docUid)
+                            holder.contexts.startActivity(intent)
+
+                        }.addOnFailureListener{
+                            Toast.makeText(holder.contexts, "Delete Failed", Toast.LENGTH_LONG)
+                        }
+                }
+            }
+
+            builder.setNegativeButton("Cancel") { dialog, _ ->
+                dialog.cancel()
+            }
+
+            builder.create().show()
         }
     }
 

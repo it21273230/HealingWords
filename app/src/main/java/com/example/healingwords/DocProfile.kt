@@ -1,5 +1,6 @@
 package com.example.healingwords
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,10 +12,11 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.example.healingwords.databinding.FragmentDocProfileBinding
+import com.example.healingwords.models.Review
 import com.google.android.gms.common.SignInButton.ButtonSize
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import kotlin.math.round
 
 
 class DocProfile : Fragment() {
@@ -26,8 +28,9 @@ class DocProfile : Fragment() {
     private lateinit var tvBio: TextView
     private lateinit var tvTitle: TextView
     private lateinit var uid: String
+    private lateinit var tvNoOfReviews: TextView
     private lateinit var database : DatabaseReference
-
+    private lateinit var reviewDbRef: DatabaseReference
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,11 +46,13 @@ class DocProfile : Fragment() {
         tvBio = view.findViewById(R.id.tvDocBio)
         tvRating = view.findViewById(R.id.tvTotalRatingDocProfile)
         tvTitle = view.findViewById(R.id.tvDocTitle)
+        tvNoOfReviews = view.findViewById(R.id.docProfileNoOfReviews)
 
         uid = currentFirebaseUser!!.uid
 
         if(uid.isNotEmpty()) {
             readData(uid)
+            setTotalRating(uid)
         }
 
         return view
@@ -60,15 +65,9 @@ class DocProfile : Fragment() {
                 var name = it.child("name").value
                 var title = it.child("title").value
                 var bio = it.child("bio").value
-                var rating = it.child("rating").value
-
-                if(rating == null){
-                    rating=0
-                }
 
                 tvName.text = name.toString()
                 tvBio.text = bio.toString()
-                tvRating.text = "${rating.toString()}/10"
                 tvTitle.text = title.toString()
 
             }else {
@@ -79,6 +78,45 @@ class DocProfile : Fragment() {
         }
     }
 
+
+    private fun setTotalRating(docUid: String) {
+        var totStars = 0.0
+        var totGivenStars = 0.0
+        var noOfReviews = 0.0
+        reviewDbRef =  FirebaseDatabase.getInstance().getReference("Reviews")
+        reviewDbRef.addValueEventListener(object: ValueEventListener {
+            @SuppressLint("SetTextI18n")
+            override fun onDataChange(snapshot: DataSnapshot){
+                if(snapshot.exists()) {
+                    for(reviewSnapshot in snapshot.children) {
+                        val review = reviewSnapshot.getValue(Review::class.java)
+                        if(review!!.docUid == docUid) {
+                            noOfReviews++
+                            totStars += 5
+                            totGivenStars += review.noOfStars!!.toInt()
+
+                        }
+
+                    }
+
+                    val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
+                    tvRating.text = "$finalRating/10"
+                    if(noOfReviews.toInt() == 0){
+                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Review )"
+                    } else {
+                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Reviews )"
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+    }
 
 
 }

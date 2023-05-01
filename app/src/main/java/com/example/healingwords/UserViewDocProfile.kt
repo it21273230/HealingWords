@@ -1,25 +1,28 @@
 package com.example.healingwords
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
+import com.example.healingwords.models.Review
+import com.google.firebase.database.*
+import kotlin.math.round
 
 class UserViewDocProfile : AppCompatActivity() {
 
-    lateinit var btnReviews: Button
+    private lateinit var btnReviews: Button
     private lateinit var tvName: TextView
     private lateinit var tvRating: TextView
     private lateinit var tvBio: TextView
     private lateinit var tvTitle: TextView
+    private lateinit var tvNoOfReviews: TextView
     private lateinit var uid: String
     private lateinit var database : DatabaseReference
-
-
+    private lateinit var reviewDbRef : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,19 +34,30 @@ class UserViewDocProfile : AppCompatActivity() {
         tvBio = findViewById(R.id.tvDocBioUserView)
         tvRating = findViewById(R.id.tvTotalRatingDocProfileUserView)
         tvTitle =findViewById(R.id.tvDocTitleUserView)
+        tvNoOfReviews = findViewById(R.id.uvdpNoOfReviews)
 
         uid = intent.getStringExtra("uid").toString()
 
         if(uid.isNotEmpty()) {
             readData(uid)
+            setTotalRating(uid)
         }
 
         btnReviews.setOnClickListener {
             val intent = Intent(this, ShowReviews::class.java)
             intent.putExtra("docUid", uid)
             startActivity(intent)
+            finish()
         }
 
+
+            this.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    val intent = Intent(applicationContext, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            })
 
 
     }
@@ -52,18 +66,12 @@ class UserViewDocProfile : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("Doctors")
         database.child(uid).get().addOnSuccessListener {
             if(it.exists()) {
-                var name = it.child("name").value
-                var title = it.child("title").value
-                var bio = it.child("bio").value
-                var rating = it.child("rating").value
-
-                if(rating == null){
-                    rating=0
-                }
-
+                val name = it.child("name").value
+                val title = it.child("title").value
+                val bio = it.child("bio").value
                 tvName.text = name.toString()
                 tvBio.text = bio.toString()
-                tvRating.text = "${rating.toString()}/10"
+
                 tvTitle.text = title.toString()
 
             }else {
@@ -73,5 +81,46 @@ class UserViewDocProfile : AppCompatActivity() {
             Toast.makeText(applicationContext, "Failed", Toast.LENGTH_LONG).show()
         }
     }
+
+
+    private fun setTotalRating(docUid: String) {
+        var totStars = 0.0
+        var totGivenStars = 0.0
+        var noOfReviews = 0.0
+        reviewDbRef =  FirebaseDatabase.getInstance().getReference("Reviews")
+        reviewDbRef.addValueEventListener(object:ValueEventListener {
+            @SuppressLint("SetTextI18n")
+            override fun onDataChange(snapshot: DataSnapshot){
+                if(snapshot.exists()) {
+                    for(reviewSnapshot in snapshot.children) {
+                        val review = reviewSnapshot.getValue(Review::class.java)
+                        if(review!!.docUid == docUid) {
+                            noOfReviews++
+                            totStars += 5
+                            totGivenStars += review.noOfStars!!.toInt()
+
+                        }
+
+                    }
+
+                    val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
+                    tvRating.text = "$finalRating/10"
+                    if(noOfReviews.toInt() == 0){
+                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Review )"
+                    } else {
+                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Reviews )"
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+    }
+
 
 }

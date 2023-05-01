@@ -28,15 +28,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/tvUserName"
+        android:contentDescription="@string/tvUserName"
+        android:text="@string/loading"
         android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTotalRatingDocProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/docProfileNoOfReviews" />
 
     <TextView
         android:id="@+id/tvDocTitle"
@@ -45,9 +46,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:text="title"
+        android:text="@string/loading"
+        android:contentDescription="title"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDocName" />
@@ -57,10 +59,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="7.5"
+        android:text="@string/loading"
+        android:contentDescription="@string/dummyRating"
         android:textAlignment="center"
         android:textColor="@color/reviewStars"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,24 +79,25 @@
         android:layout_marginEnd="24dp"
         android:text="Bio AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA   AAAAAAAAAAAAAAAAA AAAAA"
         android:textAlignment="center"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDocTitle" />
 
-    <Button
-        android:id="@+id/btnViewBlogs"
-        android:layout_width="145dp"
+    <TextView
+        android:id="@+id/docProfileNoOfReviews"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/button_bg_success"
-        android:backgroundTint="@color/success"
-        android:text="@string/blogs"
+        android:contentDescription="@string/noOfReviews"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/loading"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-<!--        app:layout_constraintEnd_toStartOf="@+id/btnViewReviews"-->
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalRatingDocProfile" />
+    <!--        app:layout_constraintEnd_toStartOf="@+id/btnViewReviews"-->
 
 
 <!--    <Button-->
