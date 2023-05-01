@@ -20,26 +20,30 @@
         android:textStyle="bold"
         tools:ignore="TextSizeCheck" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="414dp"
-        android:layout_marginStart="@dimen/margin_left"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="@dimen/margin_right"
-        android:background="@color/background">
+        android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Commentlist"
+            android:layout_width="match_parent"
+            android:layout_height="565dp"
+            android:layout_marginStart="@dimen/margin_left"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="@dimen/margin_right"
+            android:background="@color/background">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/themePrimary"
-        android:bufferType="spannable"
-        android:text="@string/NewButton"
-        android:textColor="@color/content"
-        android:textSize="14sp" />
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/AddCommentbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="500dp"
+            android:clickable="true"
+            app:backgroundTint="@color/success"
+            app:srcCompat="@drawable/ic_baseline_add_24" />
+    </FrameLayout>
 
 </LinearLayout>
