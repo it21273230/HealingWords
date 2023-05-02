@@ -60,6 +60,8 @@
     <string name="AddComment">Add Comment</string>
     <string name="AddComments">Add Comments</string>
     <string name="AddButton">Add </string>
+    <string name="UpdateButton">Update</string>
+    <string name="DeleteButton">Delete</string>
     <string name="ViewComments">Comments </string>
     <string name="NewButton">Add comment</string>
     <string name="actionSearchText">Search</string>

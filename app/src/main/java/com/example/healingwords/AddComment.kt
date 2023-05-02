@@ -29,9 +29,10 @@ class AddComment : AppCompatActivity() {
 
 
             database = FirebaseDatabase.getInstance().getReference("comments")
-            val Comment = Comment(comment, userId, postId )
 
-            database.child(comment).setValue(Comment).addOnSuccessListener {
+            val commentId = database.push().key
+            val Comment = Comment(commentId, comment, userId, postId )
+            database.child(commentId!!).setValue(Comment).addOnSuccessListener {
 
                 binding.commentBody.text.clear()
 
@@ -45,6 +46,7 @@ class AddComment : AppCompatActivity() {
             intent.putExtra("postId", postId)
             intent.putExtra("userId", userId)
             startActivity(intent)
+            finish()
 
         }
     }

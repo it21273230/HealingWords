@@ -176,7 +176,7 @@ class PostRecyclerAdapterUser(private val postList: List<Post>) :
 
         holder.commentBtn.setOnClickListener {
 
-            val intent = Intent(holder.itemView.context, ViewComments::class.java)
+            val intent = Intent(holder.itemView.context, ViewCommentsUser::class.java)
             intent.putExtra("postId", postId)
             intent.putExtra("userId", currentUserId)
             holder.itemView.context.startActivity(intent)
