@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healingwords.adapters.CommentAdapter
@@ -17,6 +18,7 @@ class ViewComments : AppCompatActivity() {
     private lateinit var dbref: DatabaseReference
     private lateinit var CommentRecyclerView: RecyclerView
     private lateinit var commentArrayList: ArrayList<Comment>
+    private lateinit var ToolBar : Toolbar
 
     private lateinit var AddCommentbtn: FloatingActionButton
 
@@ -24,6 +26,10 @@ class ViewComments : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_comments)
+
+        ToolBar = findViewById(R.id.viewCommentToolbar)
+        setSupportActionBar(ToolBar)
+        supportActionBar?.setTitle("Comments")
 
         postId = intent.getStringExtra("postId") ?: ""
         userId = intent.getStringExtra("userId") ?: ""
@@ -65,7 +71,7 @@ class ViewComments : AppCompatActivity() {
                         commentArrayList.add(comment!!)
 
                     }
-                    CommentRecyclerView.adapter = CommentAdapter(commentArrayList)
+                    CommentRecyclerView.adapter = CommentAdapter(postId, commentArrayList)
 
                 }
 

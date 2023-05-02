@@ -36,15 +36,15 @@ class AddComment : AppCompatActivity() {
 
                 binding.commentBody.text.clear()
 
-                Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Comment added", Toast.LENGTH_SHORT).show()
 
             }.addOnFailureListener{
-                Toast.makeText(this, "fail to add", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Fail to add", Toast.LENGTH_SHORT).show()
 
             }
-            val intent = Intent(this, ViewComments::class.java)
-            intent.putExtra("postId", postId)
-            intent.putExtra("userId", userId)
+            val intent = Intent(this, MainActivity::class.java)
+            //intent.putExtra("postId", postId)
+            //intent.putExtra("userId", userId)
             startActivity(intent)
             finish()
 

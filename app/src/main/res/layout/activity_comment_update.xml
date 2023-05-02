@@ -7,18 +7,13 @@
     android:orientation="vertical"
  >
 
-    <TextView
-        android:id="@+id/CommentHeader"
-        android:layout_width="274dp"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/updateCommentToolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_left"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="@dimen/margin_right"
-        android:text="@string/AddComments"
-        android:textColor="@color/black"
-        android:textSize="@dimen/heading"
-        android:textStyle="bold"
-        tools:ignore="TextSizeCheck" />
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
 
     <EditText
         android:id="@+id/commentBodyUpdate"
@@ -32,7 +27,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/AddComment"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:padding="10dp" />
 
     <Button
         android:id="@+id/CUpdate"
@@ -43,18 +39,6 @@
         android:layout_marginEnd="@dimen/margin_right"
         android:backgroundTint="@color/themePrimary"
         android:text="@string/UpdateButton"
-        android:textColor="@color/content"
-        tools:ignore="TextContrastCheck" />
-
-    <Button
-        android:id="@+id/CDelete"
-        android:layout_width="match_parent"
-        android:layout_height="67dp"
-        android:layout_marginStart="@dimen/margin_left"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="@dimen/margin_right"
-        android:backgroundTint="@color/danger"
-        android:text="@string/DeleteButton"
         android:textColor="@color/content"
         tools:ignore="TextContrastCheck" />
 

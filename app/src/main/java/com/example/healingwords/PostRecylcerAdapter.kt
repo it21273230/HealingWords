@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import org.w3c.dom.Text
@@ -23,6 +24,7 @@ class PostRecyclerAdapter(private val postList: MutableList<Post>) :
 
     private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var database : DatabaseReference
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,6 +35,7 @@ class PostRecyclerAdapter(private val postList: MutableList<Post>) :
          var postLikeBtn: ImageView = itemView.findViewById(R.id.postLikeBtn)
          var postLikeCount: TextView = itemView.findViewById(R.id.postLikeCount)
          var commentBtn: ImageView = itemView.findViewById(R.id.commentBtn)
+        var postCommentCount: TextView = itemView.findViewById(R.id.postCommentCount)
 
         fun setDescText(descText: String) {
             descView.text = descText
@@ -51,6 +54,11 @@ class PostRecyclerAdapter(private val postList: MutableList<Post>) :
             postLikeCount.text = "$count Likes"
         }
 
+        fun updateCommentsCount(count: Int) {
+            postCommentCount = itemView.findViewById(R.id.postCommentCount)
+            postCommentCount.text = "$count Comments"
+        }
+
 
 
     }
@@ -61,6 +69,7 @@ class PostRecyclerAdapter(private val postList: MutableList<Post>) :
             .inflate(R.layout.post_list_item, parent, false)
         firebaseFirestore = FirebaseFirestore.getInstance()
         firebaseAuth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().reference
 
         return ViewHolder(view)
     }
@@ -115,6 +124,25 @@ class PostRecyclerAdapter(private val postList: MutableList<Post>) :
                 holder.updateLikesCount(0)
             }
         }
+
+       //comments count
+        database.child("comments").orderByChild("postId").equalTo(postId).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val count = dataSnapshot.childrenCount.toInt()
+                holder.updateCommentsCount(count)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                //
+            }
+        })
+
+
+
+
+
+
+
 
 
 

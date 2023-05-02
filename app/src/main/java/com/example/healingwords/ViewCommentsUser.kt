@@ -7,17 +7,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.healingwords.adapters.CommentAdapter
 import com.example.healingwords.adapters.CommentAdapterUser
 import com.google.firebase.database.*
-
+import androidx.appcompat.widget.Toolbar
 class ViewCommentsUser : AppCompatActivity() {
 
     private lateinit var dbref: DatabaseReference
     private lateinit var CommentRecyclerView: RecyclerView
     private lateinit var commentArrayList: ArrayList<Comment>
     private lateinit var postId: String
+    private lateinit var ToolBar : Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_comments_user)
+
+        ToolBar = findViewById(R.id.viewCommentsUserToolbar)
+        setSupportActionBar(ToolBar)
+        supportActionBar?.setTitle("Comments")
 
         postId = intent.getStringExtra("postId") ?: ""
         CommentRecyclerView = findViewById(R.id.commentListUser)
@@ -43,7 +48,7 @@ class ViewCommentsUser : AppCompatActivity() {
                         commentArrayList.add(comment!!)
 
                     }
-                    CommentRecyclerView.adapter = CommentAdapterUser(commentArrayList)
+                    CommentRecyclerView.adapter = CommentAdapterUser(postId ,commentArrayList)
 
                 }
 

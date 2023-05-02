@@ -6,29 +6,31 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.RecyclerView
+
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import androidx.appcompat.widget.Toolbar
 
 class CommentUpdate : AppCompatActivity() {
 
     private lateinit var commentId: String
-    private lateinit var dbref: DatabaseReference
-    private lateinit var CommentRecyclerView: RecyclerView
-    private lateinit var commentArrayList: ArrayList<Comment>
+
     private lateinit var commentBody: EditText
     private lateinit var commentdb : DatabaseReference
     private lateinit var updatebtn : Button
-    private lateinit var deletebtn : Button
+
+    private lateinit var ToolBar : Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comment_update)
 
+        ToolBar = findViewById(R.id.updateCommentToolbar)
+        setSupportActionBar(ToolBar)
+        supportActionBar?.setTitle("Update comment")
+
         commentBody = findViewById(R.id.commentBodyUpdate)
         updatebtn = findViewById(R.id.CUpdate)
-        deletebtn = findViewById(R.id.CDelete)
         commentdb = FirebaseDatabase.getInstance().reference
         commentId = intent.getStringExtra("commentId") ?: ""
 
@@ -79,28 +81,6 @@ class CommentUpdate : AppCompatActivity() {
 
         }
 
-        deletebtn.setOnClickListener{
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Delete comment")
-            builder.setMessage("Are you sure want to delete comment?")
-            builder.setPositiveButton("Yes"){dialog, which ->
 
-                commentId?.let { id ->
-                    commentdb.child("comments").child(id).removeValue().addOnSuccessListener {
-                        Toast.makeText(this, "comment Deleted", Toast.LENGTH_LONG).show()
-                        val DeleteIntent = Intent(this, MainActivity::class.java)
-                        DeleteIntent.putExtra("openFragment", "account")
-                        startActivity(DeleteIntent)
-                    }
-                }
-            }
-            builder.setNegativeButton("No"){ dialog, which ->
-                //user click no button
-                dialog.dismiss()
-            }
-            val dialog = builder.create()
-            dialog.show()
-
-        }
     }
 }

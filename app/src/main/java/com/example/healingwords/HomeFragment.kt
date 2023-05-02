@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
                 return@addSnapshotListener
             }
 
-            postList.clear() // clear post
+
 
             for (doc in value!!.documentChanges) {
 
@@ -85,4 +85,10 @@ class HomeFragment : Fragment() {
 
         return view
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        postList.clear()
+    }
+
 }

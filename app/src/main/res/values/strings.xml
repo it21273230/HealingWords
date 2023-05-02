@@ -82,6 +82,7 @@
     <string name="userPostDeleteBtn">Delete</string>
     <string name="ForgotPassword"><u>Forgot password ?</u></string>
     <string name="ResetPass">Reset Password</string>
+    <string name="commentsCount">0 Comments</string>
 
 
 </resources>

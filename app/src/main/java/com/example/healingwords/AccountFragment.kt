@@ -52,7 +52,7 @@ class AccountFragment : Fragment() {
                 return@addSnapshotListener
             }
 
-            postList.clear() //clear posts
+           
 
             for (doc in value!!.documentChanges) {
                 val postId = doc.document.id
@@ -78,6 +78,12 @@ class AccountFragment : Fragment() {
 
         return view
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        postList.clear()
+    }
+
 
 
 }
