@@ -35,7 +35,7 @@
         android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/commentAdd"
+        android:id="@+id/Add"
         android:layout_width="match_parent"
         android:layout_height="67dp"
         android:layout_marginStart="@dimen/margin_left"
