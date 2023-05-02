@@ -25,13 +25,14 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Commentlist"
+            android:id="@+id/commentList"
             android:layout_width="match_parent"
             android:layout_height="565dp"
             android:layout_marginStart="@dimen/margin_left"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="@dimen/margin_right"
-            android:background="@color/background">
+            android:background="@color/background"
+            tools:listitem="@layout/comment_item">
 
         </androidx.recyclerview.widget.RecyclerView>
 

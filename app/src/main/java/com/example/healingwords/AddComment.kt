@@ -42,6 +42,8 @@ class AddComment : AppCompatActivity() {
 
             }
             val intent = Intent(this, ViewComments::class.java)
+            intent.putExtra("postId", postId)
+            intent.putExtra("userId", userId)
             startActivity(intent)
 
         }
