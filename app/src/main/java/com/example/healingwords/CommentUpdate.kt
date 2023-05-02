@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -79,14 +80,27 @@ class CommentUpdate : AppCompatActivity() {
         }
 
         deletebtn.setOnClickListener{
-            commentId?.let { id ->
-            commentdb.child("comments").child(id).removeValue().addOnSuccessListener {
-                Toast.makeText(this, "comment Deleted", Toast.LENGTH_LONG).show()
-                val DeleteIntent = Intent(this, MainActivity::class.java)
-                DeleteIntent.putExtra("openFragment", "account")
-                startActivity(DeleteIntent)
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Delete comment")
+            builder.setMessage("Are you sure want to delete comment?")
+            builder.setPositiveButton("Yes"){dialog, which ->
+
+                commentId?.let { id ->
+                    commentdb.child("comments").child(id).removeValue().addOnSuccessListener {
+                        Toast.makeText(this, "comment Deleted", Toast.LENGTH_LONG).show()
+                        val DeleteIntent = Intent(this, MainActivity::class.java)
+                        DeleteIntent.putExtra("openFragment", "account")
+                        startActivity(DeleteIntent)
+                    }
+                }
             }
+            builder.setNegativeButton("No"){ dialog, which ->
+                //user click no button
+                dialog.dismiss()
             }
+            val dialog = builder.create()
+            dialog.show()
+
         }
     }
 }
