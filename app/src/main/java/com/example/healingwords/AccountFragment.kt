@@ -59,6 +59,7 @@ class AccountFragment : Fragment() {
 
                 when (doc.type) {
                     DocumentChange.Type.ADDED -> {
+                        postList.clear()
                         postList.add(post)
                         postRecyclerAdapterUser.notifyDataSetChanged()
                     }

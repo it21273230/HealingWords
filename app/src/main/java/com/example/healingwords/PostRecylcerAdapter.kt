@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-class PostRecyclerAdapter(private val postList: List<Post>) :
+class PostRecyclerAdapter(private val postList: MutableList<Post>) :
     RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder>() {
 
     private lateinit var firebaseFirestore: FirebaseFirestore

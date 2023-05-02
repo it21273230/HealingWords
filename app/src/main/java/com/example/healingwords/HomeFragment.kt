@@ -66,6 +66,7 @@ class HomeFragment : Fragment() {
 
                 when (doc.type) {
                     DocumentChange.Type.ADDED -> {
+                        postList.clear()
                         postList.add(post)
                         postRecyclerAdapter.notifyDataSetChanged()
                     }
