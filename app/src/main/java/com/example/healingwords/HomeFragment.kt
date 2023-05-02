@@ -59,14 +59,16 @@ class HomeFragment : Fragment() {
                 return@addSnapshotListener
             }
 
+            postList.clear() // clear post
+
             for (doc in value!!.documentChanges) {
+
                 val postId = doc.document.id
                 val post = doc.document.toObject(Post::class.java).withId<Post>(postId)
                 post.timestamp = post.getTimestampAsLong()
 
                 when (doc.type) {
                     DocumentChange.Type.ADDED -> {
-                        postList.clear()
                         postList.add(post)
                         postRecyclerAdapter.notifyDataSetChanged()
                     }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,6 +17,7 @@ class userPostUpdate : AppCompatActivity() {
     private lateinit var updateBtn: Button
     private lateinit var deleteBtn: Button
     private lateinit var postId: String
+    private lateinit var ToolBar: Toolbar
 
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseFirestore: FirebaseFirestore
@@ -23,6 +25,10 @@ class userPostUpdate : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_post_update)
+
+        ToolBar = findViewById(R.id.postUpdateToolbar)
+        setSupportActionBar(ToolBar)
+        supportActionBar?.setTitle("Update post")
 
         postDesc = findViewById(R.id.editPostDesc)
         updateBtn = findViewById(R.id.userPostUpdateBtn)

@@ -52,6 +52,8 @@ class AccountFragment : Fragment() {
                 return@addSnapshotListener
             }
 
+            postList.clear() //clear posts
+
             for (doc in value!!.documentChanges) {
                 val postId = doc.document.id
                 val post = doc.document.toObject(Post::class.java).withId<Post>(postId)
@@ -59,7 +61,7 @@ class AccountFragment : Fragment() {
 
                 when (doc.type) {
                     DocumentChange.Type.ADDED -> {
-                        postList.clear()
+                        
                         postList.add(post)
                         postRecyclerAdapterUser.notifyDataSetChanged()
                     }
