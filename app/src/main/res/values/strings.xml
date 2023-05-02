@@ -80,6 +80,8 @@
     <string name="userPostsDescText">Description</string>
     <string name="userPostUpdateBtn">Update</string>
     <string name="userPostDeleteBtn">Delete</string>
+    <string name="ForgotPassword"><u>Forgot password ?</u></string>
+    <string name="ResetPass">Reset Password</string>
 
 
 </resources>

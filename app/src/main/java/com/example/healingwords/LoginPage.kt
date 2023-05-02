@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -19,6 +20,7 @@ class LoginPage : AppCompatActivity() {
     private lateinit var loginPasswordText: EditText
     private lateinit var submitLoginBtn: Button
     private lateinit var loginRegBtn: Button
+    private lateinit var forgotPassword: TextView
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -35,10 +37,16 @@ class LoginPage : AppCompatActivity() {
         submitLoginBtn = findViewById(R.id.submitLoginBtn)
         loginRegBtn = findViewById(R.id.loginRegBtn)
         loginProgress = findViewById(R.id.loginProgress)
+        forgotPassword = findViewById(R.id.forgotPass)
 
         loginRegBtn.setOnClickListener {
             val regIntent = Intent(this, ChooseRegType::class.java)
             startActivity(regIntent)
+        }
+
+        forgotPassword.setOnClickListener {
+            val forgotPassIntent = Intent(this, ForgotPassword::class.java)
+            startActivity(forgotPassIntent)
         }
 
         submitLoginBtn.setOnClickListener {
