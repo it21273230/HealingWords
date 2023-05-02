@@ -77,6 +77,7 @@ class RegisterPage : AppCompatActivity() {
 
                                 if(currentFirebaseUser != null) {
                                     userDatabaseRef = FirebaseDatabase.getInstance().getReference("Users")
+
                                     val user = User(currentFirebaseUser.uid,username, email)
                                     userDatabaseRef.child(currentFirebaseUser.uid).setValue(user).addOnSuccessListener {
 

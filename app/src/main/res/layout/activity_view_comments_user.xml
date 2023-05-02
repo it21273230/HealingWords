@@ -36,15 +36,6 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/AddCommentbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="300dp"
-            android:layout_marginTop="500dp"
-            android:clickable="true"
-            app:backgroundTint="@color/success"
-            app:srcCompat="@drawable/ic_baseline_add_24" />
     </FrameLayout>
 
 </LinearLayout>
