@@ -15,7 +15,7 @@ class userPostUpdate : AppCompatActivity() {
 
     private lateinit var postDesc: EditText
     private lateinit var updateBtn: Button
-    private lateinit var deleteBtn: Button
+
     private lateinit var postId: String
     private lateinit var ToolBar: Toolbar
 
@@ -32,7 +32,7 @@ class userPostUpdate : AppCompatActivity() {
 
         postDesc = findViewById(R.id.editPostDesc)
         updateBtn = findViewById(R.id.userPostUpdateBtn)
-        deleteBtn = findViewById(R.id.userPostDeleteBtn)
+
         postId = intent.getStringExtra("postId") ?: ""
         firebaseFirestore = FirebaseFirestore.getInstance()
 
@@ -72,33 +72,7 @@ class userPostUpdate : AppCompatActivity() {
                 }
         }
 
-        deleteBtn.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Delete Post")
-            builder.setMessage("Are you sure you want to delete this post?")
-            builder.setPositiveButton("Yes") { dialog, which ->
-                // User clicked Yes button
-                firebaseFirestore.collection("Posts").document(postId)
-                    .delete()
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Post deleted successfully", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.putExtra("openFragment", "account")
-                        startActivity(intent)
-                        finish()
-                    }
-                    .addOnFailureListener { e ->
-                        Toast.makeText(this, "Error deleting post: $e", Toast.LENGTH_SHORT).show()
-                    }
-            }
-            builder.setNegativeButton("No") { dialog, which ->
-                // User clicked No button
-                dialog.dismiss()
-            }
-            val dialog = builder.create()
-            dialog.show()
 
-        }
 
 
 

@@ -33,13 +33,14 @@
     <Button
         android:id="@+id/CUpdate"
         android:layout_width="match_parent"
-        android:layout_height="67dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_left"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="@dimen/margin_right"
         android:backgroundTint="@color/themePrimary"
         android:text="@string/UpdateButton"
         android:textColor="@color/content"
+        android:textSize="20sp"
         tools:ignore="TextContrastCheck" />
 
 </LinearLayout>

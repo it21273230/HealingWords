@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.example.healingwords.databinding.ActivityAddCommentBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import androidx.appcompat.widget.Toolbar
 
 class AddComment : AppCompatActivity() {
 
@@ -14,11 +15,16 @@ class AddComment : AppCompatActivity() {
     private lateinit var userId: String
     private lateinit var binding: ActivityAddCommentBinding
     private lateinit var database: DatabaseReference
+    private lateinit var ToolBar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddCommentBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ToolBar = findViewById(R.id.addCommentToolbar)
+        setSupportActionBar(ToolBar)
+        supportActionBar?.setTitle("Add Comment")
 
         postId = intent.getStringExtra("postId") ?: ""
         userId = intent.getStringExtra("userId") ?: ""

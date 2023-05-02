@@ -63,6 +63,7 @@
         android:backgroundTint="@color/themePrimary"
         android:text="@string/submitLoginBtn"
         android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editPasswordLogin"
@@ -78,6 +79,7 @@
         android:backgroundTint="@color/reviewStars"
         android:text="@string/loginRegBtn"
         android:textColor="#6D4C41"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

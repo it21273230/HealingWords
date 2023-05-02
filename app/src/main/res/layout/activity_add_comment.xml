@@ -7,18 +7,13 @@
     android:orientation="vertical"
     tools:context=".AddComment">
 
-    <TextView
-        android:id="@+id/CommentHeader"
-        android:layout_width="274dp"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/addCommentToolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_left"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="@dimen/margin_right"
-        android:text="@string/AddComments"
-        android:textColor="@color/black"
-        android:textSize="@dimen/heading"
-        android:textStyle="bold"
-        tools:ignore="TextSizeCheck" />
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
 
     <EditText
         android:id="@+id/commentBody"
@@ -38,13 +33,14 @@
     <Button
         android:id="@+id/Add"
         android:layout_width="match_parent"
-        android:layout_height="67dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_left"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="@dimen/margin_right"
         android:backgroundTint="@color/themePrimary"
         android:text="@string/AddButton"
         android:textColor="@color/content"
+        android:textSize="20sp"
         tools:ignore="TextContrastCheck" />
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.healingwords
 import Post
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,8 @@ class PostRecyclerAdapter(private val postList: MutableList<Post>) :
         private val descView: TextView = itemView.findViewById(R.id.postDesc)
         private val dateView: TextView = itemView.findViewById(R.id.postDate)
         private val username: TextView = itemView.findViewById(R.id.postUserName)
+        val editImg: ImageView = itemView.findViewById(R.id.postEditImg)
+        val deleteImg: ImageView = itemView.findViewById(R.id.postDeleteImg)
 
          var postLikeBtn: ImageView = itemView.findViewById(R.id.postLikeBtn)
          var postLikeCount: TextView = itemView.findViewById(R.id.postLikeCount)
@@ -76,12 +79,17 @@ class PostRecyclerAdapter(private val postList: MutableList<Post>) :
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        holder.editImg.visibility = View.INVISIBLE
+        holder.deleteImg.visibility = View.INVISIBLE
+
         var postId = postList.get(position).postId
         var descData = postList.get(position).desc
         var dateData = postList.get(position).timestamp
         var currentUserId = firebaseAuth.currentUser?.uid
 
         var userId = postList.get(position).userId
+
         firebaseFirestore.collection("Users").document(userId)
             .get()
             .addOnCompleteListener { task ->

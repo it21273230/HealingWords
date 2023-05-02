@@ -12,51 +12,43 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/userPostUpdateBtn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/success"
         android:text="@string/userPostUpdateBtn"
         android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/userPostDeleteBtn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/userPostDeleteBtn"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/danger"
-        android:text="@string/userPostDeleteBtn"
-        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/userPostUpdateBtn"
-        app:layout_constraintTop_toTopOf="@+id/userPostUpdateBtn" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editPostDesc"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/border"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/userPostUpdateBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postUpdateToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/postUpdateToolbar"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
