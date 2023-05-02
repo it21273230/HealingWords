@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -66,18 +67,31 @@ class userPostUpdate : AppCompatActivity() {
         }
 
         deleteBtn.setOnClickListener {
-            firebaseFirestore.collection("Posts").document(postId)
-                .delete()
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Post deleted successfully", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("openFragment", "account")
-                    startActivity(intent)
-                    finish()
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Error deleting post: $e", Toast.LENGTH_SHORT).show()
-                }
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Delete Post")
+            builder.setMessage("Are you sure you want to delete this post?")
+            builder.setPositiveButton("Yes") { dialog, which ->
+                // User clicked Yes button
+                firebaseFirestore.collection("Posts").document(postId)
+                    .delete()
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Post deleted successfully", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("openFragment", "account")
+                        startActivity(intent)
+                        finish()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Error deleting post: $e", Toast.LENGTH_SHORT).show()
+                    }
+            }
+            builder.setNegativeButton("No") { dialog, which ->
+                // User clicked No button
+                dialog.dismiss()
+            }
+            val dialog = builder.create()
+            dialog.show()
+
         }
 
 
