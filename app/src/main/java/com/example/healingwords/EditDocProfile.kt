@@ -24,7 +24,7 @@ class EditDocProfile : AppCompatActivity() {
     private lateinit var dbRef: DatabaseReference
     private lateinit var btnSubmit: Button
     private lateinit var btnCancel:Button
-
+    private lateinit var rating:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,19 +40,24 @@ class EditDocProfile : AppCompatActivity() {
 
        val uid: String =  FirebaseAuth.getInstance().currentUser?.uid.toString()
 
-        btnSubmit.setOnClickListener {
-            dbRef = FirebaseDatabase.getInstance().getReference("Doctors")
-                dbRef.child(uid).get().addOnSuccessListener {
-                if(it.exists()) {
-                    var rating = it.child("rating")
 
-                    updatedDoc = Doctor(uid=uid, name=edtName.text.toString(), email=edtEmail.text.toString(), title = edtTitle.text.toString(), username = edtUsername.text.toString(), bio="", rating = rating.toString())
-                }
+        dbRef = FirebaseDatabase.getInstance().getReference("Doctors")
+        dbRef.child(uid).get().addOnSuccessListener {
+            if(it.exists()) {
+                rating = it.child("rating").value.toString()
+                edtUsername.setText(it.child("username").value.toString())
+                edtName.setText(it.child("name").value.toString())
+                edtTitle.setText(it.child("title").value.toString())
+                edtEmail.setText(it.child("email").value.toString())
+
+
             }
-
+        }
+        btnSubmit.setOnClickListener {
+            updatedDoc = Doctor(uid=uid, name=edtName.text.toString(), email=edtEmail.text.toString(), title = edtTitle.text.toString(), username = edtUsername.text.toString(), bio="", rating = rating.toString())
             dbRef.child(uid).setValue(updatedDoc).addOnSuccessListener {
                 Toast.makeText(applicationContext, "Updated Successfully", Toast.LENGTH_LONG)
-                val intent = Intent(this, DocProfile::class.java)
+                val intent = Intent(this, DocMainUI::class.java)
                 startActivity(intent)
                 finish()
             }.addOnFailureListener{
@@ -61,7 +66,7 @@ class EditDocProfile : AppCompatActivity() {
         }
 
         btnCancel.setOnClickListener {
-            val intent = Intent(this, DocProfile::class.java)
+            val intent = Intent(this, DocMainUI::class.java)
             startActivity(intent)
             finish()
         }

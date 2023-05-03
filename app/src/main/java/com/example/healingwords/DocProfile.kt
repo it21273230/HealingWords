@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -123,6 +124,9 @@ class DocProfile : Fragment() {
         var totStars = 0.0
         var totGivenStars = 0.0
         var noOfReviews = 0.0
+        Log.d("i-totStars", totStars.toString())
+        Log.d("i-totGivenStars", totGivenStars.toString())
+        Log.d("i-noOfReviews", noOfReviews.toString())
         reviewDbRef =  FirebaseDatabase.getInstance().getReference("Reviews")
         reviewDbRef.addValueEventListener(object: ValueEventListener {
             @SuppressLint("SetTextI18n")
@@ -134,19 +138,16 @@ class DocProfile : Fragment() {
                             noOfReviews++
                             totStars += 5
                             totGivenStars += review.noOfStars!!.toInt()
+                            Log.d("m-totStars", totStars.toString())
+                            Log.d("m-totGivenStars", totGivenStars.toString())
+                            Log.d("m-noOfReviews", noOfReviews.toString())
 
                         }
 
                     }
 
-                    val finalRating=((totGivenStars / (5*noOfReviews) )* 5)
-                    tvRating.text = "$finalRating/5"
-                    if(noOfReviews.toInt() == 0){
-                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Review )"
-                    } else {
-                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Reviews )"
-                    }
                 }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -154,8 +155,27 @@ class DocProfile : Fragment() {
             }
 
         })
+        if(noOfReviews.isNaN()) {
+            noOfReviews = 0.0
+        }
+        if(totGivenStars.isNaN()){
+            totGivenStars = 0.0
+        }
+        if(totStars.isNaN() || totStars == 0.0) {
+            totStars = 5.0
+        }
 
-
+        val finalRating=((totGivenStars / (5*noOfReviews) )* 5)
+        if(finalRating.isNaN()) {
+            tvRating.text = "0.0/5"
+        }else {
+            tvRating.text = "$finalRating/5"
+        }
+        if(noOfReviews.toInt() == 0){
+            tvNoOfReviews.text = "( ${noOfReviews.toInt()} Review )"
+        } else {
+            tvNoOfReviews.text = "( ${noOfReviews.toInt()} Reviews )"
+        }
     }
 
 
