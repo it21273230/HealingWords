@@ -73,9 +73,8 @@ class DocListAdapter(private val docList: ArrayList<Doctor>) : RecyclerView.Adap
 
                     }
 
-                    val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
-                    tvRating.text = "$finalRating/10"
                 }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -83,7 +82,22 @@ class DocListAdapter(private val docList: ArrayList<Doctor>) : RecyclerView.Adap
             }
 
         })
+        if(noOfReviews.isNaN()) {
+            noOfReviews = 0.0
+        }
+        if(totGivenStars.isNaN()){
+            totGivenStars = 0.0
+        }
+        if(totStars.isNaN() || totStars == 0.0) {
+            totStars = 5.0
+        }
 
+        val finalRating=((totGivenStars / (5*noOfReviews) )* 5)
+        if(finalRating.isNaN()) {
+            tvRating.text = "0.0/5"
+        }else {
+            tvRating.text = "$finalRating/5"
+        }
 
     }
 }

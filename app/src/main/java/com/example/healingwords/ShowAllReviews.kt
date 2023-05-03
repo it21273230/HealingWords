@@ -106,8 +106,6 @@ class ShowAllReviews(private var editable: Boolean = false, var docSpecified: Bo
 
                     }
 
-                    val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
-                    tvRating.text = "$finalRating/10"
 
                 }
             }
@@ -119,6 +117,22 @@ class ShowAllReviews(private var editable: Boolean = false, var docSpecified: Bo
         })
 
 
+        if(noOfReviews.isNaN()) {
+            noOfReviews = 0.0
+        }
+        if(totGivenStars.isNaN()){
+            totGivenStars = 0.0
+        }
+        if(totStars.isNaN() || totStars == 0.0) {
+            totStars = 5.0
+        }
+
+        val finalRating=((totGivenStars / (5*noOfReviews) )* 5)
+        if(finalRating.isNaN()) {
+            tvRating.text = "0.0/5"
+        }else {
+            tvRating.text = "$finalRating/5"
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

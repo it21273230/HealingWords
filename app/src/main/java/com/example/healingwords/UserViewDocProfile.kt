@@ -103,14 +103,8 @@ class UserViewDocProfile : AppCompatActivity() {
 
                     }
 
-                    val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
-                    tvRating.text = "$finalRating/10"
-                    if(noOfReviews.toInt() == 0){
-                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Review )"
-                    } else {
-                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Reviews )"
-                    }
                 }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -118,7 +112,27 @@ class UserViewDocProfile : AppCompatActivity() {
             }
 
         })
+        if(noOfReviews.isNaN()) {
+            noOfReviews = 0.0
+        }
+        if(totGivenStars.isNaN()){
+            totGivenStars = 0.0
+        }
+        if(totStars.isNaN() || totStars == 0.0) {
+            totStars = 5.0
+        }
 
+        val finalRating = ((totGivenStars / (5*noOfReviews) )* 5)
+        if(finalRating.isNaN()) {
+            tvRating.text = "0.0/5"
+        }else {
+            tvRating.text = "$finalRating/5"
+        }
+        if(noOfReviews.toInt() == 0){
+            tvNoOfReviews.text = "( ${noOfReviews.toInt()} Review )"
+        } else {
+            tvNoOfReviews.text = "( ${noOfReviews.toInt()} Reviews )"
+        }
 
     }
 
