@@ -17,6 +17,12 @@
         android:theme="@style/Theme.HealingWords"
         tools:targetApi="31">
         <activity
+            android:name=".AddBlog"
+            android:exported="false" />
+        <activity
+            android:name=".AllDocBlogs"
+            android:exported="false" />
+        <activity
             android:name=".AddComment"
             android:exported="false">
             <meta-data
@@ -33,7 +39,7 @@
         <activity
             android:name=".SplashScreen"
             android:exported="true"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
