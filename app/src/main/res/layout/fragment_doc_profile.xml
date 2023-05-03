@@ -46,8 +46,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:text="@string/loading"
         android:contentDescription="title"
+        android:text="@string/loading"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,8 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/loading"
         android:contentDescription="@string/dummyRating"
+        android:text="@string/loading"
         android:textAlignment="center"
         android:textColor="@color/reviewStars"
         android:textSize="24sp"
@@ -97,22 +97,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTotalRatingDocProfile" />
+
+    <Button
+        android:id="@+id/btnEditDocProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/button_bg_success"
+        android:contentDescription="@string/edit"
+        android:text="@string/loading"
+        android:textColor="@color/success"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDeleteDocProfile"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnDeleteDocProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:background="@drawable/button_bg_danger"
+        android:contentDescription="@string/DeleteButton"
+        android:text="@string/loading"
+        android:textColor="@color/danger"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnEditDocProfile"
+        app:layout_constraintTop_toTopOf="@+id/btnEditDocProfile" />
     <!--        app:layout_constraintEnd_toStartOf="@+id/btnViewReviews"-->
 
 
-<!--    <Button-->
-<!--        android:id="@+id/btnViewReviews"-->
-<!--        android:layout_width="145dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="24dp"-->
-<!--        android:background="@drawable/button_bg_success"-->
-<!--        android:backgroundTint="@color/success"-->
-<!--        android:text="@string/reviews"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="20sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/btnViewBlogs" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/btnViewReviews"-->
+    <!--        android:layout_width="145dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="24dp"-->
+    <!--        android:background="@drawable/button_bg_success"-->
+    <!--        android:backgroundTint="@color/success"-->
+    <!--        android:text="@string/reviews"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="20sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/btnViewBlogs" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
