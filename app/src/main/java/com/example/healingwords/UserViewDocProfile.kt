@@ -103,8 +103,8 @@ class UserViewDocProfile : AppCompatActivity() {
 
                     }
 
-                    val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
-                    tvRating.text = "$finalRating/10"
+                    val finalRating = ((totGivenStars / (5*noOfReviews) )* 5)
+                    tvRating.text = "$finalRating/5"
                     if(noOfReviews.toInt() == 0){
                         tvNoOfReviews.text = "( ${noOfReviews.toInt()} Review )"
                     } else {

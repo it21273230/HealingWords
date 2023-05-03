@@ -73,8 +73,8 @@ class DocListAdapter(private val docList: ArrayList<Doctor>) : RecyclerView.Adap
 
                     }
 
-                    val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
-                    tvRating.text = "$finalRating/10"
+                    val finalRating=((totGivenStars / (5*noOfReviews) )* 5)
+                    tvRating.text = "$finalRating/5"
                 }
             }
 

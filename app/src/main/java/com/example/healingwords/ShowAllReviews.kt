@@ -106,8 +106,8 @@ class ShowAllReviews(private var editable: Boolean = false, var docSpecified: Bo
 
                     }
 
-                    val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
-                    tvRating.text = "$finalRating/10"
+                    val finalRating=((totGivenStars / (5*noOfReviews) )* 5)
+                    tvRating.text = "$finalRating/5"
 
                 }
             }
