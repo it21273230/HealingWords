@@ -52,12 +52,23 @@ class CommentAdapter(private val postId: String, private val commentList: ArrayL
             holder.userId.setTextColor(holder.userId.context.getColor(R.color.success))
         }
 
+
         database.child("Users").child(userId).get().addOnCompleteListener{ task ->
             if(task.isSuccessful){
                 val dataSnapshot = task.result
                 if(dataSnapshot.exists()){
                     val username = dataSnapshot.child("username").value.toString()
                     holder.userId.text = username
+                }else{
+                    database.child("Doctors").child(userId).get().addOnCompleteListener{ task ->
+                        if(task.isSuccessful){
+                            val dataSnapshot = task.result
+                            if(dataSnapshot.exists()){
+                                val username = dataSnapshot.child("username").value.toString()
+                                holder.userId.text = username
+                            }
+                        }
+                    }
                 }
             }
         }
