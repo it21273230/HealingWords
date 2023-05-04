@@ -1,6 +1,7 @@
 package com.example.healingwords.adapters
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,43 +62,34 @@ class DocListAdapter(private val docList: ArrayList<Doctor>) : RecyclerView.Adap
         reviewDbRef.addValueEventListener(object: ValueEventListener {
             @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot){
-                if(snapshot.exists()) {
-                    for(reviewSnapshot in snapshot.children) {
+                if (snapshot.exists()) {
+                    for (reviewSnapshot in snapshot.children) {
                         val review = reviewSnapshot.getValue(Review::class.java)
-                        if(review!!.docUid == docUid) {
-                            noOfReviews++
-                            totStars += 5
-                            totGivenStars += review.noOfStars!!.toInt()
+                        Log.d("uid", (review!!.docUid == docUid).toString())
+
+                        if (review!!.docUid == docUid) {
+                            noOfReviews += 1.0
+                            totStars += 5.0
+                            totGivenStars += review.noOfStars!!.toDouble()
 
                         }
 
                     }
 
                 }
+                val finalRating = ((totGivenStars / (noOfReviews)))
+                if (finalRating.isNaN()) {
+                    tvRating.text = "0.0/5"
+                } else {
+                    tvRating.text = "$finalRating/5"
+                }
 
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
 
         })
-        if(noOfReviews.isNaN()) {
-            noOfReviews = 0.0
-        }
-        if(totGivenStars.isNaN()){
-            totGivenStars = 0.0
-        }
-        if(totStars.isNaN() || totStars == 0.0) {
-            totStars = 5.0
-        }
-
-        val finalRating=((totGivenStars / (5*noOfReviews) )* 5)
-        if(finalRating.isNaN()) {
-            tvRating.text = "0.0/5"
-        }else {
-            tvRating.text = "$finalRating/5"
-        }
 
     }
 }
