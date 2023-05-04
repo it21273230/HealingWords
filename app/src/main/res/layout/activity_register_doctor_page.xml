@@ -125,10 +125,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/themePrimary"
+            android:background="@drawable/button_bg_success"
             android:text="@string/registerBtn"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textColor="@color/success"
+            android:textSize="@dimen/btnText"
+            android:textStyle="bold"
             tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 
     </LinearLayout>

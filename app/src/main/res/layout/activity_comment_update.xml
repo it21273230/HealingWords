@@ -37,10 +37,11 @@
         android:layout_marginStart="@dimen/margin_left"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="@dimen/margin_right"
-        android:backgroundTint="@color/themePrimary"
+        android:background="@drawable/button_bg_success"
         android:text="@string/UpdateButton"
-        android:textColor="@color/content"
-        android:textSize="20sp"
+        android:textColor="@color/success"
+        android:textSize="@dimen/btnText"
+        android:textStyle="bold"
         tools:ignore="TextContrastCheck" />
 
 </LinearLayout>

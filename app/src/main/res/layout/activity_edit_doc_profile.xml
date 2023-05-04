@@ -64,7 +64,8 @@
             android:background="@drawable/button_bg_success"
             android:text="@string/submitBtn"
             android:textColor="@color/success"
-            android:textSize="16sp" />
+            android:textSize="@dimen/btnText"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnEditDocProfileCancel"
@@ -75,6 +76,7 @@
             android:background="@drawable/button_bg_danger"
             android:text="@string/cancelBtn"
             android:textColor="@color/danger"
-            android:textSize="16sp" />
+            android:textSize="@dimen/btnText"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>
