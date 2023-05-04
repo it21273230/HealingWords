@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -32,6 +33,7 @@ class AccountSettings : AppCompatActivity() {
 
     private lateinit var setupName: EditText
     private lateinit var setupBtn: Button
+    private lateinit var deleteAccBtn: Button
 
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseFirestore: FirebaseFirestore
@@ -47,6 +49,7 @@ class AccountSettings : AppCompatActivity() {
         supportActionBar?.setTitle("Account Setup")
 
         firebaseAuth = FirebaseAuth.getInstance()
+        val user = FirebaseAuth.getInstance().currentUser
 
         userId = firebaseAuth.currentUser?.uid ?: ""
 
@@ -56,6 +59,7 @@ class AccountSettings : AppCompatActivity() {
         AccountImage = findViewById(R.id.accountImage)
         setupName = findViewById(R.id.setupName)
         setupBtn = findViewById(R.id.setupBtn)
+        deleteAccBtn = findViewById(R.id.deleteUserAccBtn)
 
 //        firebaseFirestore.collection("Users").document(userId).get()
 //            .addOnCompleteListener{ task ->
@@ -100,6 +104,43 @@ class AccountSettings : AppCompatActivity() {
 //
 //
 //        }
+
+        deleteAccBtn.setOnClickListener {
+            val dialogBuilder = AlertDialog.Builder(this)
+
+            // Set the message for the dialog box
+            dialogBuilder.setMessage("Are you sure you want to delete your account? This action cannot be undone.")
+
+            // Set a positive button and its click listener
+            dialogBuilder.setPositiveButton("Yes") { _, _ ->
+                // User clicked the Yes button, proceed with account deletion
+                userDatabaseRef.child("Users").child(userId).removeValue().addOnCompleteListener{task ->
+                    if (task.isSuccessful){
+                        user?.delete()
+                            ?.addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Toast.makeText(this, "Account deleted", Toast.LENGTH_LONG).show()
+                                    val intent = Intent(this, LoginPage::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                } else {
+                                    Toast.makeText(this, "Account deletion failed", Toast.LENGTH_LONG).show()
+                                }
+                            }
+                    }
+                }
+            }
+
+            // Set a negative button and its click listener
+            dialogBuilder.setNegativeButton("No") { _, _ ->
+                // User clicked the No button, do nothing
+            }
+
+            // Create and show the dialog box
+            val dialog = dialogBuilder.create()
+            dialog.show()
+        }
+
 
         userDatabaseRef.child("Users").child(userId).get().addOnCompleteListener{ task ->
             if(task.isSuccessful){
