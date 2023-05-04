@@ -63,7 +63,7 @@ class UserViewDocProfile : AppCompatActivity() {
 
     }
 
-    private fun readData(uid: String) {
+    fun readData(uid: String) {
         database = FirebaseDatabase.getInstance().getReference("Doctors")
         database.child(uid).get().addOnSuccessListener {
             if(it.exists()) {
