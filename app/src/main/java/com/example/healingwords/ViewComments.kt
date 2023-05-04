@@ -39,16 +39,16 @@ class ViewComments : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         val currentUser = firebaseAuth.uid
 
-        if (currentUser != null) {
-            dbref.child("Users").child(currentUser).get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val dataSnapshot = task.result
-                    if(dataSnapshot.exists()){
-                        AddCommentbtn.visibility = View.INVISIBLE
-                    }
-                }
-            }
-        }
+//        if (currentUser != null) {
+//            dbref.child("Users").child(currentUser).get().addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    val dataSnapshot = task.result
+//                    if(dataSnapshot.exists()){
+//                        AddCommentbtn.visibility = View.INVISIBLE
+//                    }
+//                }
+//            }
+//        }
 
         AddCommentbtn = findViewById(R.id.AddCommentbtn)
 

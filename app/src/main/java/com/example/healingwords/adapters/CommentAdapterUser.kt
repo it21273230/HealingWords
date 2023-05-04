@@ -40,7 +40,7 @@ class CommentAdapterUser(private val postId: String, private val commentList: Ar
 
         if(currentuser.toString() != userId){
             holder.commentEditImg.visibility = View.INVISIBLE
-            holder.commentDeleteImg.visibility = View.INVISIBLE
+            //holder.commentDeleteImg.visibility = View.INVISIBLE
         }
         if(currentuser.toString() == userId){
             holder.userId.setTextColor(holder.userId.context.getColor(R.color.success))
@@ -52,6 +52,16 @@ class CommentAdapterUser(private val postId: String, private val commentList: Ar
                 if(dataSnapshot.exists()){
                     val username = dataSnapshot.child("username").value.toString()
                     holder.userId.text = username
+                }else{
+                    database.child("Doctors").child(userId).get().addOnCompleteListener{ task ->
+                        if(task.isSuccessful){
+                            val dataSnapshot = task.result
+                            if(dataSnapshot.exists()){
+                                val username = dataSnapshot.child("username").value.toString()
+                                holder.userId.text = username
+                            }
+                        }
+                    }
                 }
             }
         }
