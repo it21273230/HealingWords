@@ -17,7 +17,7 @@
         android:layout_height="115dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
-        android:src="@drawable/profile"
+        android:src="@drawable/doctor"
         app:layout_constraintBottom_toTopOf="@+id/tvTotalRatingDocProfileUserView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
