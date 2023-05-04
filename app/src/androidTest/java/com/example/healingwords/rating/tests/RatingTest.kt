@@ -1,6 +1,7 @@
 package com.example.healingwords.doc_profile.tests
 
 import android.content.Context
+import android.widget.TextView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -14,6 +15,7 @@ import com.example.healingwords.UserViewDocProfile
 import org.junit.*
 import com.example.healingwords.R
 import com.example.healingwords.ratingCalculation.RatingCalc
+import com.example.healingwords.ratingCalculation.RatingsCalcAndSetTV
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import junit.framework.TestCase.assertEquals
@@ -27,8 +29,8 @@ class RatingTest {
     private lateinit var docUid:String
     private var rating:String ? = null
     private lateinit var Activity : UserViewDocProfile
-
     private lateinit var appContext: Context
+
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -37,21 +39,26 @@ class RatingTest {
     }
 
     @get:Rule
-    val activityScenarioRule = ActivityScenarioRule(DocMainUI::class.java)
-    private lateinit var activityScenario: ActivityScenario<DocMainUI>
+    val activityScenarioRuleUser = ActivityScenarioRule(UserViewDocProfile::class.java)
+
+
+    private lateinit var activityScenarioUser: ActivityScenario<UserViewDocProfile>
 
 
 
     @Before
     fun setUp() {
-        activityScenario = activityScenarioRule.scenario
+        activityScenarioUser = activityScenarioRuleUser.scenario
+        activityScenarioUser.onActivity { activity ->
+            Activity = activity
+        }
+
     }
 
     @Test
     fun getUid() {
         auth = FirebaseAuth.getInstance()
         uid = auth.currentUser?.uid!!
-
     }
 
 
@@ -59,33 +66,18 @@ class RatingTest {
     @Test
     fun testRatings() {
         getUid()
-        val rate = RatingCalc()
-        val finalRating = rate.calculate(uid)
-
-        val activityScenarioRuleUser = ActivityScenarioRule(UserViewDocProfile::class.java)
-        val activityScenario = activityScenarioRuleUser.scenario
-        activityScenario.onActivity { activity ->
-            Activity = activity
-        }
-
-        Activity.readData(uid)
-
-        var db = FirebaseDatabase.getInstance().getReference("Doctors")
-        db.child(docUid).get().addOnSuccessListener {
-            if(it.exists()) {
-                rating = it.child("name").value.toString()
-            }
-        }.addOnFailureListener{
-
-        }
-        if(!rating.isNullOrEmpty())
-            onView(withId(R.id.tvTotalRatingDocProfileUserView)).check(matches(withText("${rating}/5")))
+        val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
+        val rate = RatingsCalcAndSetTV()
+        val finalRatingTV = rate.calculate("CK2dLXaVTBYzwMi1SrEW1KA2M8n1", tv )
+        val value = "0.0/5"
+        val tvText = finalRatingTV.text
+        assertEquals(tvText, value)
     }
 
 
     @After
     fun tearDown() {
-        activityScenario.close()
+        activityScenarioUser.close()
     }
 
 }
