@@ -70,8 +70,8 @@
 
             <ImageView
                 android:id="@+id/postLikeBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
@@ -95,8 +95,8 @@
 
             <ImageView
                 android:id="@+id/commentBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
@@ -105,6 +105,43 @@
                 app:layout_constraintTop_toBottomOf="@+id/postDesc"
                 app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/comment" />
+
+            <TextView
+                android:id="@+id/postCommentCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/commentsCount"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/commentBtn"
+                app:layout_constraintTop_toBottomOf="@+id/postDesc" />
+
+            <ImageView
+                android:id="@+id/postEditImg"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/postCommentCount"
+                app:layout_constraintTop_toBottomOf="@+id/postDesc"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/baseline_edit_note_24" />
+
+            <ImageView
+                android:id="@+id/postDeleteImg"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/postEditImg"
+                app:layout_constraintTop_toBottomOf="@+id/postDesc"
+                app:srcCompat="@drawable/baseline_delete_forever_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

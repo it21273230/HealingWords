@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -13,8 +15,9 @@ class userPostUpdate : AppCompatActivity() {
 
     private lateinit var postDesc: EditText
     private lateinit var updateBtn: Button
-    private lateinit var deleteBtn: Button
+
     private lateinit var postId: String
+    private lateinit var ToolBar: Toolbar
 
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseFirestore: FirebaseFirestore
@@ -23,9 +26,13 @@ class userPostUpdate : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_post_update)
 
+        ToolBar = findViewById(R.id.postUpdateToolbar)
+        setSupportActionBar(ToolBar)
+        supportActionBar?.setTitle("Update post")
+
         postDesc = findViewById(R.id.editPostDesc)
         updateBtn = findViewById(R.id.userPostUpdateBtn)
-        deleteBtn = findViewById(R.id.userPostDeleteBtn)
+
         postId = intent.getStringExtra("postId") ?: ""
         firebaseFirestore = FirebaseFirestore.getInstance()
 
@@ -65,20 +72,7 @@ class userPostUpdate : AppCompatActivity() {
                 }
         }
 
-        deleteBtn.setOnClickListener {
-            firebaseFirestore.collection("Posts").document(postId)
-                .delete()
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Post deleted successfully", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("openFragment", "account")
-                    startActivity(intent)
-                    finish()
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Error deleting post: $e", Toast.LENGTH_SHORT).show()
-                }
-        }
+
 
 
 

@@ -3,6 +3,7 @@ package com.example.healingwords
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -94,22 +95,28 @@ class ShowAllReviews(private var editable: Boolean = false, var docSpecified: Bo
         reviewDbRef.addValueEventListener(object:ValueEventListener {
             @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot){
-                if(snapshot.exists()) {
-                    for(reviewSnapshot in snapshot.children) {
+                if (snapshot.exists()) {
+                    for (reviewSnapshot in snapshot.children) {
                         val review = reviewSnapshot.getValue(Review::class.java)
-                        if(review!!.docUid == docUid) {
-                            noOfReviews++
-                            totStars += 5
-                            totGivenStars += review.noOfStars!!.toInt()
+                        Log.d("uid", (review!!.docUid == docUid).toString())
+
+                        if (review!!.docUid == docUid) {
+                            noOfReviews += 1.0
+                            totStars += 5.0
+                            totGivenStars += review.noOfStars!!.toDouble()
 
                         }
 
                     }
 
-                    val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
-                    tvRating.text = "$finalRating/10"
-
                 }
+                val finalRating = ((totGivenStars / (noOfReviews)))
+                if (finalRating.isNaN()) {
+                    tvRating.text = "0.0/5"
+                } else {
+                    tvRating.text = "$finalRating/5"
+                }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -117,7 +124,6 @@ class ShowAllReviews(private var editable: Boolean = false, var docSpecified: Bo
             }
 
         })
-
 
     }
 

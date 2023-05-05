@@ -59,7 +59,10 @@ class HomeFragment : Fragment() {
                 return@addSnapshotListener
             }
 
+
+
             for (doc in value!!.documentChanges) {
+
                 val postId = doc.document.id
                 val post = doc.document.toObject(Post::class.java).withId<Post>(postId)
                 post.timestamp = post.getTimestampAsLong()
@@ -82,4 +85,10 @@ class HomeFragment : Fragment() {
 
         return view
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        postList.clear()
+    }
+
 }

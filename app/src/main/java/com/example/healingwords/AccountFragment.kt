@@ -52,6 +52,8 @@ class AccountFragment : Fragment() {
                 return@addSnapshotListener
             }
 
+           
+
             for (doc in value!!.documentChanges) {
                 val postId = doc.document.id
                 val post = doc.document.toObject(Post::class.java).withId<Post>(postId)
@@ -59,6 +61,7 @@ class AccountFragment : Fragment() {
 
                 when (doc.type) {
                     DocumentChange.Type.ADDED -> {
+                        
                         postList.add(post)
                         postRecyclerAdapterUser.notifyDataSetChanged()
                     }
@@ -75,6 +78,12 @@ class AccountFragment : Fragment() {
 
         return view
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        postList.clear()
+    }
+
 
 
 }

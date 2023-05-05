@@ -3,6 +3,7 @@ package com.example.healingwords
 import Post
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import org.w3c.dom.Text
@@ -18,21 +20,25 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-class PostRecyclerAdapter(private val postList: List<Post>) :
+class PostRecyclerAdapter(private val postList: MutableList<Post>) :
     RecyclerView.Adapter<PostRecyclerAdapter.ViewHolder>() {
 
     private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var database : DatabaseReference
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val descView: TextView = itemView.findViewById(R.id.postDesc)
         private val dateView: TextView = itemView.findViewById(R.id.postDate)
         private val username: TextView = itemView.findViewById(R.id.postUserName)
+        val editImg: ImageView = itemView.findViewById(R.id.postEditImg)
+        val deleteImg: ImageView = itemView.findViewById(R.id.postDeleteImg)
 
          var postLikeBtn: ImageView = itemView.findViewById(R.id.postLikeBtn)
          var postLikeCount: TextView = itemView.findViewById(R.id.postLikeCount)
          var commentBtn: ImageView = itemView.findViewById(R.id.commentBtn)
+        var postCommentCount: TextView = itemView.findViewById(R.id.postCommentCount)
 
         fun setDescText(descText: String) {
             descView.text = descText
@@ -51,6 +57,11 @@ class PostRecyclerAdapter(private val postList: List<Post>) :
             postLikeCount.text = "$count Likes"
         }
 
+        fun updateCommentsCount(count: Int) {
+            postCommentCount = itemView.findViewById(R.id.postCommentCount)
+            postCommentCount.text = "$count Comments"
+        }
+
 
 
     }
@@ -61,18 +72,24 @@ class PostRecyclerAdapter(private val postList: List<Post>) :
             .inflate(R.layout.post_list_item, parent, false)
         firebaseFirestore = FirebaseFirestore.getInstance()
         firebaseAuth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().reference
 
         return ViewHolder(view)
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        holder.editImg.visibility = View.INVISIBLE
+        holder.deleteImg.visibility = View.INVISIBLE
+
         var postId = postList.get(position).postId
         var descData = postList.get(position).desc
         var dateData = postList.get(position).timestamp
         var currentUserId = firebaseAuth.currentUser?.uid
 
         var userId = postList.get(position).userId
+
         firebaseFirestore.collection("Users").document(userId)
             .get()
             .addOnCompleteListener { task ->
@@ -115,6 +132,25 @@ class PostRecyclerAdapter(private val postList: List<Post>) :
                 holder.updateLikesCount(0)
             }
         }
+
+       //comments count
+        database.child("comments").orderByChild("postId").equalTo(postId).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val count = dataSnapshot.childrenCount.toInt()
+                holder.updateCommentsCount(count)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                //
+            }
+        })
+
+
+
+
+
+
+
 
 
 

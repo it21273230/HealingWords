@@ -12,7 +12,7 @@
 
     <string name="blogs">Blogs</string>
     <string name="reviews">Reviews</string>
-    <string name="welcome">Welcome</string>
+    <string name="welcome">Register as user or doctor</string>
 
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
@@ -60,7 +60,9 @@
     <!--Comments-->
     <string name="AddComment">Add Comment</string>
     <string name="AddComments">Add Comments</string>
-    <string name="AddButton">Add </string>
+    <string name="AddButton">Add Comment </string>
+    <string name="UpdateButton">Update</string>
+    <string name="DeleteButton">Delete</string>
     <string name="ViewComments">Comments </string>
     <string name="NewButton">Add comment</string>
     <string name="actionSearchText">Search</string>
@@ -82,6 +84,10 @@
     <string name="userPostsDescText">Description</string>
     <string name="userPostUpdateBtn">Update</string>
     <string name="userPostDeleteBtn">Delete</string>
+    <string name="ForgotPassword"><u>Forgot password ?</u></string>
+    <string name="ResetPass">Reset Password</string>
+    <string name="commentsCount">0 Comments</string>
+    <string name="deleteUserBtn">Delete Account</string>
 
 
 </resources>

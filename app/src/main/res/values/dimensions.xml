@@ -18,7 +18,9 @@
 
 
 
+
     <!--text-->
     <dimen name="heading">34sp</dimen>
     <dimen name="heading2">24sp</dimen>
+    <dimen name="btnText">18sp</dimen>
 </resources>

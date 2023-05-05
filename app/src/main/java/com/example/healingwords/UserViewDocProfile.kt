@@ -3,6 +3,7 @@ package com.example.healingwords
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -62,7 +63,7 @@ class UserViewDocProfile : AppCompatActivity() {
 
     }
 
-    private fun readData(uid: String) {
+    fun readData(uid: String) {
         database = FirebaseDatabase.getInstance().getReference("Doctors")
         database.child(uid).get().addOnSuccessListener {
             if(it.exists()) {
@@ -87,30 +88,39 @@ class UserViewDocProfile : AppCompatActivity() {
         var totStars = 0.0
         var totGivenStars = 0.0
         var noOfReviews = 0.0
-        reviewDbRef =  FirebaseDatabase.getInstance().getReference("Reviews")
-        reviewDbRef.addValueEventListener(object:ValueEventListener {
+
+        reviewDbRef = FirebaseDatabase.getInstance().getReference("Reviews")
+        reviewDbRef.addValueEventListener(object : ValueEventListener {
             @SuppressLint("SetTextI18n")
-            override fun onDataChange(snapshot: DataSnapshot){
-                if(snapshot.exists()) {
-                    for(reviewSnapshot in snapshot.children) {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (reviewSnapshot in snapshot.children) {
                         val review = reviewSnapshot.getValue(Review::class.java)
-                        if(review!!.docUid == docUid) {
-                            noOfReviews++
-                            totStars += 5
-                            totGivenStars += review.noOfStars!!.toInt()
+                        Log.d("uid", (review!!.docUid == docUid).toString())
+
+                        if (review!!.docUid == docUid) {
+                            noOfReviews += 1.0
+                            totStars += 5.0
+                            totGivenStars += review.noOfStars!!.toDouble()
 
                         }
 
                     }
 
-                    val finalRating: Int = round((totGivenStars / (5*noOfReviews) )* 10).toInt()
-                    tvRating.text = "$finalRating/10"
-                    if(noOfReviews.toInt() == 0){
-                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Review )"
-                    } else {
-                        tvNoOfReviews.text = "( ${noOfReviews.toInt()} Reviews )"
-                    }
                 }
+                val finalRating = ((totGivenStars / (noOfReviews)))
+                if (finalRating.isNaN()) {
+                    tvRating.text = "0.0/5"
+                } else {
+                    tvRating.text = "$finalRating/5"
+                }
+                if (noOfReviews.toInt() == 0) {
+                    tvNoOfReviews.text = "( ${noOfReviews.toInt()} Review )"
+                } else {
+                    tvNoOfReviews.text = "( ${noOfReviews.toInt()} Reviews )"
+                }
+
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -121,6 +131,5 @@ class UserViewDocProfile : AppCompatActivity() {
 
 
     }
-
 
 }

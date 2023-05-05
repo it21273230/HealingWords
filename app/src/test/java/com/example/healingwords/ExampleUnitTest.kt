@@ -1,5 +1,6 @@
 package com.example.healingwords
 
+import com.example.healingwords.ratingCalculation.RatingCalc
 import org.junit.Test
 
 import org.junit.Assert.*

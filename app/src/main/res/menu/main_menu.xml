@@ -3,12 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
-    <item
-        android:id="@+id/actionSearchBtn"
-        android:icon="@drawable/action_search"
-        android:title="@string/actionSearchText"
-        app:showAsAction="always" />
     <item
         android:id="@+id/actionSettingsBtn"
         android:title="@string/actionSettingText" />

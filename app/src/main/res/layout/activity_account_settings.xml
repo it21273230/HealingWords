@@ -37,9 +37,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/success"
+        android:background="@drawable/button_bg_success"
         android:text="@string/setupBtnName"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/success"
+        android:textSize="@dimen/btnText"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setupName" />
@@ -58,6 +60,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/accountImage" />
+
+    <Button
+        android:id="@+id/deleteUserAccBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_bg_danger"
+        android:text="@string/deleteUserBtn"
+        android:textColor="@color/danger"
+        android:textSize="@dimen/btnText"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setupBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,39 +7,37 @@
     android:orientation="vertical"
     tools:context=".ViewComments">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="306dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="@dimen/margin_left"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="@dimen/margin_right"
-        android:text="@string/ViewComments"
-        android:textColor="@color/black"
-        android:textSize="@dimen/heading"
-        android:textStyle="bold"
-        tools:ignore="TextSizeCheck" />
-
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/viewCommentToolbar"
         android:layout_width="match_parent"
-        android:layout_height="414dp"
-        android:layout_marginStart="@dimen/margin_left"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="@dimen/margin_right"
-        android:background="@color/background">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/themePrimary"
-        android:bufferType="spannable"
-        android:text="@string/NewButton"
-        android:textColor="@color/content"
-        android:textSize="14sp" />
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/commentListUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/comment_item">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/AddCommentbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="310dp"
+            android:layout_marginTop="510dp"
+            android:clickable="true"
+            android:contentDescription="@string/AddButton"
+            app:backgroundTint="@color/success"
+            app:srcCompat="@drawable/ic_baseline_add_24" />
+    </FrameLayout>
 
 </LinearLayout>
