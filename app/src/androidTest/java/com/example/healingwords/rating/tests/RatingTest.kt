@@ -25,29 +25,22 @@ class RatingTest {
     private var rating:String ? = null
     private lateinit var Activity : UserViewDocProfile
     private lateinit var appContext: Context
-
     @Test
     fun useAppContext() {
         // Context of the app under test.
         appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.healingwords", appContext.packageName)
     }
-
     @get:Rule
     val activityScenarioRuleUser = ActivityScenarioRule(UserViewDocProfile::class.java)
 
-
     private lateinit var activityScenarioUser: ActivityScenario<UserViewDocProfile>
-
-
-
     @Before
     fun setUp() {
         activityScenarioUser = activityScenarioRuleUser.scenario
         activityScenarioUser.onActivity { activity ->
             Activity = activity
         }
-
     }
 
     @Test
@@ -107,5 +100,4 @@ class RatingTest {
     fun tearDown() {
         activityScenarioUser.close()
     }
-
 }

@@ -14,6 +14,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.healingwords.AddReview
+import com.example.healingwords.EditReview
 import com.example.healingwords.UserViewDocProfile
 import org.junit.*
 import com.example.healingwords.R
@@ -25,11 +26,11 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4::class)
-class AddReviewsTest {
+class EditReviewTest {
     private lateinit var tvDesc : TextView
     private lateinit var rating : RatingBar
     private lateinit var btnSubmit: Button
-    private lateinit var Activity : AddReview
+    private lateinit var Activity : EditReview
     private lateinit var appContext: Context
     @Test
     fun useAppContext() {
@@ -39,39 +40,34 @@ class AddReviewsTest {
     }
 
     @get:Rule
-    val activityScenarioRule = ActivityScenarioRule(AddReview::class.java)
-    private lateinit var activityScenario: ActivityScenario<AddReview>
+    val activityScenarioRule = ActivityScenarioRule(EditReview::class.java)
+    private lateinit var activityScenario: ActivityScenario<EditReview>
+
     @Before
     fun setUp() {
         activityScenario = activityScenarioRule.scenario
         activityScenario = activityScenarioRule.scenario
         activityScenario.onActivity { activity ->
             Activity = activity
-            btnSubmit = Activity.requireViewById(R.id.submitAddRating)
+            btnSubmit = Activity.requireViewById(R.id.submitEditRating)
             rating = Activity.requireViewById(R.id.editRating2)
             tvDesc = Activity.requireViewById(R.id.edtAddMultilineFeedback2)
             val intent = Intent(Activity, AddReview::class.java)
-            intent.putExtra("docUid", "UHBIu81e0LMPfl3auKZKsKtFkh13")
-            intent.putExtra("docName", "Chamithu")
-            intent.putExtra("userUid", "4O67xchXWUcEZRHollOiuYVQP382")
-            intent.putExtra("username", "user99")
+            intent.putExtra("reviewId", "05a54d85-71ce-4ccc-9069-0c10009383c5")
+            intent.putExtra("description", "Thankyou")
+            intent.putExtra("stars", 5)
+            intent.putExtra("userUid", "DZuJl23UEDcbmvgGNjsD5fHIDXF2")
+            intent.putExtra("docUid", "TJWuQAXOd9f1qCaykmAhX7BGci12")
             Activity.startActivity(intent)
         }
     }
     @Test
-    fun setReview() {
-        var rate = 4.0
-        rating.rating = rate.toFloat()
-        tvDesc.setText("This is a test review")
-        btnSubmit.performClick()
-
+    fun editReview() {
         var db = FirebaseDatabase.getInstance().getReference("Reviews")
-        db.get().addOnSuccessListener {
+        db.child("05a54d85-71ce-4ccc-9069-0c10009383c5").get().addOnSuccessListener {
             if(it.exists()) {
-               val review: Review = it.value as Review
-                if(review.description == "This is a test review") {
-                    assertEquals(review.noOfStars , rate.toInt())
-                }
+               val description = it.child("description").value
+                assertEquals(description, tvDesc.text)
             }
         }
     }
@@ -79,4 +75,5 @@ class AddReviewsTest {
     fun tearDown() {
         activityScenario.close()
     }
+
 }
