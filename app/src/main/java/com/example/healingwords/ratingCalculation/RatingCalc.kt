@@ -1,21 +1,24 @@
 package com.example.healingwords.ratingCalculation
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import android.widget.TextView
 import com.example.healingwords.models.Review
+import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class RatingCalc() {
-    fun calculate(docUid: String): Double {
+    fun calculate(docUid: String, reviewDbRef: DatabaseReference): Int {
         var totStars = 0.0
         var totGivenStars = 0.0
         var noOfReviews = 0.0
-        var rate =0.0
-        var reviewDbRef = FirebaseDatabase.getInstance().getReference("Reviews")
+        var rate =0
+
         reviewDbRef.addValueEventListener(object : ValueEventListener {
             @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -37,10 +40,10 @@ class RatingCalc() {
                 val finalRating = ((totGivenStars / (noOfReviews)))
                 rate = if (finalRating.isNaN()) {
 
-                    0.0;
+                    0;
                 } else {
 
-                    finalRating
+                    finalRating.toInt()
                 }
 
             }
