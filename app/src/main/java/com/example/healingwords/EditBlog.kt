@@ -1,5 +1,6 @@
 package com.example.healingwords
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -78,6 +79,9 @@ class EditBlog : AppCompatActivity() {
         )
 
         database.child("Blogs").child(blogid).updateChildren(blog).addOnSuccessListener {
+
+            val intent = Intent(this,AllDocBlogs::class.java)
+            startActivity(intent)
 
 
             Toast.makeText(this,"Updated",Toast.LENGTH_SHORT).show()
