@@ -74,14 +74,16 @@ class AllDocBlogs : AppCompatActivity(), UpdateBlogsAdapter.UpdateBlogAdapterCli
 
         dbRef = FirebaseDatabase.getInstance().getReference("Blogs")
 
+        mAuth = FirebaseAuth.getInstance()
+        val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+
+        docId = currentFirebaseUser!!.uid
+
+        val blogs : Query = dbRef.orderByChild("docId").equalTo(docId)
 
 
 
-
-
-
-
-        dbRef.addValueEventListener(object : ValueEventListener {
+        blogs.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 BlogList.clear()

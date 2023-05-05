@@ -76,7 +76,7 @@ class AddBlog : AppCompatActivity() {
             }
         }
         btnCancel.setOnClickListener {
-            var intent = Intent(this, ShowReviews::class.java)
+            var intent = Intent(this, AllDocBlogs::class.java)
             intent.putExtra("docId", docId)
             startActivity(intent)
             finish()
