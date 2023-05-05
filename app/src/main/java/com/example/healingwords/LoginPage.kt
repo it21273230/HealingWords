@@ -61,6 +61,7 @@ class LoginPage : AppCompatActivity() {
                 mAuth.signInWithEmailAndPassword(loginEmail, loginPass)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            Toast.makeText(this@LoginPage, "Login Success", Toast.LENGTH_LONG).show()
                             val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
                             if(currentFirebaseUser != null) {
                                 redirectUsers(currentFirebaseUser.uid)
