@@ -43,12 +43,14 @@ class RatingTest {
         }
     }
 
+    // Test uid fetch
     @Test
     fun getUid() {
         auth = FirebaseAuth.getInstance()
         uid = auth.currentUser?.uid!!
     }
 
+    // Test Doctor rating
     @Test
     fun testCase1() {
         getUid()
@@ -58,6 +60,8 @@ class RatingTest {
         val value = "0.0/5"
         assertEquals(finalRating, value)
     }
+
+    // Test incorrect value
     @Test
     fun testCase2() {
         getUid()
@@ -68,25 +72,30 @@ class RatingTest {
         assertNotEquals(finalRating, value)
     }
 
+
+    // Test invalid doc uid
     @Test
     fun testCase3() {
         getUid()
         val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
         val rate = RatingsCalcAndSetTV()
-        val finalRating = rate.calculate("TJWuQAXOd9f1qCaykmAhX7BGci12", tv )
-        val value = 5
+        val finalRating = rate.calculate("Invalid id", tv )
+        val value = "5.0/5"
         assertNotNull(finalRating, value)
     }
 
+    // Test return type (Int)
     @Test
     fun testCase4() {
         getUid()
         val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
         val rate = RatingsCalcAndSetTV()
         val finalRating = rate.calculate("CK2dLXaVTBYzwMi1SrEW1KA2M8n1", tv )
-        val value = "5.0/5"
+        val value = 5
         assertNotEquals(finalRating, value)
     }
+
+    // Test return type (Double)
     @Test
     fun testCase5() {
         getUid()

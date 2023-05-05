@@ -46,6 +46,7 @@ class TestUserViewDocProfile {
       activityScenario = activityScenarioRule.scenario
    }
 
+   // Test uid fetch
    @Test
    fun getUid() {
       auth = FirebaseAuth.getInstance()
@@ -53,6 +54,7 @@ class TestUserViewDocProfile {
 
    }
 
+   // Test read data function
    @Test
    fun readData() {
       getUid()
@@ -64,6 +66,7 @@ class TestUserViewDocProfile {
       Activity.readData(docUid)
    }
 
+   // Test current user
    @Test
    fun testCase1(){
       activityScenario = activityScenarioRule.scenario
@@ -82,6 +85,7 @@ class TestUserViewDocProfile {
         onView(withId(R.id.tvDocNameUserView)).check(matches(withText(name)))
    }
 
+   // Test doctor
    @Test
    fun testCase2(){
       activityScenario = activityScenarioRule.scenario
@@ -100,6 +104,7 @@ class TestUserViewDocProfile {
          onView(withId(R.id.tvDocNameUserView)).check(matches(withText(name)))
    }
 
+   // Test another Doctor
    @Test
    fun testCase3(){
       activityScenario = activityScenarioRule.scenario
@@ -118,6 +123,7 @@ class TestUserViewDocProfile {
          onView(withId(R.id.tvDocNameUserView)).check(matches(withText(name)))
    }
 
+   // Test invalid uid
    @Test
    fun testCase4(){
       activityScenario = activityScenarioRule.scenario
@@ -138,6 +144,7 @@ class TestUserViewDocProfile {
           assertEquals(Activity.findViewById<TextView>(R.id.tvDocNameUserView).text, "Loading...")
    }
 
+   // Test by using extras
    @Test
    fun testCase5(){
       activityScenario = activityScenarioRule.scenario
