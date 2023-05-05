@@ -10,11 +10,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class RatingsCalcAndSetTV {
-    fun calculate(docUid: String, tvRating:TextView): TextView {
+    fun calculate(docUid: String, tvRating:TextView): String {
         var totStars = 0.0
         var totGivenStars = 0.0
         var noOfReviews = 0.0
-        var rate =0.0
+        var rate ="0.0/5"
         var reviewDbRef = FirebaseDatabase.getInstance().getReference("Reviews")
         reviewDbRef.addValueEventListener(object : ValueEventListener {
             @SuppressLint("SetTextI18n")
@@ -37,10 +37,10 @@ class RatingsCalcAndSetTV {
                 val finalRating = ((totGivenStars / (noOfReviews)))
                 if (finalRating.isNaN()) {
                     tvRating.setText("0.0/5")
-                    rate = 0.0;
+                    rate = "0.0/5";
                 } else {
                     tvRating.setText("$finalRating/5")
-                    rate = finalRating
+                    rate = "$finalRating/5"
                 }
 
 
@@ -53,7 +53,7 @@ class RatingsCalcAndSetTV {
 
         })
 
-        return tvRating
+        return rate
     }
 
 }

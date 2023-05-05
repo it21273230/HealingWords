@@ -3,22 +3,17 @@ package com.example.healingwords.doc_profile.tests
 import android.content.Context
 import android.widget.TextView
 import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.healingwords.DocMainUI
 import com.example.healingwords.UserViewDocProfile
 import org.junit.*
 import com.example.healingwords.R
-import com.example.healingwords.ratingCalculation.RatingCalc
 import com.example.healingwords.ratingCalculation.RatingsCalcAndSetTV
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import junit.framework.TestCase.assertEquals
+import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertNotNull
 import org.junit.runner.RunWith
 
 
@@ -61,20 +56,53 @@ class RatingTest {
         uid = auth.currentUser?.uid!!
     }
 
-
-
     @Test
-    fun testRatings() {
+    fun testCase1() {
         getUid()
         val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
         val rate = RatingsCalcAndSetTV()
-        val finalRatingTV = rate.calculate("CK2dLXaVTBYzwMi1SrEW1KA2M8n1", tv )
+        val finalRating = rate.calculate("CK2dLXaVTBYzwMi1SrEW1KA2M8n1", tv )
         val value = "0.0/5"
-        val tvText = finalRatingTV.text
-        assertEquals(tvText, value)
+        assertEquals(finalRating, value)
+    }
+    @Test
+    fun testCase2() {
+        getUid()
+        val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
+        val rate = RatingsCalcAndSetTV()
+        val finalRating = rate.calculate("TJWuQAXOd9f1qCaykmAhX7BGci12", tv )
+        val value = "5.0/5"
+        assertNotEquals(finalRating, value)
     }
 
+    @Test
+    fun testCase3() {
+        getUid()
+        val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
+        val rate = RatingsCalcAndSetTV()
+        val finalRating = rate.calculate("TJWuQAXOd9f1qCaykmAhX7BGci12", tv )
+        val value = 5
+        assertNotNull(finalRating, value)
+    }
 
+    @Test
+    fun testCase4() {
+        getUid()
+        val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
+        val rate = RatingsCalcAndSetTV()
+        val finalRating = rate.calculate("CK2dLXaVTBYzwMi1SrEW1KA2M8n1", tv )
+        val value = "5.0/5"
+        assertNotEquals(finalRating, value)
+    }
+    @Test
+    fun testCase5() {
+        getUid()
+        val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
+        val rate = RatingsCalcAndSetTV()
+        val finalRating = rate.calculate("TJWuQAXOd9f1qCaykmAhX7BGci12", tv )
+        val value = 0.0
+        assertNotEquals(finalRating, value)
+    }
     @After
     fun tearDown() {
         activityScenarioUser.close()
