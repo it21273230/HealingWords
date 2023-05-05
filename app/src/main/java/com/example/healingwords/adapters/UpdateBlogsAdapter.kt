@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healingwords.EditBlog
 import com.example.healingwords.R
@@ -55,11 +56,19 @@ class UpdateBlogsAdapter (private val docblogs: ArrayList<Blog>) : RecyclerView.
         holder.desc.text = currentItem.desc
 
         holder.btndlt.setOnClickListener {
-            blogId?.let { id ->
-                dbref.child("Blogs").child(id).removeValue().addOnSuccessListener {
-                    Toast.makeText(holder.contexts, "Blog Deleted", Toast.LENGTH_LONG).show()
+            AlertDialog.Builder(holder.contexts)
+                .setTitle("Delete Blog")
+                .setMessage("Are you sure you want to delete this blog?")
+                .setPositiveButton("Delete") { _, _ ->
+                    blogId?.let { id ->
+                        dbref.child("Blogs").child(id).removeValue().addOnSuccessListener {
+                            Toast.makeText(holder.contexts, "Blog Deleted", Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
-            }
+                .setNegativeButton("Cancel", null)
+                .show()
+
         }
 
         holder.btnedit.setOnClickListener {
