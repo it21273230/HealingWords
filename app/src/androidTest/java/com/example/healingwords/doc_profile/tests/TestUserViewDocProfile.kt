@@ -1,6 +1,7 @@
 package com.example.healingwords.doc_profile.tests
 
 import android.content.Context
+import android.widget.TextView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -64,26 +65,97 @@ class TestUserViewDocProfile {
    }
 
    @Test
-   fun testName(){
+   fun testCase1(){
       activityScenario = activityScenarioRule.scenario
       activityScenario.onActivity { activity ->
          Activity = activity
       }
       docUid = Activity.intent.getStringExtra("uid").toString()
       Activity.readData(docUid)
-      docUid = Activity.intent.getStringExtra("uid").toString()
       var db = FirebaseDatabase.getInstance().getReference("Doctors")
       db.child(docUid).get().addOnSuccessListener {
          if(it.exists()) {
             name = it.child("name").value.toString()
          }
-      }.addOnFailureListener{
-
       }
      if(!name.isNullOrEmpty())
         onView(withId(R.id.tvDocNameUserView)).check(matches(withText(name)))
    }
 
+   @Test
+   fun testCase2(){
+      activityScenario = activityScenarioRule.scenario
+      activityScenario.onActivity { activity ->
+         Activity = activity
+      }
+      docUid = "CK2dLXaVTBYzwMi1SrEW1KA2M8n1"
+      Activity.readData(docUid)
+      var db = FirebaseDatabase.getInstance().getReference("Doctors")
+      db.child(docUid).get().addOnSuccessListener {
+         if(it.exists()) {
+            name = it.child("name").value.toString()
+         }
+      }
+      if(!name.isNullOrEmpty())
+         onView(withId(R.id.tvDocNameUserView)).check(matches(withText(name)))
+   }
+
+   @Test
+   fun testCase3(){
+      activityScenario = activityScenarioRule.scenario
+      activityScenario.onActivity { activity ->
+         Activity = activity
+      }
+      docUid = "TJWuQAXOd9f1qCaykmAhX7BGci12"
+      Activity.readData(docUid)
+      var db = FirebaseDatabase.getInstance().getReference("Doctors")
+      db.child(docUid).get().addOnSuccessListener {
+         if(it.exists()) {
+            name = it.child("name").value.toString()
+         }
+      }
+      if(!name.isNullOrEmpty())
+         onView(withId(R.id.tvDocNameUserView)).check(matches(withText(name)))
+   }
+
+   @Test
+   fun testCase4(){
+      activityScenario = activityScenarioRule.scenario
+      activityScenario.onActivity { activity ->
+         Activity = activity
+      }
+      docUid = "Not a uid"
+      Activity.readData(docUid)
+      var db = FirebaseDatabase.getInstance().getReference("Doctors")
+      db.child(docUid).get().addOnSuccessListener {
+         if(it.exists()) {
+            name = it.child("name").value.toString()
+         }
+      }
+      if(!name.isNullOrEmpty())
+         onView(withId(R.id.tvDocNameUserView)).check(matches(withText(name)))
+      else
+          assertEquals(Activity.findViewById<TextView>(R.id.tvDocNameUserView).text, "Loading...")
+   }
+
+   @Test
+   fun testCase5(){
+      activityScenario = activityScenarioRule.scenario
+      activityScenario.onActivity { activity ->
+         Activity = activity
+      }
+      Activity.intent.putExtra("uid","TJWuQAXOd9f1qCaykmAhX7BGci12")
+      docUid = Activity.intent.getStringExtra("uid").toString()
+      Activity.readData(docUid)
+      var db = FirebaseDatabase.getInstance().getReference("Doctors")
+      db.child(docUid).get().addOnSuccessListener {
+         if(it.exists()) {
+            name = it.child("name").value.toString()
+         }
+      }
+      if(!name.isNullOrEmpty())
+         onView(withId(R.id.tvDocNameUserView)).check(matches(withText(name)))
+   }
    @After
    fun tearDown() {
       activityScenario.close()
