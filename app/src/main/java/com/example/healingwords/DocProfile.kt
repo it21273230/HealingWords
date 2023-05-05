@@ -18,12 +18,15 @@ import com.example.healingwords.models.Review
 import com.google.android.gms.common.SignInButton.ButtonSize
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import androidx.appcompat.app.AppCompatActivity
 import kotlin.math.round
+
+
 
 
 class DocProfile : Fragment() {
 
-    
+    private lateinit var btnViewBlog : Button
     private lateinit var mAuth: FirebaseAuth
     private lateinit var tvName: TextView
     private lateinit var tvRating: TextView
@@ -86,6 +89,7 @@ class DocProfile : Fragment() {
 
 
         }
+        btnViewBlog = view.findViewById(R.id.btnViewBlog)
 
         uid = currentFirebaseUser!!.uid
 
@@ -93,6 +97,16 @@ class DocProfile : Fragment() {
             readData(uid)
             setTotalRating(uid)
         }
+
+        btnViewBlog.setOnClickListener {
+            val intent = Intent(requireContext(),AllDocBlogs::class.java)
+            intent.putExtra("docUid",uid)
+            startActivity(intent)
+
+
+        }
+
+
 
         return view
     }
@@ -164,7 +178,6 @@ class DocProfile : Fragment() {
             }
 
         })
-
 
 
     }

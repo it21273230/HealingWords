@@ -6,6 +6,7 @@
     <string name="cancelBtn">Cancel</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
     <string name="user">User</string>
+    <string name="title">Title</string>
     <string name="docName">Dr. Name</string>
     <string name="bg">Background</string>
 
@@ -71,6 +72,9 @@
     <string name="usernameHint">Your name</string>
     <string name="setupBtnName">Save account settings</string>
     <string name="postDesc">Add description</string>
+    <string name="newBlogBtn">Post new Blog</string>
+    <string name="addBlogTitle">Add a Title</string>
+    <string name="addBlogDesc">Add description</string>
     <string name="newPostBtn">Add new post</string>
     <string name="bottomHomeText">Home</string>
     <string name="bottomBlogText">Blogs</string>
