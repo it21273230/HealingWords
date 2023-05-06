@@ -53,7 +53,7 @@ class EditDocProfileTest {
     }
 
     @Test
-    fun testLoginSuccess() {
+    fun testEditDocProfile() {
         // Perform login
 
         onView(withId(R.id.btnEditDocProfileConfirm)).perform(click())

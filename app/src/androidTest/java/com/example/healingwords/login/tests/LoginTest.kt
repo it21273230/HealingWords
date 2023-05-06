@@ -61,14 +61,6 @@ class LoginPageTest {
         Thread.sleep(100000)
         // Verify that the correct activity is launched based on the user's account type
         val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
-
-        //for some reason current firebase user is null, therefore test ends here
-        //therefore cannot test further as mainactivity redirects back to login
-        //therefore comment user null check at main activity
-        //pass mock user
-
-
-
         if (currentFirebaseUser != null) {
             var doctorDatabase = FirebaseDatabase.getInstance().getReference("Doctors")
             doctorDatabase.child(currentFirebaseUser.uid).get().addOnSuccessListener { Doctor ->
