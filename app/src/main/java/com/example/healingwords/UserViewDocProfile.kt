@@ -108,7 +108,7 @@ class UserViewDocProfile : AppCompatActivity() {
                     }
 
                 }
-                val finalRating = ((totGivenStars / (noOfReviews)))
+                val finalRating = String.format("%.1f", ((totGivenStars / (noOfReviews)))).toDouble()
                 if (finalRating.isNaN()) {
                     tvRating.text = "0.0/5"
                 } else {
