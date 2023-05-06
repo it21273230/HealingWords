@@ -12,10 +12,8 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.healingwords.LoginPage
-import com.example.healingwords.MainActivity
-import com.example.healingwords.NewPostActivity
-import com.example.healingwords.R
+import com.example.healingwords.*
+import com.example.healingwords.databinding.ActivityAddABlogBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -25,10 +23,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class PostsTest {
+class BlogTests {
 
     @get:Rule
-    var activityScenarioRule = ActivityScenarioRule(NewPostActivity::class.java)
+    var activityScenarioRule = ActivityScenarioRule(AddBlog::class.java)
 
     private lateinit var activityScenario: ActivityScenario<NewPostActivity>
     private lateinit var firebaseAuth: FirebaseAuth
@@ -43,19 +41,23 @@ class PostsTest {
 
 
     @Test
-    fun addPost() {
+    fun addBlog() {
 
         //first login before testing
 
 
-        onView(withId(R.id.newPostDesc)).perform(
-            ViewActions.typeText("add post test"),
+        onView(withId(R.id.newBlogTitle)).perform(
+            ViewActions.typeText("blog title test"),
+            ViewActions.closeSoftKeyboard()
+        )
+        onView(withId(R.id.newBlogDesc)).perform(
+            ViewActions.typeText("blog desc  test"),
             ViewActions.closeSoftKeyboard()
         )
 
         onView(withId(R.id.postBtn)).perform(click())
 
-        onView(withId(R.id.new_activity_layout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.main_activity_layout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         intended(hasComponent(MainActivity::class.java.name))
         Intents.release() // Release Intents
 
