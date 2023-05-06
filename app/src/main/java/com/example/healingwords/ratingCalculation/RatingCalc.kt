@@ -13,47 +13,36 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class RatingCalc() {
-    fun calculate(docUid: String, reviewDbRef: DatabaseReference): Int {
+    fun calculate(docUid: String): Double {
         var totStars = 0.0
         var totGivenStars = 0.0
         var noOfReviews = 0.0
-        var rate =0
+        var rate =0.0
 
-        reviewDbRef.addValueEventListener(object : ValueEventListener {
-            @SuppressLint("SetTextI18n")
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (reviewSnapshot in snapshot.children) {
-                        val review = reviewSnapshot.getValue(Review::class.java)
-                        Log.d("uid", (review!!.docUid == docUid).toString())
+        var simulateDatabase = arrayListOf<Review>()
+        var r1 = Review(reviewId = "1", docUid = "CK2dLXaVTBYzwMi1SrEW1KA2M8n1", noOfStars = 5)
+        var r2 = Review(reviewId = "2", docUid = "CK2dLXaVTBYzwMi1SrEW1KA2M8n1", noOfStars = 5)
+        var r3 = Review(reviewId = "3", docUid = "sdKpaEW1KA2M8nKasYzwMi1Sr1", noOfStars = 3)
+        simulateDatabase.add(r1)
+        simulateDatabase.add(r2)
+        simulateDatabase.add(r3)
 
-                        if (review!!.docUid == docUid) {
-                            noOfReviews += 1.0
-                            totStars += 5.0
-                            totGivenStars += review.noOfStars!!.toDouble()
+       for(review in simulateDatabase) {
+           if (review!!.docUid == docUid) {
+               noOfReviews += 1.0
+               totStars += 5.0
+               totGivenStars += review.noOfStars!!.toDouble()
 
-                        }
+           }
+       }
+        val finalRating = ((totGivenStars / (noOfReviews)))
+        rate = if (finalRating.isNaN()) {
 
-                    }
+            0.0;
+        } else {
 
-                }
-                val finalRating = ((totGivenStars / (noOfReviews)))
-                rate = if (finalRating.isNaN()) {
-
-                    0;
-                } else {
-
-                    finalRating.toInt()
-                }
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
+            finalRating
+        }
         return rate
     }
 }
