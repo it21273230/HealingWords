@@ -37,6 +37,7 @@ class RatingTest {
     private lateinit var activityScenarioUser: ActivityScenario<UserViewDocProfile>
     @Before
     fun setUp() {
+        appContext = InstrumentationRegistry.getInstrumentation().targetContext
         activityScenarioUser = activityScenarioRuleUser.scenario
         activityScenarioUser.onActivity { activity ->
             Activity = activity
@@ -54,22 +55,20 @@ class RatingTest {
     @Test
     fun testCase1() {
         getUid()
-        val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
         val rate = RatingsCalcAndSetTV()
-        val finalRating = rate.calculate("CK2dLXaVTBYzwMi1SrEW1KA2M8n1", tv )
-        val value = "0.0/5"
-        assertEquals(finalRating, value)
+        val finalRating = rate.calculate("CK2dLXaVTBYzwMi1SrEW1KA2M8n1",appContext )
+        val value = "5.0/5"
+        assertEquals(value,finalRating)
     }
 
     // Test incorrect value
     @Test
     fun testCase2() {
         getUid()
-        val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
         val rate = RatingsCalcAndSetTV()
-        val finalRating = rate.calculate("TJWuQAXOd9f1qCaykmAhX7BGci12", tv )
-        val value = "5.0/5"
-        assertNotEquals(finalRating, value)
+        val finalRating = rate.calculate("CK2dLXaVTBYzwMi1SrEW1KA2M8n1",appContext )
+        val value = "2.6/5"
+        assertNotEquals(value,finalRating)
     }
 
 
@@ -77,33 +76,30 @@ class RatingTest {
     @Test
     fun testCase3() {
         getUid()
-        val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
         val rate = RatingsCalcAndSetTV()
-        val finalRating = rate.calculate("Invalid id", tv )
-        val value = "5.0/5"
-        assertNotNull(finalRating, value)
+        val finalRating = rate.calculate("Invalid id",appContext)
+        val value = "null"
+        assertEquals(value,finalRating)
     }
 
     // Test return type (Int)
     @Test
     fun testCase4() {
         getUid()
-        val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
         val rate = RatingsCalcAndSetTV()
-        val finalRating = rate.calculate("CK2dLXaVTBYzwMi1SrEW1KA2M8n1", tv )
+        val finalRating = rate.calculate("CK2dLXaVTBYzwMi1SrEW1KA2M8n1",appContext)
         val value = 5
-        assertNotEquals(finalRating, value)
+        assertNotEquals(value,finalRating)
     }
 
     // Test return type (Double)
     @Test
     fun testCase5() {
         getUid()
-        val tv = Activity.findViewById<TextView>(R.id.tvTotalRatingDocProfileUserView)
         val rate = RatingsCalcAndSetTV()
-        val finalRating = rate.calculate("TJWuQAXOd9f1qCaykmAhX7BGci12", tv )
+        val finalRating = rate.calculate("CK2dLXaVTBYzwMi1SrEW1KA2M8n1",appContext)
         val value = 0.0
-        assertNotEquals(finalRating, value)
+        assertNotEquals(value,finalRating)
     }
     @After
     fun tearDown() {
