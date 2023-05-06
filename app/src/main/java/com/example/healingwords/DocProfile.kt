@@ -68,7 +68,7 @@ class DocProfile : Fragment() {
         btnDelete.setOnClickListener {
             val builder = AlertDialog.Builder(requireActivity())
             builder.setTitle("Confirm Delete")
-            builder.setMessage("Do you want to delete this item?")
+            builder.setMessage("Do you want to delete your account?")
 
             builder.setPositiveButton("Delete") { _, _ ->
                 var docUid = currentFirebaseUser!!.uid
