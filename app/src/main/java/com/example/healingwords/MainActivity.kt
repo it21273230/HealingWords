@@ -29,9 +29,26 @@ class MainActivity : AppCompatActivity() {
     private lateinit var accountFragment: AccountFragment
     private lateinit var docListFragment: DisplayDocList
 
+    private var isNetworkConnected = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //network status
+        val networkConnectivity = NetworkConnectivity(applicationContext)
+        networkConnectivity.observe(this){
+            val isConnected = it
+            if (isConnected && !isNetworkConnected){
+
+                    // Show "Connected" Toast only if the network was disconnected and now connected
+                    Toast.makeText(this, "Connected", Toast.LENGTH_LONG).show()
+                }else if (!isConnected && isNetworkConnected){
+
+                    Toast.makeText(this, "Connection Lost", Toast.LENGTH_LONG).show()
+            }
+            isNetworkConnected = isConnected
+        }
 
         mAuth = FirebaseAuth.getInstance()
 

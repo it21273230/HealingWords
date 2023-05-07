@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -16,10 +17,29 @@ class DocMainUI : AppCompatActivity() {
     private lateinit var binding: ActivityDocMainUiBinding
     private lateinit var mAuth: FirebaseAuth
     private lateinit var fragContainer: FragmentContainerView
+
+    private var isNetworkConnected = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDocMainUiBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //network status
+        val networkConnectivity = NetworkConnectivity(applicationContext)
+        networkConnectivity.observe(this){
+            val isConnected = it
+            if (isConnected && !isNetworkConnected){
+
+                // Show "Connected" Toast only if the network was disconnected and now connected
+                Toast.makeText(this, "Connected", Toast.LENGTH_LONG).show()
+            }else if (!isConnected && isNetworkConnected){
+
+                Toast.makeText(this, "Connection Lost", Toast.LENGTH_LONG).show()
+            }
+            isNetworkConnected = isConnected
+        }
+
         mAuth = FirebaseAuth.getInstance()
 
         mainToolBar = findViewById(R.id.mainToolBar)
