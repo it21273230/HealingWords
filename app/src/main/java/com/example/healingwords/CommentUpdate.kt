@@ -78,10 +78,10 @@ class CommentUpdate : AppCompatActivity() {
                             }
                         }
                 }
-            }
+            }else {
                 Toast.makeText(this, "comment require", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-
+            }
         }
 
 
