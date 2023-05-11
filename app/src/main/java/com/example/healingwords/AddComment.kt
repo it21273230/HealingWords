@@ -35,7 +35,7 @@ class AddComment : AppCompatActivity() {
 
             //validations
             if (comment.isEmpty()){
-                binding.commentBody.error = "comment required"
+                Toast.makeText(this, "comment require", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
